@@ -9,12 +9,38 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import Logo from "../images/logo.PNG";
+import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+
+const style = {
+  position: "absolute",
+  textAlign: "center",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const pages = ["CV Templates", "Resume Templates"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  // Signup Modal
+  const [openSignup, setSignupOpen] = React.useState(false);
+  const handleSignupOpen = () => setSignupOpen(true);
+  const handleSignupClose = () => setSignupOpen(false);
+
+  // Login Modal
+  const [openLogin, setLoginOpen] = React.useState(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -35,15 +61,12 @@ const Navbar = () => {
     <AppBar position="static" style={{ background: "#000000" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h4"
-            noWrap
-            component="div"
-            style={{ color: "#FCA311", fontFamily: "New Rocker" }}
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
-            BigBrainsResume
-          </Typography>
+          <img
+            src={Logo}
+            alt="Big Brains Resume Logo"
+            width="200px"
+            height="auto"
+          />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -89,12 +112,12 @@ const Navbar = () => {
           >
             LOGO
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" },  }} justifyContent='flex-end'>
-            
-          </Box> */}
 
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" },  }} justifyContent='flex-end'>
-          {pages.map((page) => (
+          <Box
+            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+            justifyContent="flex-end"
+          >
+            {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -103,15 +126,135 @@ const Navbar = () => {
                 {page}
               </Button>
             ))}
-            <Button variant="contained" size="medium" style={{backgroundColor: "#FCA311", color: "black", margin: ".3em", fontWeight: "bold", borderRadius: "20px"}}>
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={handleSignupOpen}
+              style={{
+                backgroundColor: "#FCA311",
+                color: "black",
+                margin: ".3em",
+                fontWeight: "bold",
+                borderRadius: "20px",
+              }}
+            >
               Signup
             </Button>
-            <Button variant="contained" size="medium" style={{backgroundColor: "#FCA311", color: "black", margin: ".3em", fontWeight: "bold", borderRadius: "20px"}}>
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={handleLoginOpen}
+              style={{
+                backgroundColor: "#FCA311",
+                color: "black",
+                margin: ".3em",
+                fontWeight: "bold",
+                borderRadius: "20px",
+              }}
+            >
               Login
             </Button>
           </Box>
         </Toolbar>
       </Container>
+      <Modal
+        open={openSignup}
+        onClose={handleSignupClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography variant="h2" component="div" gutterBottom>
+            Signup
+          </Typography>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "40ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="standard-basic"
+              label="Username"
+              variant="standard"
+            />
+            <TextField
+              id="standard-basic"
+              label="Email Address"
+              variant="standard"
+              type="email"
+            />
+            <TextField
+              id="standard-basic"
+              label="Password"
+              variant="standard"
+              type="password"
+            />
+            <Button
+              variant="contained"
+              color="success"
+              style={{ marginTop: "20px" }}
+            >
+              Signup
+            </Button>
+            <Button variant="contained" color="warning" type="reset">
+              Reset
+            </Button>
+            <Button variant="contained" color="info" type="reset">
+              Already have an account? Login
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
+
+      <Modal
+        open={openLogin}
+        onClose={handleLoginClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography variant="h2" component="div" gutterBottom>
+            Login
+          </Typography>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "40ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="standard-basic"
+              label="Email Address"
+              variant="standard"
+              type="email"
+            />
+            <TextField
+              id="standard-basic"
+              label="Password"
+              variant="standard"
+              type="password"
+            />
+            <Button
+              variant="contained"
+              color="success"
+              style={{ marginTop: "20px" }}
+            >
+              Login
+            </Button>
+            <Button variant="contained" color="warning" type="reset">
+              Reset
+            </Button>
+            <Button variant="contained" color="info" type="reset">
+              Don't have an account? Signup
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </AppBar>
   );
 };
