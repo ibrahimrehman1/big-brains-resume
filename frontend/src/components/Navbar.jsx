@@ -12,9 +12,16 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "../images/logo.PNG";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import Avatar from '@mui/material/Avatar';
+import { deepOrange } from '@mui/material/colors';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faUser, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
+
 
 const style = {
   position: "absolute",
+  height: "70ch",
+              overflow: "scroll",
   textAlign: "center",
   top: "50%",
   left: "50%",
@@ -56,6 +63,17 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+
+  const handleTransition = (transitionTo) =>{
+    if (transitionTo == "Login"){
+      handleSignupClose();
+      handleLoginOpen();
+    }else{
+      handleLoginClose();
+      handleSignupOpen();
+    }
+  }
 
   return (
     <AppBar position="static" style={{ background: "#000000" }}>
@@ -119,9 +137,17 @@ const Navbar = () => {
           >
             {pages.map((page) => (
               <Button
+                variant="contained"
+                size="medium"
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                style={{
+                  backgroundColor: "transparent",
+                  color: "white",
+                  margin: ".3em",
+                  fontWeight: "bold",
+                  borderRadius: "20px",
+                }}
               >
                 {page}
               </Button>
@@ -164,45 +190,71 @@ const Navbar = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography variant="h2" component="div" gutterBottom>
+          <Avatar sx={{ bgcolor: deepOrange[500], width: "60px", height: "60px", margin: "auto" }}>
+          <FontAwesomeIcon icon={faUser} style={{fontSize: "1.5rem"}}/>
+          </Avatar>
+          <Typography variant="h4" component="div" gutterBottom>
             Signup
           </Typography>
           <Box
             component="form"
             sx={{
-              "& > :not(style)": { m: 1, width: "40ch" },
+              
+              "& > :not(style)": { m: 1, width: "40ch"},
             }}
             noValidate
             autoComplete="off"
           >
             <TextField
               id="standard-basic"
+              label="First Name"
+              variant="standard"
+              required
+            />
+            <TextField
+              id="standard-basic"
+              label="Last Name"
+              variant="standard"
+              required
+            />
+            <TextField
+              id="standard-basic"
               label="Username"
               variant="standard"
+              required
             />
             <TextField
               id="standard-basic"
               label="Email Address"
               variant="standard"
               type="email"
+              required
             />
             <TextField
               id="standard-basic"
               label="Password"
               variant="standard"
               type="password"
+              required
+            />
+            <TextField
+              id="standard-basic"
+              label="Confirm Password"
+              variant="standard"
+              type="password"
+              required
             />
             <Button
               variant="contained"
               color="success"
               style={{ marginTop: "20px" }}
             >
-              Signup
+              Create my Account
             </Button>
             <Button variant="contained" color="warning" type="reset">
               Reset
             </Button>
-            <Button variant="contained" color="info" type="reset">
+            <Button variant="contained" color="info" type="button" onClick={()=>handleTransition("Login")}>
               Already have an account? Login
             </Button>
           </Box>
@@ -216,7 +268,10 @@ const Navbar = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography variant="h2" component="div" gutterBottom>
+        <Avatar sx={{ bgcolor: deepOrange[500], width: "60px", height: "60px", margin: "auto"}}>
+          <FontAwesomeIcon icon={faUserAstronaut} style={{fontSize: "1.5rem"}}/>
+          </Avatar>
+          <Typography variant="h4" component="div" gutterBottom>
             Login
           </Typography>
           <Box
@@ -232,12 +287,14 @@ const Navbar = () => {
               label="Email Address"
               variant="standard"
               type="email"
+              required
             />
             <TextField
               id="standard-basic"
               label="Password"
               variant="standard"
               type="password"
+              required
             />
             <Button
               variant="contained"
@@ -249,7 +306,7 @@ const Navbar = () => {
             <Button variant="contained" color="warning" type="reset">
               Reset
             </Button>
-            <Button variant="contained" color="info" type="reset">
+            <Button variant="contained" color="info" type="button" onClick={()=>handleTransition("Signup")}>
               Don't have an account? Signup
             </Button>
           </Box>
