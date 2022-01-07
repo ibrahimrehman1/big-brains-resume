@@ -1,46 +1,6 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const userSchema = Schema({
-  firstName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  userName: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
-  },
-  emailAddress: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  userCV: {
-    type: Array,
-    default: [],
-  },
-  userResume: {
-    type: Array,
-    default: [],
-  },
-  userFeedback: {
-    type: Array,
-    default: [],
-  },
-});
 
 const resumeSchema = Schema({
   fullName: {
@@ -148,3 +108,53 @@ const feedbackSchema = Schema({
         required: true
     }
 })
+
+const userSchema = Schema({
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  userName: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
+  emailAddress: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  userCV: {
+    type: [cvSchema],
+    default: [],
+  },
+  userResume: {
+    type: [resumeSchema],
+    default: [],
+  },
+  userFeedback: {
+    type: [feedbackSchema],
+    default: [],
+  },
+});
+
+userSchema.pre("save", async function (next){
+  const salt = await bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+})
+
+module.exports = model("user", userSchema)

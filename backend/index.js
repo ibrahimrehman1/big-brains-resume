@@ -1,27 +1,21 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
+const {signup, login} = require("./controllers/controller");
 
-
-mongoose.connect("mongodb+srv://ibrahimrehman1:nVD314ZqreevPgf7@cluster0.ombuy.mongodb.net/database0?retryWrites=true&w=majority").then((_)=>console.log("Connected..."))
 
 let app = express();
 
+
+// Constants
 const PORT = process.env.PORT || 5000;
 
+// Middlewares
 app.use(express.json());
 app.use(cors());
 
-// app.post("/signup", (req, res)=>{
-//     console.log(req.body)
-    
-//     res.json({'status': "success"});
-// });
-
-
-// app.post("/login", (req, res)=>{
-//     res.json({'status': "success"});
-// });
+// Login/Signup Routes
+app.post("/signup", signup);
+app.post("/login", login);
 
 
 // app.get("/myresume", (req, res)=>{
