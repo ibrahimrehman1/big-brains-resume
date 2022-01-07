@@ -15,22 +15,27 @@ const createToken = (id) => {
 
 module.exports.signup = async (req, res) => {
   const { firstName, lastName, userName, emailAddress, password } = req.body;
-  let user = await User.create({
-    firstName,
-    lastName,
-    userName,
-    emailAddress,
-    password,
-  });
-  console.log(user);
+  try {
+    let user = await User.create({
+      firstName,
+      lastName,
+      userName,
+      emailAddress,
+      password,
+    });
 
-  const userID = user["_id"];
+    console.log(user);
 
-  let token = createToken(userID);
+    const userID = user["_id"];
 
-  res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+    let token = createToken(userID);
 
-  res.json({ status: "Success!", userid: userID, token });
+    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+
+    res.json({ status: "Success!", userid: userID, token });
+  } catch (err) {
+    res.json({ error: err.message.split(":")[2].trim() });
+  }
 };
 
 module.exports.login = async (req, res) => {

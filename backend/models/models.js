@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-
+const validator = require("validator");
 
 const resumeSchema = Schema({
   fullName: {
@@ -125,17 +125,21 @@ const userSchema = Schema({
     required: true,
     trim: true,
     unique: true,
+
   },
   emailAddress: {
     type: String,
     required: true,
     trim: true,
     unique: true,
+    validate: [validator.isEmail, "Email format not correct!"]
   },
   password: {
     type: String,
     required: true,
     trim: true,
+    validate: [validator.isStrongPassword, "Password not strong Enough!"] 
+    // { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}
   },
   userCV: {
     type: [cvSchema],
@@ -156,5 +160,7 @@ userSchema.pre("save", async function (next){
   this.password = await bcrypt.hash(this.password, salt);
   next();
 })
+
+
 
 module.exports = model("user", userSchema)
