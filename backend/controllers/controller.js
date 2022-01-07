@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 const User = require("../models/models");
 const bcrypt = require("bcrypt");
+const JWT = require("jsonwebtoken");
 
 mongoose
   .connect(
     "mongodb+srv://ibrahimrehman1:nVD314ZqreevPgf7@cluster0.ombuy.mongodb.net/database0?retryWrites=true&w=majority"
   )
   .then((_) => console.log("Connected..."));
+
+const createToken = (id) => {
+  return JWT.sign({ id }, "big brains", { expiresIn: 3600 });
+};
 
 module.exports.signup = async (req, res) => {
   const { firstName, lastName, userName, emailAddress, password } = req.body;
@@ -19,7 +24,13 @@ module.exports.signup = async (req, res) => {
   });
   console.log(user);
 
-  res.json({ status: "Success!", userid: user["_id"] });
+  const userID = user["_id"];
+
+  let token = createToken(userID);
+
+  res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+
+  res.json({ status: "Success!", userid: userID, token });
 };
 
 module.exports.login = async (req, res) => {
@@ -27,7 +38,12 @@ module.exports.login = async (req, res) => {
   let user = await User.findOne({ emailAddress }).exec();
   let passwordStatus = await bcrypt.compare(password, user["password"]);
   if (passwordStatus) {
-    res.json({ status: "Success!", userid: user["_id"] });
+    const userID = user["_id"];
+
+    let token = createToken(userID);
+
+    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+    res.json({ status: "Success!", userid: userID, token });
   } else {
     res.json({ status: "Failed!" });
   }
