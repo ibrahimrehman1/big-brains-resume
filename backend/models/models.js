@@ -11,10 +11,12 @@ const resumeSchema = Schema({
   designation: {
     type: String,
     trim: true,
+
   },
   summary: {
     type: String,
     trim: true,
+    minLength: [50, 'Summary is too Short!']
   },
   skills: {
     type: Map,
@@ -59,6 +61,7 @@ const cvSchema = Schema({
   aboutMe: {
     type: String,
     trim: true,
+    minLength: [50, 'About Me is too Short!']
   },
   skills: {
     type: Map,
@@ -96,15 +99,16 @@ const cvSchema = Schema({
 
 const feedbackSchema = Schema({
     emojis: {
-        type: Map,
-        default: {}
-    },
-    comments : {
         type: String,
         required: true
     },
+    comments : {
+        type: String,
+        required: true,
+        minLength: [50, 'Feedback is too Short!']
+    },
     type: {
-        type: Map,
+        type: String,
         required: true
     }
 })
@@ -125,7 +129,7 @@ const userSchema = Schema({
     required: true,
     trim: true,
     unique: true,
-
+    minLength: [5, 'Username too Short!']
   },
   emailAddress: {
     type: String,
