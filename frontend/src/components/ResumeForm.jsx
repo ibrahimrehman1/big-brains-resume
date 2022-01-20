@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 const ResumeForm = () => {
   return (
     <>
-      {" "}
       <main style={{ padding: "2em",  textAlign: "center"  }}>
         <h1 style={{ fontSize: "3rem" }}>Resume Form</h1>
         <Box
