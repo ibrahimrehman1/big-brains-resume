@@ -1,6 +1,7 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 const ResumeForm = () => {
   return (
@@ -100,6 +101,19 @@ const ResumeForm = () => {
             spellCheck={false}
           />
         </Box>
+        <Button
+              variant="contained"
+              size="large"
+              style={{
+                backgroundColor: "#FCA311",
+                color: "black",
+                margin: ".3em",
+                fontWeight: "bold",
+                borderRadius: "20px",
+              }}
+            >
+              Submit
+            </Button>
       </main>
     </>
   );
