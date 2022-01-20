@@ -6,12 +6,12 @@ const ResumeForm = () => {
   return (
     <>
       {" "}
-      <main style={{ padding: "2em" }}>
+      <main style={{ padding: "2em", textAlign:"center" }}>
         <h1 style={{ fontSize: "3rem" }}>Resume Form</h1>
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 2, width: "50ch" },
+            "& > :not(style)": { m: 2, width: "80ch" },
           }}
           noValidate
           autoComplete="off"
