@@ -16,6 +16,7 @@ import Avatar from '@mui/material/Avatar';
 import { deepOrange } from '@mui/material/colors';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faUser, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
+import {useNavigate } from "react-router-dom";
 
 
 const style = {
@@ -75,6 +76,9 @@ const Navbar = () => {
     }
   }
 
+  const navigate = useNavigate();
+
+
   return (
     <AppBar position="static" style={{ background: "#000000" }}>
       <Container maxWidth="xl">
@@ -84,6 +88,7 @@ const Navbar = () => {
             alt="Big Brains Resume Logo"
             width="200px"
             height="auto"
+            onClick={()=>navigate("/")}
           />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

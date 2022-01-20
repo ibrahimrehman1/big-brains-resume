@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import ResumeForm from "./components/ResumeForm.jsx";
+import CvForm from "./components/CvForm.jsx";
 
 const style = {
   position: "absolute",
@@ -47,7 +48,7 @@ function Homepage() {
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", flexDirection: "row" }}>
-              <img src={CVIcon} height="300px" />
+              <img src={CVIcon} height="300px"/>
               <Button
                 variant="contained"
                 size="medium"
@@ -94,6 +95,7 @@ function Homepage() {
                       height: "40px",
                       margin: '10px'
                     }}
+                    onClick={()=>navigate("/cvform")}
                   >
                     CV Form
                   </Button>
@@ -174,6 +176,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} index/>
         <Route path="/resumeform" element={<ResumeForm />} index />
+        <Route path="/cvform" element={<CvForm />} index />
       </Routes>
     </>
   );

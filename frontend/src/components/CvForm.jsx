@@ -3,11 +3,12 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-const ResumeForm = () => {
+const CvForm = () => {
   return (
     <>
-      <main style={{ padding: "2em",  textAlign: "center"  }}>
-        <h1 style={{ fontSize: "3rem" }}>Resume Form</h1>
+      {" "}
+      <main style={{ padding: "2em", textAlign: "center" }}>
+        <h1 style={{ fontSize: "3rem" }}>CV Form</h1>
         <Box
           component="form"
           sx={{
@@ -36,7 +37,7 @@ const ResumeForm = () => {
           <TextField
             placeholder="I am a Undergrad Student..."
             id="outlined-multiline-flexible"
-            label="Summary"
+            label="About me"
             multiline
             minRows={1}
             required
@@ -53,7 +54,7 @@ const ResumeForm = () => {
           <TextField
             id="outlined-basic"
             placeholder="Matric, Inter, ..."
-            label="Education"
+            label="Detailed Education"
             variant="outlined"
             required
             spellCheck={false}
@@ -99,6 +100,14 @@ const ResumeForm = () => {
             required
             spellCheck={false}
           />
+          <TextField
+            id="outlined-basic"
+            label="Work Experience"
+            placeholder="Python for Everybody, Cloud Computing 101, ..."
+            variant="outlined"
+            required
+            spellCheck={false}
+          />
         </Box>
         <Button
               variant="contained"
@@ -118,4 +127,4 @@ const ResumeForm = () => {
   );
 };
 
-export default ResumeForm;
+export default CvForm;
