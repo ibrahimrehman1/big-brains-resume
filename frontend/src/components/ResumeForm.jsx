@@ -12,9 +12,10 @@ const ResumeForm = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 2, width: "80ch" },
+            "& > :not(style)": { m: 2, width: "60ch" },
           }}
           noValidate
+          className="resume-form"
           autoComplete="off"
         >
           <TextField

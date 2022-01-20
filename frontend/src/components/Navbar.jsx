@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,17 +12,17 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "../images/logo.PNG";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import Avatar from '@mui/material/Avatar';
-import { deepOrange } from '@mui/material/colors';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faUser, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
-import {useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import { deepOrange } from "@mui/material/colors";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import "../app.css";
 
 const style = {
   position: "absolute",
   height: "70ch",
-              overflow: "scroll",
+  overflow: "scroll",
   textAlign: "center",
   top: "50%",
   left: "50%",
@@ -37,6 +37,8 @@ const style = {
 const pages = ["CV Templates", "Resume Templates"];
 
 const Navbar = () => {
+  const username = localStorage.getItem("username");
+  console.log(username);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -65,33 +67,50 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-
-  const handleTransition = (transitionTo) =>{
-    if (transitionTo == "Login"){
+  const handleTransition = (transitionTo) => {
+    if (transitionTo == "Login") {
       handleSignupClose();
       handleLoginOpen();
-    }else{
+    } else {
       handleLoginClose();
       handleSignupOpen();
     }
-  }
+  };
 
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
 
   const createAccount = async () => {
-    await fetch("http://localhost:5000/signup", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({username, firstName, lastName, email, password})
-    })
-  }
+    if (password === confirmPassword) {
+      let jsonData = await fetch("http://localhost:5000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName,
+          firstName,
+          lastName,
+          emailAddress,
+          password,
+        }),
+      });
 
+      let data = await jsonData.json();
+      if (data.error) {
+        alert(data.error);
+      } else if (data.status == "Success!") {
+        localStorage.setItem("username", data.userName);
+        window.location.assign("/");
+      }
+    } else {
+      alert("Password does not Match!");
+    }
+  };
 
   return (
     <AppBar position="static" style={{ background: "#000000" }}>
@@ -102,9 +121,8 @@ const Navbar = () => {
             alt="Big Brains Resume Logo"
             width="200px"
             height="auto"
-            onClick={()=>navigate("/")}
+            onClick={() => navigate("/")}
             className="navbar-logo"
-            
           />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -161,7 +179,7 @@ const Navbar = () => {
                 variant="contained"
                 size="medium"
                 key={page}
-                onClick={()=>navigate("/templates")}
+                onClick={() => navigate("/templates")}
                 style={{
                   backgroundColor: "transparent",
                   color: "white",
@@ -173,34 +191,40 @@ const Navbar = () => {
                 {page}
               </Button>
             ))}
-            <Button
-              variant="contained"
-              size="medium"
-              onClick={handleSignupOpen}
-              style={{
-                backgroundColor: "#FCA311",
-                color: "black",
-                margin: ".3em",
-                fontWeight: "bold",
-                borderRadius: "20px",
-              }}
-            >
-              Signup
-            </Button>
-            <Button
-              variant="contained"
-              size="medium"
-              onClick={handleLoginOpen}
-              style={{
-                backgroundColor: "#FCA311",
-                color: "black",
-                margin: ".3em",
-                fontWeight: "bold",
-                borderRadius: "20px",
-              }}
-            >
-              Login
-            </Button>
+            { username ? (
+              <h3 style={{color: "#FCA311"}}>{username}</h3>
+            ) : (
+              <>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  onClick={handleSignupOpen}
+                  style={{
+                    backgroundColor: "#FCA311",
+                    color: "black",
+                    margin: ".3em",
+                    fontWeight: "bold",
+                    borderRadius: "20px",
+                  }}
+                >
+                  Signup
+                </Button>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  onClick={handleLoginOpen}
+                  style={{
+                    backgroundColor: "#FCA311",
+                    color: "black",
+                    margin: ".3em",
+                    fontWeight: "bold",
+                    borderRadius: "20px",
+                  }}
+                >
+                  Login
+                </Button>
+              </>
+            )}
           </Box>
         </Toolbar>
       </Container>
@@ -211,8 +235,15 @@ const Navbar = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Avatar sx={{ bgcolor: deepOrange[500], width: "60px", height: "60px", margin: "auto" }}>
-          <FontAwesomeIcon icon={faUser} style={{fontSize: "1.5rem"}}/>
+          <Avatar
+            sx={{
+              bgcolor: deepOrange[500],
+              width: "60px",
+              height: "60px",
+              margin: "auto",
+            }}
+          >
+            <FontAwesomeIcon icon={faUser} style={{ fontSize: "1.5rem" }} />
           </Avatar>
           <Typography variant="h4" component="div" gutterBottom>
             Signup
@@ -220,8 +251,7 @@ const Navbar = () => {
           <Box
             component="form"
             sx={{
-              
-              "& > :not(style)": { m: 1, width: "40ch"},
+              "& > :not(style)": { m: 1, width: "40ch" },
             }}
             noValidate
             autoComplete="off"
@@ -231,37 +261,38 @@ const Navbar = () => {
               label="First Name"
               variant="standard"
               value={firstName}
-              onChange={(e)=>setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
               required
             />
             <TextField
               id="standard-basic"
               label="Last Name"
               value={lastName}
-              onChange={(e)=>setLastName(e.target.value)}              variant="standard"
+              onChange={(e) => setLastName(e.target.value)}
+              variant="standard"
               required
             />
             <TextField
               id="standard-basic"
               label="Username"
               variant="standard"
-              value={username}
-              onChange={(e)=>setUsername(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               required
             />
             <TextField
               id="standard-basic"
               label="Email Address"
               variant="standard"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
               type="email"
               required
             />
             <TextField
               id="standard-basic"
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               label="Password"
               variant="standard"
               type="password"
@@ -272,20 +303,27 @@ const Navbar = () => {
               label="Confirm Password"
               variant="standard"
               type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
             <Button
               variant="contained"
               color="success"
               style={{ marginTop: "20px" }}
-              onClick={()=>createAccount()}
+              onClick={createAccount}
             >
               Create my Account
             </Button>
             <Button variant="contained" color="warning" type="reset">
               Reset
             </Button>
-            <Button variant="contained" color="info" type="button" onClick={()=>handleTransition("Login")}>
+            <Button
+              variant="contained"
+              color="info"
+              type="button"
+              onClick={() => handleTransition("Login")}
+            >
               Already have an account? Login
             </Button>
           </Box>
@@ -299,8 +337,18 @@ const Navbar = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Avatar sx={{ bgcolor: deepOrange[500], width: "60px", height: "60px", margin: "auto"}}>
-          <FontAwesomeIcon icon={faUserAstronaut} style={{fontSize: "1.5rem"}}/>
+          <Avatar
+            sx={{
+              bgcolor: deepOrange[500],
+              width: "60px",
+              height: "60px",
+              margin: "auto",
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faUserAstronaut}
+              style={{ fontSize: "1.5rem" }}
+            />
           </Avatar>
           <Typography variant="h4" component="div" gutterBottom>
             Login
@@ -337,7 +385,12 @@ const Navbar = () => {
             <Button variant="contained" color="warning" type="reset">
               Reset
             </Button>
-            <Button variant="contained" color="info" type="button" onClick={()=>handleTransition("Signup")}>
+            <Button
+              variant="contained"
+              color="info"
+              type="button"
+              onClick={() => handleTransition("Signup")}
+            >
               Don't have an account? Signup
             </Button>
           </Box>

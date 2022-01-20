@@ -12,8 +12,9 @@ const CvForm = () => {
         <Box
           component="form"
           sx={{
-            "& > :not(style)": { m: 2, width: "80ch" },
+            "& > :not(style)": { m: 2, width: "60ch" },
           }}
+          className="cv-form"
           noValidate
           autoComplete="off"
         >

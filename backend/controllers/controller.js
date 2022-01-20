@@ -32,7 +32,7 @@ module.exports.signup = async (req, res) => {
 
     res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
 
-    res.json({ status: "Success!", userid: userID, token });
+    res.json({ status: "Success!", userid: userID, token, userName });
   } catch (err) {
     res.json({ error: err.message.split(":")[2].trim() });
   }
