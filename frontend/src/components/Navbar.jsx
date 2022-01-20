@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -77,6 +77,20 @@ const Navbar = () => {
   }
 
   const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  const createAccount = async () => {
+    await fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({username, firstName, lastName, email, password})
+    })
+  }
 
 
   return (
@@ -214,29 +228,38 @@ const Navbar = () => {
               id="standard-basic"
               label="First Name"
               variant="standard"
+              value={firstName}
+              onChange={(e)=>setFirstName(e.target.value)}
               required
             />
             <TextField
               id="standard-basic"
               label="Last Name"
-              variant="standard"
+              value={lastName}
+              onChange={(e)=>setLastName(e.target.value)}              variant="standard"
               required
             />
             <TextField
               id="standard-basic"
               label="Username"
               variant="standard"
+              value={username}
+              onChange={(e)=>setUsername(e.target.value)}
               required
             />
             <TextField
               id="standard-basic"
               label="Email Address"
               variant="standard"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               type="email"
               required
             />
             <TextField
               id="standard-basic"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               label="Password"
               variant="standard"
               type="password"
@@ -253,6 +276,7 @@ const Navbar = () => {
               variant="contained"
               color="success"
               style={{ marginTop: "20px" }}
+              onClick={()=>createAccount()}
             >
               Create my Account
             </Button>
