@@ -9,6 +9,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import ResumeForm from "./components/ResumeForm.jsx";
 import CvForm from "./components/CvForm.jsx";
+import CVResumeCarousels from "./components/Templates.jsx";
 
 const style = {
   position: "absolute",
@@ -123,6 +124,7 @@ function Homepage() {
                       borderRadius: "20px",
                       height: "40px",margin: '10px'
                     }}
+                    onClick={()=>navigate("/templates")}
                   >
                     Templates
                     
@@ -177,6 +179,7 @@ function App() {
         <Route path="/" element={<Homepage />} index/>
         <Route path="/resumeform" element={<ResumeForm />} index />
         <Route path="/cvform" element={<CvForm />} index />
+        <Route path="/templates" element={<CVResumeCarousels />} index />
       </Routes>
     </>
   );
