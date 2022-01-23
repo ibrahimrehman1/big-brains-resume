@@ -85,6 +85,8 @@ const Navbar = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const createAccount = async () => {
     if (password === confirmPassword) {
@@ -111,6 +113,22 @@ const Navbar = () => {
       alert("Password does not Match!");
     }
   };
+
+
+  const handleLogin = async () => {
+    let jsonData = await fetch("http://localhost:5000/login", {
+      headers: {"Content-Type": "application/json"},
+      method: "POST",
+      body: JSON.stringify({emailAddress: loginEmail, password: loginPassword})
+    })
+    let data = await jsonData.json();
+      if (data.error) {
+        alert(data.error);
+      } else if (data.status == "Success!") {
+        localStorage.setItem("username", data.userName);
+        window.location.assign("/");
+      }
+  }
 
   return (
     <AppBar position="static" style={{ background: "#000000" }}>
@@ -366,6 +384,8 @@ const Navbar = () => {
               label="Email Address"
               variant="standard"
               type="email"
+              value={loginEmail}
+              onChange={(e)=>setLoginEmail(e.target.value)}
               required
             />
             <TextField
@@ -373,12 +393,15 @@ const Navbar = () => {
               label="Password"
               variant="standard"
               type="password"
+              value={loginPassword}
+              onChange={(e)=>setLoginPassword(e.target.value)}
               required
             />
             <Button
               variant="contained"
               color="success"
               style={{ marginTop: "20px" }}
+              onClick={handleLogin}
             >
               Login
             </Button>

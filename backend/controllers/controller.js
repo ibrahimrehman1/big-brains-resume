@@ -40,16 +40,27 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   const { emailAddress, password } = req.body;
-  let user = await User.findOne({ emailAddress }).exec();
-  let passwordStatus = await bcrypt.compare(password, user["password"]);
-  if (passwordStatus) {
-    const userID = user["_id"];
-
-    let token = createToken(userID);
-
-    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
-    res.json({ status: "Success!", userid: userID, token });
-  } else {
-    res.json({ status: "Failed!" });
+  try {
+    let user = await User.findOne({ emailAddress }).exec();
+    if (user){
+      let passwordStatus = await bcrypt.compare(password, user["password"]);
+      if (passwordStatus) {
+        const userID = user["_id"];
+  
+        let token = createToken(userID);
+  
+        res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+        res.json({
+          status: "Success!",
+          userid: userID,
+          token,
+          userName: user["userName"],
+        });
+      }
+    }else{
+      res.json({ error: "Email/Password does not exist!" });
+    }
+  } catch (err) {
+    res.json({ error: err.message });
   }
 };

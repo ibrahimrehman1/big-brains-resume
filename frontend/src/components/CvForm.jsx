@@ -55,7 +55,7 @@ const CvForm = () => {
           <TextField
             id="outlined-basic"
             placeholder="Matric, Inter, ..."
-            label="Detailed Education"
+            label="Education"
             variant="outlined"
             required
             spellCheck={false}

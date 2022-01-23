@@ -90,6 +90,9 @@ const resumeTemplateSchema = Schema({
     type: Array,
     default: [],
   },
+  templateStyle: {
+    type: String,
+  }
 });
 
 const cvFormSchema = Schema({
@@ -160,7 +163,7 @@ const cvTemplateSchema = Schema({
     type: Map,
     default: {},
   },
-  detailedEducation: {
+  education: {
     type: Array,
     default: [],
   },
@@ -188,6 +191,9 @@ const cvTemplateSchema = Schema({
     type: Array,
     default: [],
   },
+  templateStyle: {
+    type: String,
+  }
 });
 
 const feedbackSchema = Schema({
