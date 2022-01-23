@@ -18,6 +18,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import "../app.css";
+import {Dropdown } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const style = {
   position: "absolute",
@@ -107,27 +109,36 @@ const Navbar = () => {
         alert(data.error);
       } else if (data.status == "Success!") {
         localStorage.setItem("username", data.userName);
-        window.location.assign("/");
+        // window.location.assign("/");
       }
     } else {
       alert("Password does not Match!");
     }
   };
 
-
   const handleLogin = async () => {
     let jsonData = await fetch("http://localhost:5000/login", {
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       method: "POST",
-      body: JSON.stringify({emailAddress: loginEmail, password: loginPassword})
-    })
+      body: JSON.stringify({
+        emailAddress: loginEmail,
+        password: loginPassword,
+      }),
+    });
     let data = await jsonData.json();
-      if (data.error) {
-        alert(data.error);
-      } else if (data.status == "Success!") {
-        localStorage.setItem("username", data.userName);
-        window.location.assign("/");
-      }
+    if (data.error) {
+      alert(data.error);
+    } else if (data.status == "Success!") {
+      localStorage.setItem("username", data.userName);
+      window.location.assign("/");
+    }
+  };
+
+
+  const logout = async () => {
+    await fetch("http://localhost:5000/logout")
+    localStorage.clear();
+    window.location.assign("/");
   }
 
   return (
@@ -209,8 +220,22 @@ const Navbar = () => {
                 {page}
               </Button>
             ))}
-            { username ? (
-              <h3 style={{color: "#FCA311"}}>{username}</h3>
+            {username ? (
+              <>
+                {/* <h3 style={{color: "#FCA311"}}>{username}</h3> */}
+                <Dropdown>
+                  <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    {username}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">My Profile</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2" onClick={logout}>
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </>
             ) : (
               <>
                 <Button
@@ -385,7 +410,7 @@ const Navbar = () => {
               variant="standard"
               type="email"
               value={loginEmail}
-              onChange={(e)=>setLoginEmail(e.target.value)}
+              onChange={(e) => setLoginEmail(e.target.value)}
               required
             />
             <TextField
@@ -394,7 +419,7 @@ const Navbar = () => {
               variant="standard"
               type="password"
               value={loginPassword}
-              onChange={(e)=>setLoginPassword(e.target.value)}
+              onChange={(e) => setLoginPassword(e.target.value)}
               required
             />
             <Button

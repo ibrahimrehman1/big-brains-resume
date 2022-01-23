@@ -138,10 +138,10 @@ function Homepage() {
                 textAlign: "center",
                 alignItems: "center",
                 fontFamily: "cursive",
-                padding: "1em",
+                padding: "2em",
               }}
             >
-              <h3 style={{ fontSize: "2rem", color: "white" }}>
+              <h3 style={{ fontSize: "2rem", color: "white", marginTop: "50px" }}>
                 Build Your Resume Fast and Easy.
               </h3>
               <p style={{ fontSize: "1.3rem", color: "white" }}>

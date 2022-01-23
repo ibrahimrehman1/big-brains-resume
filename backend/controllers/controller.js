@@ -30,8 +30,12 @@ module.exports.signup = async (req, res) => {
 
     let token = createToken(userID);
 
-    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600000,  });
 
+    // Cookie not saved in browser when sent from localhost 
+
+    
+    console.log("Cookie Set")
     res.json({ status: "Success!", userid: userID, token, userName });
   } catch (err) {
     res.json({ error: err.message.split(":")[2].trim() });
@@ -64,3 +68,10 @@ module.exports.login = async (req, res) => {
     res.json({ error: err.message });
   }
 };
+
+
+module.exports.logout = (req, res) => {
+  console.log("Logged out!")
+  res.cookie("auth-cookie", "", {httpOnly: true, maxAge: 1});
+  res.json({"status": "Successfully Cleared Cookie!"})
+}

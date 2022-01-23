@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const { signup, login } = require("./controllers/controller");
+const { signup, login, logout } = require("./controllers/controller");
 const JWT = require("jsonwebtoken");
 
 let app = express();
@@ -28,15 +28,13 @@ const PORT = process.env.PORT || 5000;
 // Middlewares
 app.use(express.json());
 app.use(cors());
-app.use(cookieParser("big brains"));
+app.use(cookieParser());
 
 // Login/Signup Routes
 app.post("/signup", signup);
 app.post("/login", login);
-// app.get("*", requireAuth);
 
-// app.get("/myresume", (req, res)=>{
-//     res.json({'status': "success"});
-// })
+
+app.get("/logout", logout)
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`));
