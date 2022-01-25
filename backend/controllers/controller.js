@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("../models/models");
+const {User, ResumeForm} = require("../models/models");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 
@@ -74,4 +74,14 @@ module.exports.logout = (req, res) => {
   console.log("Logged out!")
   res.cookie("auth-cookie", "", {httpOnly: true, maxAge: 1});
   res.json({"status": "Successfully Cleared Cookie!"})
+}
+
+
+module.exports.resumeForm = async (req, res) =>{
+  console.log(req.body);
+  const {fullName, designation, summary, skills, education, projects, contactDetails, languages, interests, certifications} = req.body;
+  let resumeform = await ResumeForm.create({fullName, designation, summary, skills, education, projects, contactDetails, languages, interests, certifications})
+  console.log(resumeform);
+  
+  res.json({"Status":"Resume Form Saved!"});
 }

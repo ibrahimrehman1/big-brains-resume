@@ -18,32 +18,25 @@ const resumeFormSchema = Schema({
     minLength: [50, "Summary is too Short!"],
   },
   skills: {
-    type: Map,
-    default: {},
+    type: String,
   },
   education: {
-    type: Array,
-    default: [],
+    type: String,
   },
   projects: {
-    type: Array,
-    default: [],
+    type: String,
   },
   contactDetails: {
-    type: Map,
-    default: {},
+    type: String,
   },
   languages: {
-    type: Array,
-    default: [],
+    type: String,
   },
   interests: {
-    type: Array,
-    default: [],
+    type: String,
   },
   certifications: {
-    type: Array,
-    default: [],
+    type: String,
   },
 });
 
@@ -267,4 +260,5 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-module.exports = model("user", userSchema);
+module.exports.User = model("user", userSchema);
+module.exports.ResumeForm = model("resumeforms", resumeFormSchema);
