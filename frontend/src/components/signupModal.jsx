@@ -42,7 +42,7 @@ const SignupModal = ({
         alert(data.error);
       } else if (data.status == "Success!") {
         localStorage.setItem("username", data.userName);
-        // window.location.assign("/");
+        window.location.assign("/");
       }
     } else {
       alert("Password does not Match!");

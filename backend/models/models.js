@@ -104,36 +104,29 @@ const cvFormSchema = Schema({
     minLength: [50, "About Me is too Short!"],
   },
   skills: {
-    type: Map,
+    type: String,
     default: {},
   },
   detailedEducation: {
-    type: Array,
-    default: [],
+    type: String,
   },
   projects: {
-    type: Array,
-    default: [],
+    type: String,
   },
   contactDetails: {
-    type: Map,
-    default: {},
+    type: String,
   },
   languages: {
-    type: Array,
-    default: [],
+    type: String,
   },
   interests: {
-    type: Array,
-    default: [],
+    type: String,
   },
   certifications: {
-    type: Array,
-    default: [],
+    type: String,
   },
   workExperience: {
-    type: Array,
-    default: [],
+    type: String,
   },
 });
 
@@ -262,3 +255,4 @@ userSchema.pre("save", async function (next) {
 
 module.exports.User = model("user", userSchema);
 module.exports.ResumeForm = model("resumeforms", resumeFormSchema);
+module.exports.CvForm = model("cvforms", cvFormSchema);

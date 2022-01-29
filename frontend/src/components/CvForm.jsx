@@ -18,7 +18,7 @@ const CvForm = () => {
   const [workExperience, setWorkExperience] = useState("");
 
   const saveCV = async () => {
-    let jsonData = await fetch("http://localhost:5000/resumeform", {
+    let jsonData = await fetch("http://localhost:5000/cvform", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience})
