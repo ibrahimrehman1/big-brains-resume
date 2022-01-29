@@ -12,8 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "../images/logo.PNG";
 import { useNavigate } from "react-router-dom";
 import "../app.css";
-import {Dropdown } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Dropdown } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import SignupModal from "./signupModal.jsx";
 import LoginModal from "./loginModal.jsx";
 
@@ -34,22 +34,19 @@ export const style = {
 
 const pages = ["CV Templates", "Resume Templates"];
 
-const Navbar = () => {
+const Navbar = ({
+  handleTransition,
+  handleLoginClose,
+  handleLoginOpen,
+  handleSignupClose,
+  handleSignupOpen,
+  openLogin,
+  openSignup,
+}) => {
   const username = localStorage.getItem("username");
   console.log(username);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  // Signup Modal
-  const [openSignup, setSignupOpen] = React.useState(false);
-  const handleSignupOpen = () => setSignupOpen(true);
-  const handleSignupClose = () => setSignupOpen(false);
- 
-
-  // Login Modal
-  const [openLogin, setLoginOpen] = React.useState(false);
-  const handleLoginOpen = () => setLoginOpen(true);
-  const handleLoginClose = () => setLoginOpen(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -66,26 +63,13 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-  const handleTransition = (transitionTo) => {
-    if (transitionTo == "Login") {
-      handleSignupClose();
-      handleLoginOpen();
-    } else {
-      handleLoginClose();
-      handleSignupOpen();
-    }
-  };
-
   const navigate = useNavigate();
 
- 
-
-
   const logout = async () => {
-    await fetch("http://localhost:5000/logout")
+    await fetch("http://localhost:5000/logout");
     localStorage.clear();
     window.location.assign("/");
-  }
+  };
 
   return (
     <AppBar position="static" style={{ background: "#000000" }}>
@@ -217,10 +201,19 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </Container>
-      
-      <SignupModal handleTransition={handleTransition} handleSignupClose={handleSignupClose} handleSignupOpen={handleSignupOpen} openSignup={openSignup}/>
-      <LoginModal handleTransition={handleTransition} handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} openLogin={openLogin}/>
-      
+
+      <SignupModal
+        handleTransition={handleTransition}
+        handleSignupClose={handleSignupClose}
+        handleSignupOpen={handleSignupOpen}
+        openSignup={openSignup}
+      />
+      <LoginModal
+        handleTransition={handleTransition}
+        handleLoginClose={handleLoginClose}
+        handleLoginOpen={handleLoginOpen}
+        openLogin={openLogin}
+      />
     </AppBar>
   );
 };
