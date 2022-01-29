@@ -7,7 +7,7 @@ const CvForm = () => {
 
   const [fullName, setFullName] = useState("");
   const [designation, setDesignation] = useState("");
-  const [aboutMe, setAboutme] = useState("");
+  const [aboutMe, setAboutMe] = useState("");
   const [skills, setSkills] = useState("");
   const [education, setEducation] = useState("");
   const [projects, setProjects] = useState("");
@@ -21,7 +21,7 @@ const CvForm = () => {
     let jsonData = await fetch("http://localhost:5000/resumeform", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({fullName, designation, aboutme, skills, education, projects, contactDetails, languages, interests, certifications, workExperience})
+      body: JSON.stringify({fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience})
     })
 
     let data = await jsonData.json();
