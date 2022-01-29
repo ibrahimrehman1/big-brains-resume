@@ -4,6 +4,7 @@ import { Paper, Button } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import TemplateImage from "../images/CV Sample.png";
+import { Link } from "react-router-dom";
 
 const CVResumeCarousels = () => {
   var items = [
@@ -23,7 +24,7 @@ const CVResumeCarousels = () => {
 
   return (
     <main className="templates">
-        <h2>CV Templates</h2>
+      <h2>CV Templates</h2>
       <Carousel
         NextIcon={<ChevronRightIcon />}
         PrevIcon={<ChevronLeftIcon />}
@@ -31,7 +32,9 @@ const CVResumeCarousels = () => {
         swipe={true}
       >
         {items.map((item, i) => (
-          <Item key={i} img={item.path} />
+          <Link to="/edittemplate" key={i}>
+            <Item img={item.path} />
+          </Link>
         ))}
       </Carousel>
 
@@ -43,7 +46,9 @@ const CVResumeCarousels = () => {
         swipe={true}
       >
         {items.map((item, i) => (
-          <Item key={i} img={item.path} />
+          <Link to="/edittemplate" key={i}>
+            <Item img={item.path} />
+          </Link>
         ))}
       </Carousel>
     </main>

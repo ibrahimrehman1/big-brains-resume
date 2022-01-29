@@ -37,7 +37,6 @@ export const style = {
 const pages = [
   { key: "CV Templates", name: "templates" },
   { key: "Resume Templates", name: "templates" },
-  { key: "Feedback", name: "feedback" },
 ];
 
 const Navbar = ({
@@ -78,16 +77,11 @@ const Navbar = ({
   };
 
 
-  // Feedback Form
-  const [openFeedback, setFeedbackOpen] = React.useState(false);
-  const handleFeedbackOpen = () => setFeedbackOpen(true);
-  const handleFeedbackClose = () => setFeedbackOpen(false);
+  
 
   const navbarLinksNavigation = (link) => {
     if (link === "templates") {
       navigate("/templates");
-    } else if (link === "feedback") {
-      handleFeedbackOpen();
     }
   };
 
@@ -223,7 +217,6 @@ const Navbar = ({
       </Container>
 
       
-      <FeedbackModal openFeedback={openFeedback} handleFeedbackClose={handleFeedbackClose}/>
       <SignupModal
         handleTransition={handleTransition}
         handleSignupClose={handleSignupClose}

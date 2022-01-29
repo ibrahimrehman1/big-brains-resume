@@ -114,35 +114,6 @@ const FeedbackModal = ({ openFeedback, handleFeedbackClose }) => {
             Submit Feedback
           </Button>
 
-          {/*
-          <TextField
-            id="standard-basic"
-            label="Password"
-            variant="standard"
-            type="password"
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
-            required
-          />
-          <Button
-            variant="contained"
-            color="success"
-            style={{ marginTop: "20px" }}
-            onClick={handleLogin}
-          >
-            Login
-          </Button>
-          <Button variant="contained" color="warning" type="reset">
-            Reset
-          </Button>
-          <Button
-            variant="contained"
-            color="info"
-            type="button"
-            onClick={() => handleTransition("Feedback")}
-          >
-            Don't have an account? Feedback
-          </Button> */}
         </Box>
       </Box>
     </Modal>
