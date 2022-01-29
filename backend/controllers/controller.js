@@ -85,3 +85,12 @@ module.exports.resumeForm = async (req, res) =>{
   
   res.json({"Status":"Resume Form Saved!"});
 }
+
+module.exports.CvForm = async (req, res) =>{
+  console.log(req.body);
+  const {fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience} = req.body;
+  let Cvform = await CvForm.create({fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience})
+  console.log(Cvform);
+  
+  res.json({"Status":"CV Form Saved!"});
+}
