@@ -1,12 +1,12 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button } from "@mui/material";
+import { Paper } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import TemplateImage from "../images/CV Sample.png";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const CVResumeCarousels = () => {
+const CVResumeCarousels = ({handleLoginOpen}) => {
   var items = [
     {
       path: TemplateImage,
@@ -22,6 +22,17 @@ const CVResumeCarousels = () => {
     },
   ];
 
+  const navigate = useNavigate();
+
+  const navigateToEditTemplate = () => {
+    let username = localStorage.getItem("username");
+    if (username) {
+      navigate("/edittemplate");
+    } else {
+      handleLoginOpen();
+    }
+  };
+
   return (
     <main className="templates">
       <h2>CV Templates</h2>
@@ -32,9 +43,9 @@ const CVResumeCarousels = () => {
         swipe={true}
       >
         {items.map((item, i) => (
-          <Link to="/edittemplate" key={i}>
+          <a href="#" key={i} onClick={navigateToEditTemplate}>
             <Item img={item.path} />
-          </Link>
+          </a>
         ))}
       </Carousel>
 
@@ -46,9 +57,9 @@ const CVResumeCarousels = () => {
         swipe={true}
       >
         {items.map((item, i) => (
-          <Link to="/edittemplate" key={i}>
+          <a href="#" key={i} onClick={navigateToEditTemplate} >
             <Item img={item.path} />
-          </Link>
+          </a>
         ))}
       </Carousel>
     </main>
