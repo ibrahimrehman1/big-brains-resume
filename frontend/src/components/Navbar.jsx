@@ -10,18 +10,14 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../images/logo.PNG";
-import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
-import Avatar from "@mui/material/Avatar";
-import { deepOrange } from "@mui/material/colors";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import "../app.css";
 import {Dropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SignupModal from "./signupModal.jsx";
+import LoginModal from "./loginModal.jsx";
 
-const style = {
+export const style = {
   position: "absolute",
   height: "70ch",
   overflow: "scroll",
@@ -48,6 +44,7 @@ const Navbar = () => {
   const [openSignup, setSignupOpen] = React.useState(false);
   const handleSignupOpen = () => setSignupOpen(true);
   const handleSignupClose = () => setSignupOpen(false);
+ 
 
   // Login Modal
   const [openLogin, setLoginOpen] = React.useState(false);
@@ -81,58 +78,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
-  const [userName, setUserName] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailAddress, setEmailAddress] = useState("");
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-
-  const createAccount = async () => {
-    if (password === confirmPassword) {
-      let jsonData = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userName,
-          firstName,
-          lastName,
-          emailAddress,
-          password,
-        }),
-      });
-
-      let data = await jsonData.json();
-      if (data.error) {
-        alert(data.error);
-      } else if (data.status == "Success!") {
-        localStorage.setItem("username", data.userName);
-        // window.location.assign("/");
-      }
-    } else {
-      alert("Password does not Match!");
-    }
-  };
-
-  const handleLogin = async () => {
-    let jsonData = await fetch("http://localhost:5000/login", {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify({
-        emailAddress: loginEmail,
-        password: loginPassword,
-      }),
-    });
-    let data = await jsonData.json();
-    if (data.error) {
-      alert(data.error);
-    } else if (data.status == "Success!") {
-      localStorage.setItem("username", data.userName);
-      window.location.assign("/");
-    }
-  };
+ 
 
 
   const logout = async () => {
@@ -271,179 +217,10 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </Container>
-      <Modal
-        open={openSignup}
-        onClose={handleSignupClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Avatar
-            sx={{
-              bgcolor: deepOrange[500],
-              width: "60px",
-              height: "60px",
-              margin: "auto",
-            }}
-          >
-            <FontAwesomeIcon icon={faUser} style={{ fontSize: "1.5rem" }} />
-          </Avatar>
-          <Typography variant="h4" component="div" gutterBottom>
-            Signup
-          </Typography>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "40ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="standard-basic"
-              label="First Name"
-              variant="standard"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Last Name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              variant="standard"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Username"
-              variant="standard"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Email Address"
-              variant="standard"
-              value={emailAddress}
-              onChange={(e) => setEmailAddress(e.target.value)}
-              type="email"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              label="Password"
-              variant="standard"
-              type="password"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Confirm Password"
-              variant="standard"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-            <Button
-              variant="contained"
-              color="success"
-              style={{ marginTop: "20px" }}
-              onClick={createAccount}
-            >
-              Create my Account
-            </Button>
-            <Button variant="contained" color="warning" type="reset">
-              Reset
-            </Button>
-            <Button
-              variant="contained"
-              color="info"
-              type="button"
-              onClick={() => handleTransition("Login")}
-            >
-              Already have an account? Login
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
-
-      <Modal
-        open={openLogin}
-        onClose={handleLoginClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Avatar
-            sx={{
-              bgcolor: deepOrange[500],
-              width: "60px",
-              height: "60px",
-              margin: "auto",
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faUserAstronaut}
-              style={{ fontSize: "1.5rem" }}
-            />
-          </Avatar>
-          <Typography variant="h4" component="div" gutterBottom>
-            Login
-          </Typography>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "40ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="standard-basic"
-              label="Email Address"
-              variant="standard"
-              type="email"
-              value={loginEmail}
-              onChange={(e) => setLoginEmail(e.target.value)}
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Password"
-              variant="standard"
-              type="password"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              required
-            />
-            <Button
-              variant="contained"
-              color="success"
-              style={{ marginTop: "20px" }}
-              onClick={handleLogin}
-            >
-              Login
-            </Button>
-            <Button variant="contained" color="warning" type="reset">
-              Reset
-            </Button>
-            <Button
-              variant="contained"
-              color="info"
-              type="button"
-              onClick={() => handleTransition("Signup")}
-            >
-              Don't have an account? Signup
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
+      
+      <SignupModal handleTransition={handleTransition} handleSignupClose={handleSignupClose} handleSignupOpen={handleSignupOpen} openSignup={openSignup}/>
+      <LoginModal handleTransition={handleTransition} handleLoginClose={handleLoginClose} handleLoginOpen={handleLoginOpen} openLogin={openLogin}/>
+      
     </AppBar>
   );
 };

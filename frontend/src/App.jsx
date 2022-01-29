@@ -29,6 +29,14 @@ function Homepage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const navigateToCVForm = () => {
+  let username = localStorage.getItem("username");
+  if (username){
+    navigate("/cvform")
+  }else{
+    
+  }
+  }
   return (
     <div>
       <main style={{ padding: "2em" }}>
@@ -96,7 +104,7 @@ function Homepage() {
                       height: "40px",
                       margin: '10px'
                     }}
-                    onClick={()=>navigate("/cvform")}
+                    onClick={navigateToCVForm}
                   >
                     CV Form
                   </Button>
