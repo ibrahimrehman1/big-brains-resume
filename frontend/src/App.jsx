@@ -180,6 +180,7 @@ function App() {
         <Route path="/resumeform" element={<ResumeForm />} index />
         <Route path="/cvform" element={<CvForm />} index />
         <Route path="/templates" element={<CVResumeCarousels />} index />
+        <Route path="/editTemplate" element={<EditTemplate />} index />
       </Routes>
     </>
   );
