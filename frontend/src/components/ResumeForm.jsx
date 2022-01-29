@@ -41,7 +41,7 @@ const ResumeForm = () => {
           autoComplete="off"
         >
           <TextField
-            placeholder="Fakhra Aftab"
+            placeholder="Ibrahim Rehman"
             id="outlined-basic"
             label="Full Name"
             variant="outlined"
