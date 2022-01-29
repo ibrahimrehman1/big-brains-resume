@@ -7,7 +7,7 @@ const CvForm = () => {
 
   const [fullName, setFullName] = useState("");
   const [designation, setDesignation] = useState("");
-  const [aboutme, setAboutme] = useState("");
+  const [aboutMe, setAboutme] = useState("");
   const [skills, setSkills] = useState("");
   const [education, setEducation] = useState("");
   const [projects, setProjects] = useState("");
@@ -69,8 +69,8 @@ const CvForm = () => {
             placeholder="I am a Undergrad Student..."
             id="outlined-multiline-flexible"
             label="About me"
-            onChange={(e)=>setAboutme(e.target.value)}
-            value={aboutme}
+            onChange={(e)=>setAboutMe(e.target.value)}
+            value={aboutMe}
             multiline
             minRows={1}
             required
