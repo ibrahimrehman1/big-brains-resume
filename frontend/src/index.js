@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import "./app.css";
 
 ReactDOM.render(
   <React.StrictMode>

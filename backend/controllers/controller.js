@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("../models/models");
+const { User, ResumeForm, CvForm, Feedback } = require("../models/models");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 
@@ -30,9 +30,12 @@ module.exports.signup = async (req, res) => {
 
     let token = createToken(userID);
 
-    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600000 });
 
-    res.json({ status: "Success!", userid: userID, token });
+    // Cookie not saved in browser when sent from localhost
+
+    console.log("Cookie Set");
+    res.json({ status: "Success!", userid: userID, token, userName });
   } catch (err) {
     res.json({ error: err.message.split(":")[2].trim() });
   }
@@ -40,16 +43,105 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   const { emailAddress, password } = req.body;
-  let user = await User.findOne({ emailAddress }).exec();
-  let passwordStatus = await bcrypt.compare(password, user["password"]);
-  if (passwordStatus) {
-    const userID = user["_id"];
+  try {
+    let user = await User.findOne({ emailAddress }).exec();
+    if (user) {
+      let passwordStatus = await bcrypt.compare(password, user["password"]);
+      if (passwordStatus) {
+        const userID = user["_id"];
 
-    let token = createToken(userID);
+        let token = createToken(userID);
 
-    res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
-    res.json({ status: "Success!", userid: userID, token });
-  } else {
-    res.json({ status: "Failed!" });
+        res.cookie("auth-cookie", token, { httpOnly: true, maxAge: 3600 });
+        res.json({
+          status: "Success!",
+          userid: userID,
+          token,
+          userName: user["userName"],
+        });
+      }
+    } else {
+      res.json({ error: "Email/Password does not exist!" });
+    }
+  } catch (err) {
+    res.json({ error: err.message });
   }
 };
+
+module.exports.logout = (req, res) => {
+  console.log("Logged out!");
+  res.cookie("auth-cookie", "", { httpOnly: true, maxAge: 1 });
+  res.json({ status: "Successfully Cleared Cookie!" });
+};
+
+module.exports.resumeForm = async (req, res) => {
+  console.log(req.body);
+  const {
+    fullName,
+    designation,
+    summary,
+    skills,
+    education,
+    projects,
+    contactDetails,
+    languages,
+    interests,
+    certifications,
+  } = req.body;
+  let resumeform = await ResumeForm.create({
+    fullName,
+    designation,
+    summary,
+    skills,
+    education,
+    projects,
+    contactDetails,
+    languages,
+    interests,
+    certifications,
+  });
+  console.log(resumeform);
+
+  res.json({ Status: "Resume Form Saved!" });
+};
+
+module.exports.cvForm = async (req, res) => {
+  console.log(req.body);
+  const {
+    fullName,
+    designation,
+    aboutMe,
+    skills,
+    education,
+    projects,
+    contactDetails,
+    languages,
+    interests,
+    certifications,
+    workExperience,
+  } = req.body;
+  let Cvform = await CvForm.create({
+    fullName,
+    designation,
+    aboutMe,
+    skills,
+    education,
+    projects,
+    contactDetails,
+    languages,
+    interests,
+    certifications,
+    workExperience,
+  });
+  console.log(Cvform);
+
+  res.json({ Status: "CV Form Saved!" });
+};
+
+
+module.exports.feedback = async (req, res) => {
+  const {emojis, comments} = req.body;
+  let feedback = await Feedback.create({emojis, comments});
+  console.log(feedback);
+  res.json({ Status: "Feedback Saved!" });
+}

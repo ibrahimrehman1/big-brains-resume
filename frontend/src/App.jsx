@@ -8,7 +8,10 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import ResumeForm from "./components/ResumeForm.jsx";
+import MyDocuments from "./components/MyDocuments.jsx";
 import CvForm from "./components/CvForm.jsx";
+import CVResumeCarousels from "./components/Templates.jsx";
+import EditTemplate from "./components/EditTemplate.jsx";
 
 const style = {
   position: "absolute",
@@ -23,11 +26,36 @@ const style = {
   p: 4,
 };
 
-function Homepage() {
+function Homepage({
+  handleTransition,
+  handleLoginClose,
+  handleLoginOpen,
+  handleSignupClose,
+  handleSignupOpen,
+  openLogin,
+  openSignup,
+}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const navigateToCVForm = () => {
+    let username = localStorage.getItem("username");
+    if (username) {
+      navigate("/cvform");
+    } else {
+      handleLoginOpen();
+    }
+  };
+
+  const navigateToResumeForm = () => {
+    let username = localStorage.getItem("username");
+    if (username) {
+      navigate("/resumeform");
+    } else {
+      handleLoginOpen();
+    }
+  };
   return (
     <div>
       <main style={{ padding: "2em" }}>
@@ -48,7 +76,7 @@ function Homepage() {
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", flexDirection: "row" }}>
-              <img src={CVIcon} height="300px"/>
+              <img src={CVIcon} height="300px" />
               <Button
                 variant="contained"
                 size="medium"
@@ -82,51 +110,52 @@ function Homepage() {
                   >
                     Select any one of the following options
                   </Typography>
-                  <div style={{marginTop: "20px"}}>
-
-                  <Button
-                    variant="contained"
-                    size="medium"
-                    style={{
-                      backgroundColor: "#FCA311",
-                      color: "black",
-                      fontWeight: "bold",
-                      borderRadius: "20px",
-                      height: "40px",
-                      margin: '10px'
-                    }}
-                    onClick={()=>navigate("/cvform")}
-                  >
-                    CV Form
-                  </Button>
-                  <Button
-                    variant="contained"
-                    size="medium"
-                    style={{
-                      backgroundColor: "#FCA311",
-                      color: "black",
-                      fontWeight: "bold",
-                      borderRadius: "20px",
-                      height: "40px",margin: '10px'
-                    }}
-                    onClick={()=>navigate("/resumeform")}
-                  >
-                    Resume Form
-                  </Button>
-                  <Button
-                    variant="contained"
-                    size="medium"
-                    style={{
-                      backgroundColor: "#FCA311",
-                      color: "black",
-                      fontWeight: "bold",
-                      borderRadius: "20px",
-                      height: "40px",margin: '10px'
-                    }}
-                  >
-                    Templates
-                    
-                  </Button>
+                  <div style={{ marginTop: "20px" }}>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      style={{
+                        backgroundColor: "#FCA311",
+                        color: "black",
+                        fontWeight: "bold",
+                        borderRadius: "20px",
+                        height: "40px",
+                        margin: "10px",
+                      }}
+                      onClick={navigateToCVForm}
+                    >
+                      CV Form
+                    </Button>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      style={{
+                        backgroundColor: "#FCA311",
+                        color: "black",
+                        fontWeight: "bold",
+                        borderRadius: "20px",
+                        height: "40px",
+                        margin: "10px",
+                      }}
+                      onClick={navigateToResumeForm}
+                    >
+                      Resume Form
+                    </Button>
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      style={{
+                        backgroundColor: "#FCA311",
+                        color: "black",
+                        fontWeight: "bold",
+                        borderRadius: "20px",
+                        height: "40px",
+                        margin: "10px",
+                      }}
+                      onClick={() => navigate("/templates")}
+                    >
+                      Templates
+                    </Button>
                   </div>
                 </Box>
               </Modal>
@@ -136,10 +165,12 @@ function Homepage() {
                 textAlign: "center",
                 alignItems: "center",
                 fontFamily: "cursive",
-                padding: "1em",
+                padding: "2em",
               }}
             >
-              <h3 style={{ fontSize: "2rem", color: "white" }}>
+              <h3
+                style={{ fontSize: "2rem", color: "white", marginTop: "50px" }}
+              >
                 Build Your Resume Fast and Easy.
               </h3>
               <p style={{ fontSize: "1.3rem", color: "white" }}>
@@ -170,13 +201,56 @@ function Homepage() {
 }
 
 function App() {
+  // Signup Modal
+  const [openSignup, setSignupOpen] = React.useState(false);
+  const handleSignupOpen = () => setSignupOpen(true);
+  const handleSignupClose = () => setSignupOpen(false);
+
+  // Login Modal
+  const [openLogin, setLoginOpen] = React.useState(false);
+  const handleLoginOpen = () => setLoginOpen(true);
+  const handleLoginClose = () => setLoginOpen(false);
+  const handleTransition = (transitionTo) => {
+    if (transitionTo == "Login") {
+      handleSignupClose();
+      handleLoginOpen();
+    } else {
+      handleLoginClose();
+      handleSignupOpen();
+    }
+  };
   return (
     <>
-      <Navbar />
+      <Navbar
+        handleTransition={handleTransition}
+        handleSignupClose={handleSignupClose}
+        handleLoginClose={handleLoginClose}
+        handleSignupOpen={handleSignupOpen}
+        handleLoginOpen={handleLoginOpen}
+        openSignup={openSignup}
+        openLogin={openLogin}
+      />
       <Routes>
-        <Route path="/" element={<Homepage />} index/>
+        <Route
+          path="/"
+          element={
+            <Homepage
+              handleTransition={handleTransition}
+              handleSignupClose={handleSignupClose}
+              handleLoginClose={handleLoginClose}
+              handleSignupOpen={handleSignupOpen}
+              handleLoginOpen={handleLoginOpen}
+              openSignup={openSignup}
+              openLogin={openLogin}
+            />
+          }
+          index
+        />
         <Route path="/resumeform" element={<ResumeForm />} index />
         <Route path="/cvform" element={<CvForm />} index />
+        <Route path="/templates" element={<CVResumeCarousels handleLoginOpen={handleLoginOpen}/>} index />
+        <Route path="/mydocuments" element={<MyDocuments />} index />
+        <Route path="/edittemplate" element={<EditTemplate />} index />
       </Routes>
     </>
   );

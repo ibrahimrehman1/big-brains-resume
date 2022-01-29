@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,19 +10,19 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../images/logo.PNG";
-import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
-import Avatar from '@mui/material/Avatar';
-import { deepOrange } from '@mui/material/colors';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faUser, faUserAstronaut } from '@fortawesome/free-solid-svg-icons'
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "../app.css";
+import { Dropdown } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import SignupModal from "./signupModal.jsx";
+import LoginModal from "./loginModal.jsx";
+import FeedbackModal from "./feedbackModal.jsx";
 
 
-const style = {
+export const style = {
   position: "absolute",
   height: "70ch",
-              overflow: "scroll",
+  overflow: "scroll",
   textAlign: "center",
   top: "50%",
   left: "50%",
@@ -34,21 +34,24 @@ const style = {
   p: 4,
 };
 
-const pages = ["CV Templates", "Resume Templates"];
+const pages = [
+  { key: "CV Templates", name: "templates" },
+  { key: "Resume Templates", name: "templates" },
+];
 
-const Navbar = () => {
+const Navbar = ({
+  handleTransition,
+  handleLoginClose,
+  handleLoginOpen,
+  handleSignupClose,
+  handleSignupOpen,
+  openLogin,
+  openSignup,
+}) => {
+  const username = localStorage.getItem("username");
+  console.log(username);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  // Signup Modal
-  const [openSignup, setSignupOpen] = React.useState(false);
-  const handleSignupOpen = () => setSignupOpen(true);
-  const handleSignupClose = () => setSignupOpen(false);
-
-  // Login Modal
-  const [openLogin, setLoginOpen] = React.useState(false);
-  const handleLoginOpen = () => setLoginOpen(true);
-  const handleLoginClose = () => setLoginOpen(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -65,19 +68,22 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
-
-  const handleTransition = (transitionTo) =>{
-    if (transitionTo == "Login"){
-      handleSignupClose();
-      handleLoginOpen();
-    }else{
-      handleLoginClose();
-      handleSignupOpen();
-    }
-  }
-
   const navigate = useNavigate();
 
+  const logout = async () => {
+    await fetch("http://localhost:5000/logout");
+    localStorage.clear();
+    window.location.assign("/");
+  };
+
+
+  
+
+  const navbarLinksNavigation = (link) => {
+    if (link === "templates") {
+      navigate("/templates");
+    }
+  };
 
   return (
     <AppBar position="static" style={{ background: "#000000" }}>
@@ -88,7 +94,8 @@ const Navbar = () => {
             alt="Big Brains Resume Logo"
             width="200px"
             height="auto"
-            onClick={()=>navigate("/")}
+            onClick={() => navigate("/")}
+            className="navbar-logo"
           />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -121,8 +128,8 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.key} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.key}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -144,8 +151,8 @@ const Navbar = () => {
               <Button
                 variant="contained"
                 size="medium"
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.key}
+                onClick={() => navbarLinksNavigation(page.name)}
                 style={{
                   backgroundColor: "transparent",
                   color: "white",
@@ -154,169 +161,74 @@ const Navbar = () => {
                   borderRadius: "20px",
                 }}
               >
-                {page}
+                {page.key}
               </Button>
             ))}
-            <Button
-              variant="contained"
-              size="medium"
-              onClick={handleSignupOpen}
-              style={{
-                backgroundColor: "#FCA311",
-                color: "black",
-                margin: ".3em",
-                fontWeight: "bold",
-                borderRadius: "20px",
-              }}
-            >
-              Signup
-            </Button>
-            <Button
-              variant="contained"
-              size="medium"
-              onClick={handleLoginOpen}
-              style={{
-                backgroundColor: "#FCA311",
-                color: "black",
-                margin: ".3em",
-                fontWeight: "bold",
-                borderRadius: "20px",
-              }}
-            >
-              Login
-            </Button>
+            {username ? (
+              <>
+                {/* <h3 style={{color: "#FCA311"}}>{username}</h3> */}
+                <Dropdown>
+                  <Dropdown.Toggle variant="warning" id="dropdown-basic">
+                    {username}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">My Profile</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2" onClick={logout}>
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  onClick={handleSignupOpen}
+                  style={{
+                    backgroundColor: "#FCA311",
+                    color: "black",
+                    margin: ".3em",
+                    fontWeight: "bold",
+                    borderRadius: "20px",
+                  }}
+                >
+                  Signup
+                </Button>
+                <Button
+                  variant="contained"
+                  size="medium"
+                  onClick={handleLoginOpen}
+                  style={{
+                    backgroundColor: "#FCA311",
+                    color: "black",
+                    margin: ".3em",
+                    fontWeight: "bold",
+                    borderRadius: "20px",
+                  }}
+                >
+                  Login
+                </Button>
+              </>
+            )}
           </Box>
         </Toolbar>
       </Container>
-      <Modal
-        open={openSignup}
-        onClose={handleSignupClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Avatar sx={{ bgcolor: deepOrange[500], width: "60px", height: "60px", margin: "auto" }}>
-          <FontAwesomeIcon icon={faUser} style={{fontSize: "1.5rem"}}/>
-          </Avatar>
-          <Typography variant="h4" component="div" gutterBottom>
-            Signup
-          </Typography>
-          <Box
-            component="form"
-            sx={{
-              
-              "& > :not(style)": { m: 1, width: "40ch"},
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="standard-basic"
-              label="First Name"
-              variant="standard"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Last Name"
-              variant="standard"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Username"
-              variant="standard"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Email Address"
-              variant="standard"
-              type="email"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Password"
-              variant="standard"
-              type="password"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Confirm Password"
-              variant="standard"
-              type="password"
-              required
-            />
-            <Button
-              variant="contained"
-              color="success"
-              style={{ marginTop: "20px" }}
-            >
-              Create my Account
-            </Button>
-            <Button variant="contained" color="warning" type="reset">
-              Reset
-            </Button>
-            <Button variant="contained" color="info" type="button" onClick={()=>handleTransition("Login")}>
-              Already have an account? Login
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
 
-      <Modal
-        open={openLogin}
-        onClose={handleLoginClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-        <Avatar sx={{ bgcolor: deepOrange[500], width: "60px", height: "60px", margin: "auto"}}>
-          <FontAwesomeIcon icon={faUserAstronaut} style={{fontSize: "1.5rem"}}/>
-          </Avatar>
-          <Typography variant="h4" component="div" gutterBottom>
-            Login
-          </Typography>
-          <Box
-            component="form"
-            sx={{
-              "& > :not(style)": { m: 1, width: "40ch" },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="standard-basic"
-              label="Email Address"
-              variant="standard"
-              type="email"
-              required
-            />
-            <TextField
-              id="standard-basic"
-              label="Password"
-              variant="standard"
-              type="password"
-              required
-            />
-            <Button
-              variant="contained"
-              color="success"
-              style={{ marginTop: "20px" }}
-            >
-              Login
-            </Button>
-            <Button variant="contained" color="warning" type="reset">
-              Reset
-            </Button>
-            <Button variant="contained" color="info" type="button" onClick={()=>handleTransition("Signup")}>
-              Don't have an account? Signup
-            </Button>
-          </Box>
-        </Box>
-      </Modal>
+      
+      <SignupModal
+        handleTransition={handleTransition}
+        handleSignupClose={handleSignupClose}
+        handleSignupOpen={handleSignupOpen}
+        openSignup={openSignup}
+      />
+      <LoginModal
+        handleTransition={handleTransition}
+        handleLoginClose={handleLoginClose}
+        handleLoginOpen={handleLoginOpen}
+        openLogin={openLogin}
+      />
     </AppBar>
   );
 };
