@@ -16,6 +16,8 @@ import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SignupModal from "./signupModal.jsx";
 import LoginModal from "./loginModal.jsx";
+import FeedbackModal from "./feedbackModal.jsx";
+
 
 export const style = {
   position: "absolute",
@@ -32,7 +34,11 @@ export const style = {
   p: 4,
 };
 
-const pages = ["CV Templates", "Resume Templates"];
+const pages = [
+  { key: "CV Templates", name: "templates" },
+  { key: "Resume Templates", name: "templates" },
+  { key: "Feedback", name: "feedback" },
+];
 
 const Navbar = ({
   handleTransition,
@@ -69,6 +75,20 @@ const Navbar = ({
     await fetch("http://localhost:5000/logout");
     localStorage.clear();
     window.location.assign("/");
+  };
+
+
+  // Feedback Form
+  const [openFeedback, setFeedbackOpen] = React.useState(false);
+  const handleFeedbackOpen = () => setFeedbackOpen(true);
+  const handleFeedbackClose = () => setFeedbackOpen(false);
+
+  const navbarLinksNavigation = (link) => {
+    if (link === "templates") {
+      navigate("/templates");
+    } else if (link === "feedback") {
+      handleFeedbackOpen();
+    }
   };
 
   return (
@@ -114,8 +134,8 @@ const Navbar = ({
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.key} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.key}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -137,8 +157,8 @@ const Navbar = ({
               <Button
                 variant="contained"
                 size="medium"
-                key={page}
-                onClick={() => navigate("/templates")}
+                key={page.key}
+                onClick={() => navbarLinksNavigation(page.name)}
                 style={{
                   backgroundColor: "transparent",
                   color: "white",
@@ -147,7 +167,7 @@ const Navbar = ({
                   borderRadius: "20px",
                 }}
               >
-                {page}
+                {page.key}
               </Button>
             ))}
             {username ? (
@@ -202,6 +222,8 @@ const Navbar = ({
         </Toolbar>
       </Container>
 
+      
+      <FeedbackModal openFeedback={openFeedback} handleFeedbackClose={handleFeedbackClose}/>
       <SignupModal
         handleTransition={handleTransition}
         handleSignupClose={handleSignupClose}

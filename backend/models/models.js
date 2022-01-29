@@ -192,10 +192,6 @@ const feedbackSchema = Schema({
     required: true,
     minLength: [50, "Feedback is too Short!"],
   },
-  type: {
-    type: String,
-    required: true,
-  },
 });
 
 const userSchema = Schema({
@@ -256,3 +252,4 @@ userSchema.pre("save", async function (next) {
 module.exports.User = model("user", userSchema);
 module.exports.ResumeForm = model("resumeforms", resumeFormSchema);
 module.exports.CvForm = model("cvforms", cvFormSchema);
+module.exports.Feedback = model("feedbacks", feedbackSchema);

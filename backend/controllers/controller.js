@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { User, ResumeForm, CvForm } = require("../models/models");
+const { User, ResumeForm, CvForm, Feedback } = require("../models/models");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 
@@ -137,3 +137,11 @@ module.exports.cvForm = async (req, res) => {
 
   res.json({ Status: "CV Form Saved!" });
 };
+
+
+module.exports.feedback = async (req, res) => {
+  const {emojis, comments} = req.body;
+  let feedback = await Feedback.create({emojis, comments});
+  console.log(feedback);
+  res.json({ Status: "Feedback Saved!" });
+}
