@@ -192,9 +192,10 @@ const Navbar = ({
                     margin: ".3em",
                     fontWeight: "bold",
                     borderRadius: "20px",
+                    textTransform: "none"
                   }}
                 >
-                  Signup
+                  Sign Up
                 </Button>
                 <Button
                   variant="contained"
@@ -206,6 +207,7 @@ const Navbar = ({
                     margin: ".3em",
                     fontWeight: "bold",
                     borderRadius: "20px",
+                    textTransform: "none"
                   }}
                 >
                   Login

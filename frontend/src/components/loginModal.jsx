@@ -91,21 +91,22 @@ const LoginModal = ({
       <Button
         variant="contained"
         color="success"
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px" , textTransform: "none", fontWeight:"bold"}}
         onClick={handleLogin}
       >
         Login
       </Button>
-      <Button variant="contained" color="warning" type="reset">
+      <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
         Reset
       </Button>
       <Button
         variant="contained"
         color="info"
         type="button"
+        style={{textTransform: "none", fontWeight: "bold"}}
         onClick={() => handleTransition("Signup")}
       >
-        Don't have an account? Signup
+        Don't have an account? Sign Up
       </Button>
     </Box>
   </Box>

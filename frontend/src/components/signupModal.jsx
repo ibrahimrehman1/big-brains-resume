@@ -67,7 +67,7 @@ const SignupModal = ({
           <FontAwesomeIcon icon={faUser} style={{ fontSize: "1.5rem" }} />
         </Avatar>
         <Typography variant="h4" component="div" gutterBottom>
-          Signup
+          Sign Up
         </Typography>
         <Box
           component="form"
@@ -131,18 +131,19 @@ const SignupModal = ({
           <Button
             variant="contained"
             color="success"
-            style={{ marginTop: "20px" }}
+            style={{ marginTop: "20px", textTransform: "none" , fontWeight: "bold"}}
             onClick={createAccount}
           >
             Create my Account
           </Button>
-          <Button variant="contained" color="warning" type="reset">
+          <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
             Reset
           </Button>
           <Button
             variant="contained"
             color="info"
             type="button"
+            style={{ textTransform: "none", fontWeight: "bold"}}
             onClick={() => handleTransition("Login")}
           >
             Already have an account? Login

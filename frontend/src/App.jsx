@@ -59,13 +59,13 @@ function Homepage({
   return (
     <div>
       <main style={{ padding: "2em" }}>
-        <h4 style={{ fontSize: "1.3rem", fontFamily: "cursive" }}>
-          The online resume builder getting folks hired by BBC, Google, Apple,
+        <h4 style={{ fontSize: "1.3rem", fontFamily: "Montserrat", fontWeight: "bold"}}>
+          The online resume builder is getting folks hired by BBC, Google, Apple,
           Tesla, and Airbnb.
           <br />
           <br />
-          Build your brand-new resume in as little as 5 minutes. Try it for
-          free.
+          Build your brand-new resume in as little as 5 minutes.
+          Try it for free!
         </h4>
         <div
           style={{
@@ -80,20 +80,21 @@ function Homepage({
               <Button
                 variant="contained"
                 size="medium"
+                
                 style={{
                   backgroundColor: "#FCA311",
                   color: "black",
                   position: "relative",
                   top: "130px",
                   right: "50px",
-
                   fontWeight: "bold",
                   borderRadius: "20px",
                   height: "40px",
+                  textTransform: "none"
                 }}
                 onClick={handleOpen}
               >
-                Build My Resume/CV
+                Build my resume/CV
               </Button>
 
               <Modal
@@ -108,7 +109,7 @@ function Homepage({
                     variant="h6"
                     component="h2"
                   >
-                    Select any one of the following options
+                    Select any one of the following options:
                   </Typography>
                   <div style={{ marginTop: "20px" }}>
                     <Button
@@ -121,6 +122,7 @@ function Homepage({
                         borderRadius: "20px",
                         height: "40px",
                         margin: "10px",
+                        textTransform: "none"
                       }}
                       onClick={navigateToCVForm}
                     >
@@ -136,6 +138,7 @@ function Homepage({
                         borderRadius: "20px",
                         height: "40px",
                         margin: "10px",
+                        textTransform: "none"
                       }}
                       onClick={navigateToResumeForm}
                     >
@@ -151,6 +154,7 @@ function Homepage({
                         borderRadius: "20px",
                         height: "40px",
                         margin: "10px",
+                        textTransform: "none"
                       }}
                       onClick={() => navigate("/templates")}
                     >
@@ -169,13 +173,13 @@ function Homepage({
               }}
             >
               <h3
-                style={{ fontSize: "2rem", color: "white", marginTop: "50px" }}
+                style={{ fontSize: "2rem", color: "white", marginTop: "50px" ,fontFamily: "Montserrat", fontWeight: "bold"}}
               >
-                Build Your Resume Fast and Easy.
+                Build your resume fast and easy.
               </h3>
-              <p style={{ fontSize: "1.3rem", color: "white" }}>
+              <p style={{ fontSize: "1.3rem", color: "white",fontFamily: "Montserrat" }}>
                 BigBrainResume is lightning fast. There's no software to
-                download. No multi-part sign-up form. No long-winded tutorials.
+                download. No long-winded tutorials.
                 Just a straightforward process.
               </p>
             </div>
