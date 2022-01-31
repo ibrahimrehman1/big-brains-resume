@@ -73,7 +73,16 @@ justify-content: space-evenly;
     margin-top: 20px;
     width: 40%;
     border-radius: 50px;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
 
 height: 40px;
 background-color: #E5E5E5;
+}
+
+.small-toolbar > img{
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
 }

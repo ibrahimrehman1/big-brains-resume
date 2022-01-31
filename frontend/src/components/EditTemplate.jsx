@@ -31,7 +31,7 @@ const EditTemplate = () => {
                 <div className="toolbar">
                     <img src={textFont} alt=""/>
                     <label>Fonts</label>
-                    <img src={redo} alt=""/>
+                    <img src={redo} alt="" style={{transform: "rotate(-180deg)", marginTop: "8px"}}/>
                     <label>Undo</label>
                     <img src={redo} alt=""/>
                     <label>Redo</label>
@@ -40,7 +40,14 @@ const EditTemplate = () => {
                     <img src={download} alt=""/>
                     <label>Download</label>
                 </div>
-                <div className="small-toolbar"></div>
+                <div className="small-toolbar">
+                <img src={bold} alt=""/>
+                    <img src={italics} alt=""/>
+                    <img src={underline} alt=""/>
+                    <img src={rightAlign} alt=""/>
+                    <img src={alignCenter} alt=""/>
+                    <img src={leftAlign} alt=""/>
+                </div>
                 <Link to="/mydocuments"><button className="my-doc-btn">My Documents</button></Link>
                 <img src={imagePath} width="80%" style={{marginTop: "50px"}}/>
             </div>
