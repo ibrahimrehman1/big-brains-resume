@@ -254,7 +254,7 @@ function App() {
         <Route path="/cvform" element={<CvForm />} index />
         <Route path="/templates" element={<CVResumeCarousels handleLoginOpen={handleLoginOpen}/>} index />
         <Route path="/mydocuments" element={<MyDocuments />} index />
-        <Route path="/edittemplate" element={<EditTemplate />} index />
+        <Route path="/edittemplate/:id" element={<EditTemplate />} index />
       </Routes>
     </>
   );

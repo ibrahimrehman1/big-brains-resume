@@ -6,28 +6,34 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import TemplateImage from "../images/CV Sample.png";
 import { useNavigate } from "react-router-dom";
 
+export var items = [
+  {
+    path: TemplateImage,
+    id: 1
+  },
+  {
+    path: TemplateImage,
+    id: 2
+  },
+  {
+    path: TemplateImage,
+    id: 3
+  },
+  {
+    path: TemplateImage,
+    id: 4
+  },
+];
+
+
 const CVResumeCarousels = ({handleLoginOpen}) => {
-  var items = [
-    {
-      path: TemplateImage,
-    },
-    {
-      path: TemplateImage,
-    },
-    {
-      path: TemplateImage,
-    },
-    {
-      path: TemplateImage,
-    },
-  ];
 
   const navigate = useNavigate();
 
-  const navigateToEditTemplate = () => {
+  const navigateToEditTemplate = (id) => {
     let username = localStorage.getItem("username");
     if (username) {
-      navigate("/edittemplate");
+      navigate(`/edittemplate/${id}`);
     } else {
       handleLoginOpen();
     }
@@ -43,7 +49,7 @@ const CVResumeCarousels = ({handleLoginOpen}) => {
         swipe={true}
       >
         {items.map((item, i) => (
-          <a href="#" key={i} onClick={navigateToEditTemplate}>
+          <a href="#" key={i} onClick={()=>navigateToEditTemplate(item.id)}>
             <Item img={item.path} />
           </a>
         ))}

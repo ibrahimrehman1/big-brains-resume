@@ -27,3 +27,53 @@ h1, h2, h3, h4, h5, h6{
 .emojis{
     cursor: pointer;
 }
+
+.edit-template{
+    margin: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-doc-btn{
+    height: 38px;
+width: 229px;
+left: 1117px;
+top: 155px;
+border-radius: 50px;
+margin-top: 20px;
+font-family: Rambla;
+}
+
+.toolbar{
+    border-radius: 50px;
+font-family: Rambla;
+width: 80%;
+height: 40px;
+background-color: #E5E5E5;
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+
+}
+
+.toolbar > img{
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.toolbar > label{
+    align-self: center;
+    position: relative;
+    right: 20px;
+}
+
+.small-toolbar{
+    margin-top: 20px;
+    width: 40%;
+    border-radius: 50px;
+
+height: 40px;
+background-color: #E5E5E5;
+}
