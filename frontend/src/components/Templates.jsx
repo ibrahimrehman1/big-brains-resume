@@ -3,25 +3,23 @@ import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import TemplateImage from "../images/CV Sample.png";
+import cvTemplate1 from "../images/cvTemplate1.jpeg";
+import cvTemplate2 from "../images/cvTemplate2.jpeg";
+import cvTemplate3 from "../images/cvTemplate3.jpeg";
 import { useNavigate } from "react-router-dom";
 
 export var items = [
   {
-    path: TemplateImage,
+    path: cvTemplate1,
     id: 1
   },
   {
-    path: TemplateImage,
+    path: cvTemplate2,
     id: 2
   },
   {
-    path: TemplateImage,
+    path: cvTemplate3,
     id: 3
-  },
-  {
-    path: TemplateImage,
-    id: 4
   },
 ];
 
