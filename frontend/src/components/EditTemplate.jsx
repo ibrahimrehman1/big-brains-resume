@@ -49,18 +49,15 @@ const EditTemplate = () => {
   const leftAlignText = () => {
     let selectedDialog = window.getSelection().focusNode.parentNode;
     selectedDialog.style.textAlign = "left";
-    
   };
 
   const centerAlignText = () => {
     let selectedDialog = window.getSelection().focusNode.parentNode;
     selectedDialog.style.textAlign = "center";
-    
   };
   const rightAlignText = () => {
     let selectedDialog = window.getSelection().focusNode.parentNode;
     selectedDialog.style.textAlign = "right";
-    
   };
 
   const italicizeText = () => {
@@ -74,27 +71,74 @@ const EditTemplate = () => {
     }
   };
 
+  const handleUpperLower = () => {
+    let selectedDialog = window.getSelection().focusNode.parentNode;
+    let textTranformStatus = selectedDialog.style.textTransform;
+    console.log(textTranformStatus);
+    if (textTranformStatus.length && textTranformStatus == "uppercase") {
+      selectedDialog.style.textTransform = "lowercase";
+    } else {
+      selectedDialog.style.textTransform = "uppercase";
+    }
+  };
+
+
+  const setFontSize = (fontSize) => {
+    let selectedDialog = window.getSelection().focusNode.parentNode;
+    let textSize = fontSize.selectedIndex + 9;
+    selectedDialog.style.fontSize = `${textSize}px`;
+  }
+
+const fontFamilies = {
+    0: "Roboto",
+    1: "Times New Roman",
+    2: "Calibri"
+}
+  const setFontFamily = (fontFamily) => {
+    let selectedDialog = window.getSelection().focusNode.parentNode;
+    
+    selectedDialog.style.fontFamily = fontFamilies[fontFamily.selectedIndex];
+  }
+
   return (
     <>
       <div className="edit-template">
         <div className="toolbar">
-          <img src={textFont} alt="" />
-          <label>Fonts</label>
-          <img
+          <Tooltip title="uppercase/lowercase">
+            <img src={textFont} alt="" onClick={handleUpperLower} />
+          </Tooltip>
+          <select name="fontFamily" id="fontFamily" onChange={(e)=>setFontFamily(e.target)} style={{width: "100px"}}>
+              <option value="Roboto">Roboto</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Calibri">Calibri</option>
+              
+          </select>
+          <select name="fontSize" id="fontsizes" onChange={(e)=>setFontSize(e.target)} style={{width: "100px"}}>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+          </select>
+          {/* <img
             src={redo}
             alt=""
             style={{ transform: "rotate(-180deg)", marginTop: "8px" }}
           />
           <label>Undo</label>
           <img src={redo} alt="" />
-          <label>Redo</label>
-          <img src={printer} alt="" />
+          <label>Redo</label> */}
+          <Tooltip title="print">
+            <img src={printer} alt="" />
+          </Tooltip>
           <label>Print</label>
-          <img src={download} alt="" />
+          <Tooltip title="download">
+            <img src={download} alt="" />
+          </Tooltip>
           <label>Download</label>
         </div>
         <div className="small-toolbar">
-        
           <Tooltip title="bold">
             <img src={bold} alt="" onClick={boldText} />
           </Tooltip>
@@ -105,16 +149,14 @@ const EditTemplate = () => {
             <img src={underline} alt="" onClick={underlineText} />
           </Tooltip>
           <Tooltip title="left align">
-            <img src={leftAlign} alt="" onClick={leftAlignText}/>
+            <img src={leftAlign} alt="" onClick={leftAlignText} />
           </Tooltip>
           <Tooltip title="center align">
-            <img src={alignCenter} alt="" onClick={centerAlignText}/>
+            <img src={alignCenter} alt="" onClick={centerAlignText} />
           </Tooltip>
           <Tooltip title="right align">
-            <img src={rightAlign} alt="" onClick={rightAlignText}/>
+            <img src={rightAlign} alt="" onClick={rightAlignText} />
           </Tooltip>
-         
-         
         </div>
         <Link to="/mydocuments" className="my-doc-btn-link">
           <button className="my-doc-btn">My Documents</button>
