@@ -42,6 +42,7 @@ const SignupModal = ({
         alert(data.error);
       } else if (data.status == "Success!") {
         localStorage.setItem("username", data.userName);
+        localStorage.setItem("userID", data.userID);
         window.location.assign("/");
       }
     } else {

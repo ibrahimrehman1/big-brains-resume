@@ -45,11 +45,13 @@ h6 {
   border-radius: 50px;
   margin-top: 50px;
   font-family: Rambla;
+  z-index: 1000;
 }
 
 .my-doc-btn-link {
   position: absolute;
   top: 220px;
+  z-index: 1000;
 }
 
 .toolbar {

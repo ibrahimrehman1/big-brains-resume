@@ -32,14 +32,19 @@ const FeedbackModal = ({ openFeedback, handleFeedbackClose }) => {
   const EmojisNames = ["Happy", "Angry"];
   const [comments, setComments] = useState("");
   const saveFeedback = async () => {
+    let userID = localStorage.getItem("userID");
     let jsonRes = await fetch("http://localhost:5000/feedback", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
-      body: JSON.stringify({ emojis: EmojisNames[selectedEmoji], comments }),
+      body: JSON.stringify({ emojis: EmojisNames[selectedEmoji], comments, userID }),
     });
     let data = await jsonRes.json();
     console.log(data);
-    window.location.assign("/")
+    if (data.error){
+      alert(data.error)
+    }else{
+      window.location.assign("/")
+    }
   };
 
   return (

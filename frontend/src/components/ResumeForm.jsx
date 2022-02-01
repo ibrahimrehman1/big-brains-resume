@@ -17,10 +17,12 @@ const ResumeForm = () => {
   const [certifications, setCertifications] = useState("");
 
   const saveResume = async () => {
+    let userID = localStorage.getItem("userID");
+
     let jsonData = await fetch("http://localhost:5000/resumeform", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({fullName, designation, summary, skills, education, projects, contactDetails, languages, interests, certifications})
+      body: JSON.stringify({userID, fullName, designation, summary, skills, education, projects, contactDetails, languages, interests, certifications})
     })
 
     let data = await jsonData.json();

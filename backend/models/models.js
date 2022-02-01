@@ -220,19 +220,19 @@ const userSchema = Schema({
     // { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}
   },
   userFormCV: {
-    type: [{ type:  Types.ObjectId, ref: "CVForm"}],
+    type: [{ type:  Types.ObjectId, ref: "cvforms"}],
   },
   userFormResume: {
-    type: [{type:  Types.ObjectId, ref: "ResumeForm"}],
+    type: [{type:  Types.ObjectId, ref: "resumeforms"}],
   },
   userTemplateCV: {
-    type: [{ type:  Types.ObjectId, ref: "CVTemplate"}],
+    type: [{ type:  Types.ObjectId, ref: "cvtemplates"}],
   },
   userTemplateResume: {
-    type: [{type:  Types.ObjectId, ref: "ResumeTemplate"}],
+    type: [{type:  Types.ObjectId, ref: "resumetemplates"}],
   },
   userFeedback: {
-    type: [{type: Types.ObjectId, ref: "Feedback"}],
+    type: [{type: Types.ObjectId, ref: "feedbacks"}],
   },
 });
 
@@ -247,3 +247,4 @@ module.exports.ResumeForm = model("resumeforms", resumeFormSchema);
 module.exports.CvForm = model("cvforms", cvFormSchema);
 module.exports.CVTemplate = model("cvtemplates", cvTemplateSchema);
 module.exports.Feedback = model("feedbacks", feedbackSchema);
+module.exports.ResumeTemplate = model("resumetemplates", resumeTemplateSchema);

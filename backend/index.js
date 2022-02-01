@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const { signup, login, logout, resumeForm, cvForm, feedback, saveCV } = require("./controllers/controller");
+const { signup, login, logout, resumeForm, cvForm, feedback, saveCV, myDocuments } = require("./controllers/controller");
 const JWT = require("jsonwebtoken");
 
 let app = express();
@@ -45,7 +45,9 @@ app.post("/feedback", feedback)
 
 // Resume/CV Template Route
 app.post("/savecv", saveCV)
-
 app.get("/logout", logout)
+
+// My Documents Route
+app.post("/mydocuments", myDocuments)
 
 app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`));

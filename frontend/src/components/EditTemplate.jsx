@@ -116,10 +116,14 @@ const EditTemplate = () => {
       projects = document.querySelector("#projects").textContent;
     }
 
+    let userID = localStorage.getItem("userID");
+
+
     let jsonData = await fetch("http://localhost:5000/savecv", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        userID,
         fullName,
         aboutMe,
         skills,
