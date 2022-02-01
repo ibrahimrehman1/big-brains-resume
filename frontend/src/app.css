@@ -1,260 +1,344 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-*{
-    font-family: Roboto, 'Times New Roman';
+* {
+  font-family: Roboto, 'Times New Roman';
 }
 
-
-h1, h2, h3, h4, h5, h6{
-    font-family: Montserrat;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Montserrat;
 }
 
-
-.navbar-logo:hover{
-    cursor: pointer;
+.navbar-logo:hover {
+  cursor: pointer;
 }
 
-.templates{
-    padding: 2em;
+.templates {
+  padding: 2em;
 }
 
-.cv-form, .resume-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.cv-form,
+.resume-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.emojis{
-    cursor: pointer;
+.emojis {
+  cursor: pointer;
 }
 
-.edit-template{
-    margin: 50px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.edit-template {
+  margin: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.my-doc-btn{
-    height: 38px;
-width: 229px;
-border-radius: 50px;
-margin-top: 20px;
-font-family: Rambla;
+.my-doc-btn {
+  height: 38px;
+  width: 229px;
+  border-radius: 50px;
+  margin-top: 20px;
+  font-family: Rambla;
 }
 
-
-.my-doc-btn-link{
-    position: absolute;
-    top: 200px;
+.my-doc-btn-link {
+  position: absolute;
+  top: 200px;
 }
 
-.toolbar{
-    border-radius: 50px;
-font-family: Rambla;
-width: 80%;
-height: 40px;
-background-color: #E5E5E5;
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
-
+.toolbar {
+  border-radius: 50px;
+  font-family: Rambla;
+  width: 80%;
+  height: 40px;
+  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
-.toolbar > img{
-    width: 30px;
-    height: 30px;
-    margin-top: 5px;
+.toolbar > img {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
 }
 
-.toolbar > label{
-    align-self: center;
-    position: relative;
-    right: 20px;
+.toolbar > label {
+  align-self: center;
+  position: relative;
+  right: 20px;
 }
 
-.small-toolbar{
-    top: 160px;
-    width: 40%;
-    z-index: 1000;
-    border-radius: 50px;
-    position: absolute;
-    justify-content: space-evenly;
-    display: flex;
-    flex-direction: row;
+.small-toolbar {
+  top: 160px;
+  width: 40%;
+  z-index: 1000;
+  border-radius: 50px;
+  position: absolute;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
 
-height: 40px;
-background-color: #E5E5E5;
+  height: 40px;
+  background-color: #e5e5e5;
 }
 
-.small-toolbar > img{
-    width: 30px;
-    height: 30px;
-    margin-top: 5px;
+.small-toolbar > img {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
 }
 
-.cv-templates{
-    width: 80%;
-    margin-top: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
+.cv-templates {
+  width: 80%;
+  margin-top: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
 }
 
-
-.cv-templates > dialog{
-    border: 1px solid black;
+.cv-templates > dialog {
+  border: 1px solid black;
 }
 
-.fullName1{
-    position: absolute;
-    top: 130px;
-    left: -280px;
-    width: 300px;
-    border-width: 0px !important;
-    
+.fullName1 {
+  position: absolute;
+  top: 130px;
+  left: -280px;
+  width: 300px;
+  border-width: 0px !important;
 }
 
-.fullName2{
-    position: absolute;
-    top: 100px;
-    width: 300px;    border-width: 0px !important;
+.fullName2 {
+  position: absolute;
+  top: 100px;
+  width: 300px;
+  border-width: 0px !important;
 
-    height: 50px;
-    /* border-width: 0px !important; */
-    
+  height: 50px;
+  /* border-width: 0px !important; */
 }
 
-.aboutMe1{
-    position: absolute;
-    top: 130px;
-    right: -330px;
-    width: 250px;
-    border-width: 0px !important;
-    background-color: transparent;
-
-
+.aboutMe1 {
+  position: absolute;
+  top: 130px;
+  right: -330px;
+  width: 250px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.aboutMe2{
-    position: absolute;
-    top: 210px;
-    width: 300px;
-    height: 50px;    border-width: 0px !important;
+.aboutMe2 {
+  position: absolute;
+  top: 210px;
+  width: 300px;
+  height: 50px;
+  border-width: 0px !important;
 
-    /* border-width: 0px !important; */
-    
+  /* border-width: 0px !important; */
 }
 
-.workExperience1{
-    position: absolute;
-    top: 380px;
-    left: -280px;
-    width: 300px;
-    border-width: 0px !important;
-    background-color: transparent;
+.workExperience1 {
+  position: absolute;
+  top: 380px;
+  left: -280px;
+  width: 300px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.workExperience2{
-    position: absolute;
-    top: 380px;
-    width: 300px;    border-width: 0px !important;
+.workExperience2 {
+  position: absolute;
+  top: 380px;
+  width: 300px;
+  border-width: 0px !important;
 
-    height: 50px;
+  height: 50px;
 }
 
-.personalInfo1{
-    position: absolute;
-    top: 380px;
-    right: -330px;
-    width: 250px;
-    border-width: 0px !important;
-    background-color: transparent;
+.personalInfo1 {
+  position: absolute;
+  top: 380px;
+  right: -330px;
+  width: 250px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.personalInfo2{
-    position: absolute;
-    top: 280px;
-    width: 300px;
-    height: 50px;    border-width: 0px !important;
-
+.personalInfo2 {
+  position: absolute;
+  top: 280px;
+  width: 300px;
+  height: 50px;
+  border-width: 0px !important;
 }
 
-.certification-projects1{
-    position: absolute;
-    top: 570px;
-    left: -280px;
-    width: 300px;
-    border-width: 0px !important;
-    background-color: transparent;
-
+.certification-projects1 {
+  position: absolute;
+  top: 570px;
+  left: -280px;
+  width: 300px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.skills1{
-    position: absolute;
-    top: 530px;
-    right: -330px;
-    width: 250px;
-    border-width: 0px !important;
-    background-color: transparent;
-
-
+.skills1 {
+  position: absolute;
+  top: 530px;
+  right: -330px;
+  width: 250px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.interests1{
-    position: absolute;
-    top: 700px;
-    left: -280px;
-    width: 300px;
-    border-width: 0px !important;
-    background-color: transparent;
-
-
+.interests1 {
+  position: absolute;
+  top: 700px;
+  left: -280px;
+  width: 300px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.education1{
-    position: absolute;
-    top: 690px;
-    right: -330px;
-    width: 250px;
-    border-width: 0px !important;
-    background-color: transparent;
-
+.education1 {
+  position: absolute;
+  top: 690px;
+  right: -330px;
+  width: 250px;
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
-.education2{
-    position: absolute;
-    top: 480px;
-    width: 300px;
-    height: 50px;    border-width: 0px !important;
-
+.education2 {
+  position: absolute;
+  top: 480px;
+  width: 300px;
+  height: 50px;
+  border-width: 0px !important;
 }
 
-.certification-projects2{
-    position: absolute;
-    top: 560px;    border-width: 0px !important;
+.certification-projects2 {
+  position: absolute;
+  top: 560px;
+  border-width: 0px !important;
 
-    width: 300px;
-    height: 50px;
+  width: 300px;
+  height: 50px;
 }
 
-.extra-certification-projects2{
-    position: absolute;
-    top: 650px;
-    width: 300px;
-    height: 50px;    border-width: 0px !important;
-
+.extra-certification-projects2 {
+  position: absolute;
+  top: 650px;
+  width: 300px;
+  height: 50px;
+  border-width: 0px !important;
 }
 
-.interests2{
-    position: absolute;
-    top: 770px;
-    width: 300px;    border-width: 0px !important;
+.interests2 {
+  position: absolute;
+  top: 770px;
+  width: 300px;
+  border-width: 0px !important;
 
-    height: 50px;
+  height: 50px;
 }
 
-.skills2{
-    display: none;
+.skills2 {
+  display: none;
+}
+
+.personalInfo3 {
+  position: absolute;
+  top: 160px;
+  width: 300px;
+  background-color: transparent;
+  border-width: 0px !important;
+}
+
+.workExperience3 {
+  position: absolute;
+  top: 430px;
+  background-color: transparent;
+
+  width: 150px;
+  right: -200px;
+  border-width: 0px !important;
+}
+
+.education3 {
+  position: absolute;
+  top: 430px;
+  background-color: transparent;
+
+  width: 120px;
+  left: -450px;
+  border-width: 0px !important;
+}
+
+.certification-projects3 {
+  position: absolute;
+  top: 260px;
+  border-width: 0px !important;
+  right: -200px;
+  background-color: transparent;
+
+  width: 150px;
+}
+
+.extra-certification-projects3 {
+  position: absolute;
+  top: 580px;
+  width: 120px;
+  background-color: transparent;
+
+  left: -200px;
+  border-width: 0px !important;
+}
+
+.interests3 {
+  position: absolute;
+  top: 580px;
+  background-color: transparent;
+
+  width: 120px;
+  left: -450px;
+  border-width: 0px !important;
+}
+
+.skills3 {
+  position: absolute;
+  top: 430px;
+  width: 120px;
+  left: -200px;
+  border-width: 0px !important;
+
+  background-color: transparent;
+}
+
+.aboutMe3 {
+  position: absolute;
+  top: 260px;
+  width: 150px;
+  left: -400px;
+  background-color: transparent;
+
+  border-width: 0px !important;
+}
+
+.fullName3 {
+  position: absolute;
+  top: 60px;
+  background-color: transparent;
+
+  width: 300px;
+  border-width: 0px !important;
+
+  height: 50px;
 }

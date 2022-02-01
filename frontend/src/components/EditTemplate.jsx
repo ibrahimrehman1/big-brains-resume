@@ -65,9 +65,9 @@ const EditTemplate = () => {
             contentEditable
             className={params.id == 1 ? "certification-projects1" : params.id == 2 ? "certification-projects2" : "certification-projects3"} spellCheck="false"
           ></dialog>
-          {params.id == 2 ? <dialog open
+          {params.id == 2 || params.id == 3 ? <dialog open
             contentEditable
-            className="extra-certification-projects2"></dialog> : ""}
+            className={params.id == 2 ? "extra-certification-projects2" : "extra-certification-projects3"}></dialog> : ""}
           <dialog open contentEditable className={params.id == 1 ? "skills1" : params.id == 2 ? "skills2" : "skills3"} spellCheck="false"></dialog>
           <dialog open contentEditable className={params.id == 1 ? "interests1" : params.id == 2 ? "interests2" : "interests3"} spellCheck="false"></dialog>
           <dialog open contentEditable className={params.id == 1 ? "education1" : params.id == 2 ? "education2" : "education3"} spellCheck="false"></dialog>
