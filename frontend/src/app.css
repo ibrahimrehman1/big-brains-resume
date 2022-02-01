@@ -38,11 +38,15 @@ h1, h2, h3, h4, h5, h6{
 .my-doc-btn{
     height: 38px;
 width: 229px;
-left: 1117px;
-top: 155px;
 border-radius: 50px;
 margin-top: 20px;
 font-family: Rambla;
+}
+
+
+.my-doc-btn-link{
+    position: absolute;
+    top: 200px;
 }
 
 .toolbar{
@@ -70,9 +74,11 @@ justify-content: space-evenly;
 }
 
 .small-toolbar{
-    margin-top: 20px;
+    top: 160px;
     width: 40%;
+    z-index: 1000;
     border-radius: 50px;
+    position: absolute;
     justify-content: space-evenly;
     display: flex;
     flex-direction: row;
@@ -89,7 +95,166 @@ background-color: #E5E5E5;
 
 .cv-templates{
     width: 80%;
+    margin-top: 140px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+}
+
+
+.cv-templates > dialog{
+    border: 1px solid black;
+}
+
+.fullName1{
+    position: absolute;
+    top: 130px;
+    left: -280px;
+    width: 300px;
+    border-width: 0px !important;
+    
+}
+
+.fullName2{
+    position: absolute;
+    top: 100px;
+    width: 300px;    border-width: 0px !important;
+
+    height: 50px;
+    /* border-width: 0px !important; */
+    
+}
+
+.aboutMe1{
+    position: absolute;
+    top: 130px;
+    right: -330px;
+    width: 250px;
+    border-width: 0px !important;
+    background-color: transparent;
+
+
+}
+
+.aboutMe2{
+    position: absolute;
+    top: 210px;
+    width: 300px;
+    height: 50px;    border-width: 0px !important;
+
+    /* border-width: 0px !important; */
+    
+}
+
+.workExperience1{
+    position: absolute;
+    top: 380px;
+    left: -280px;
+    width: 300px;
+    border-width: 0px !important;
+    background-color: transparent;
+}
+
+.workExperience2{
+    position: absolute;
+    top: 380px;
+    width: 300px;    border-width: 0px !important;
+
+    height: 50px;
+}
+
+.personalInfo1{
+    position: absolute;
+    top: 380px;
+    right: -330px;
+    width: 250px;
+    border-width: 0px !important;
+    background-color: transparent;
+}
+
+.personalInfo2{
+    position: absolute;
+    top: 280px;
+    width: 300px;
+    height: 50px;    border-width: 0px !important;
+
+}
+
+.certification-projects1{
+    position: absolute;
+    top: 570px;
+    left: -280px;
+    width: 300px;
+    border-width: 0px !important;
+    background-color: transparent;
+
+}
+
+.skills1{
+    position: absolute;
+    top: 530px;
+    right: -330px;
+    width: 250px;
+    border-width: 0px !important;
+    background-color: transparent;
+
+
+}
+
+.interests1{
+    position: absolute;
+    top: 700px;
+    left: -280px;
+    width: 300px;
+    border-width: 0px !important;
+    background-color: transparent;
+
+
+}
+
+.education1{
+    position: absolute;
+    top: 690px;
+    right: -330px;
+    width: 250px;
+    border-width: 0px !important;
+    background-color: transparent;
+
+}
+
+.education2{
+    position: absolute;
+    top: 480px;
+    width: 300px;
+    height: 50px;    border-width: 0px !important;
+
+}
+
+.certification-projects2{
+    position: absolute;
+    top: 560px;    border-width: 0px !important;
+
+    width: 300px;
+    height: 50px;
+}
+
+.extra-certification-projects2{
+    position: absolute;
+    top: 650px;
+    width: 300px;
+    height: 50px;    border-width: 0px !important;
+
+}
+
+.interests2{
+    position: absolute;
+    top: 770px;
+    width: 300px;    border-width: 0px !important;
+
+    height: 50px;
+}
+
+.skills2{
+    display: none;
 }
