@@ -89,10 +89,11 @@ h6 {
   background-color: #e5e5e5;
 }
 
-.small-toolbar > img {
+.small-toolbar img {
   width: 30px;
   height: 30px;
   margin-top: 5px;
+  cursor: pointer;
 }
 
 .cv-templates {
