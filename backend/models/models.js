@@ -136,48 +136,41 @@ const cvTemplateSchema = Schema({
     trim: true,
     required: true,
   },
-  designation: {
-    type: String,
-    trim: true,
-  },
+  // designation: {
+  //   type: String,
+  //   trim: true,
+  // },
   aboutMe: {
     type: String,
     trim: true,
     minLength: [50, "About Me is too Short!"],
   },
   skills: {
-    type: Map,
+    type: String,
     default: {},
   },
-  education: {
-    type: Array,
-    default: [],
+  detailedEducation: {
+    type: String,
   },
   projects: {
-    type: Array,
-    default: [],
+    type: String,
   },
   contactDetails: {
-    type: Map,
-    default: {},
+    type: String,
   },
-  languages: {
-    type: Array,
-    default: [],
-  },
+  // languages: {
+  //   type: String,
+  // },
   interests: {
-    type: Array,
-    default: [],
+    type: String,
   },
   certifications: {
-    type: Array,
-    default: [],
+    type: String,
   },
   workExperience: {
-    type: Array,
-    default: [],
+    type: String,
   },
-  templateStyle: {
+  imageID: {
     type: String,
   }
 });
@@ -252,4 +245,5 @@ userSchema.pre("save", async function (next) {
 module.exports.User = model("user", userSchema);
 module.exports.ResumeForm = model("resumeforms", resumeFormSchema);
 module.exports.CvForm = model("cvforms", cvFormSchema);
+module.exports.CVTemplate = model("cvtemplates", cvTemplateSchema);
 module.exports.Feedback = model("feedbacks", feedbackSchema);

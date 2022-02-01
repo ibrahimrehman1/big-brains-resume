@@ -14,6 +14,7 @@ import rightAlign from "../images/right-align.png";
 import textFont from "../images/text-font.png";
 import underline from "../images/underline.png";
 import Tooltip from "@mui/material/Tooltip";
+import html2canvas from "html2canvas";
 
 const EditTemplate = () => {
   const params = useParams();
@@ -82,23 +83,57 @@ const EditTemplate = () => {
     }
   };
 
-
   const setFontSize = (fontSize) => {
     let selectedDialog = window.getSelection().focusNode.parentNode;
     let textSize = fontSize.selectedIndex + 9;
     selectedDialog.style.fontSize = `${textSize}px`;
-  }
+  };
 
-const fontFamilies = {
+  const fontFamilies = {
     0: "Roboto",
     1: "Times New Roman",
-    2: "Calibri"
-}
+    2: "Calibri",
+  };
   const setFontFamily = (fontFamily) => {
     let selectedDialog = window.getSelection().focusNode.parentNode;
-    
+
     selectedDialog.style.fontFamily = fontFamilies[fontFamily.selectedIndex];
-  }
+  };
+
+  const saveCVDoc = async () => {
+    let fullName = document.querySelector("#fullName").textContent;
+    let aboutMe = document.querySelector("#aboutMe").textContent;
+    let skills = document.querySelector("#skills").textContent;
+    let education = document.querySelector("#education").textContent;
+    let contactDetails = document.querySelector("#contactDetails").textContent;
+    let interests = document.querySelector("#interests").textContent;
+    let certifications = document.querySelector("#certifications").textContent;
+    let workExperience = document.querySelector("#workExperience").textContent;
+    let projects;
+    if (params.id == 1) {
+      projects = certifications;
+    } else {
+      projects = document.querySelector("#projects").textContent;
+    }
+
+    let jsonData = await fetch("http://localhost:5000/savecv", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        fullName,
+        aboutMe,
+        skills,
+        education,
+        projects,
+        contactDetails,
+        interests,
+        certifications,
+        workExperience,
+        imageID: params.id,
+      }),
+    });
+    console.log(await jsonData.json());
+  };
 
   return (
     <>
@@ -107,19 +142,28 @@ const fontFamilies = {
           <Tooltip title="uppercase/lowercase">
             <img src={textFont} alt="" onClick={handleUpperLower} />
           </Tooltip>
-          <select name="fontFamily" id="fontFamily" onChange={(e)=>setFontFamily(e.target)} style={{width: "100px"}}>
-              <option value="Roboto">Roboto</option>
-              <option value="Times New Roman">Times New Roman</option>
-              <option value="Calibri">Calibri</option>
-              
+          <select
+            name="fontFamily"
+            id="fontFamily"
+            onChange={(e) => setFontFamily(e.target)}
+            style={{ width: "100px" }}
+          >
+            <option value="Roboto">Roboto</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Calibri">Calibri</option>
           </select>
-          <select name="fontSize" id="fontsizes" onChange={(e)=>setFontSize(e.target)} style={{width: "100px"}}>
-              <option value="9">9</option>
-              <option value="10">10</option>
-              <option value="11">11</option>
-              <option value="12">12</option>
-              <option value="13">13</option>
-              <option value="14">14</option>
+          <select
+            name="fontSize"
+            id="fontsizes"
+            onChange={(e) => setFontSize(e.target)}
+            style={{ width: "100px" }}
+          >
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
           </select>
           {/* <img
             src={redo}
@@ -130,13 +174,13 @@ const fontFamilies = {
           <img src={redo} alt="" />
           <label>Redo</label> */}
           <Tooltip title="print">
-            <img src={printer} alt="" />
+            <img src={printer} alt="" onClick={()=>window.print()}/>
           </Tooltip>
           <label>Print</label>
-          <Tooltip title="download">
-            <img src={download} alt="" />
+          {/* <Tooltip title="download">
+            <img src={download} alt="" onClick={downloadDoc}/>
           </Tooltip>
-          <label>Download</label>
+          <label>Download</label> */}
         </div>
         <div className="small-toolbar">
           <Tooltip title="bold">
@@ -165,6 +209,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="fullName"
             className={
               params.id == 1
                 ? "fullName1"
@@ -177,6 +222,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="aboutMe"
             className={
               params.id == 1
                 ? "aboutMe1"
@@ -189,6 +235,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="workExperience"
             className={
               params.id == 1
                 ? "workExperience1"
@@ -201,6 +248,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="contactDetails"
             className={
               params.id == 1
                 ? "personalInfo1"
@@ -212,6 +260,7 @@ const fontFamilies = {
           ></dialog>
           <dialog
             open
+            id="certifications"
             contentEditable
             className={
               params.id == 1
@@ -225,6 +274,7 @@ const fontFamilies = {
           {params.id == 2 || params.id == 3 ? (
             <dialog
               open
+              id="projects"
               contentEditable
               className={
                 params.id == 2
@@ -238,6 +288,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="skills"
             className={
               params.id == 1
                 ? "skills1"
@@ -250,6 +301,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="interests"
             className={
               params.id == 1
                 ? "interests1"
@@ -262,6 +314,7 @@ const fontFamilies = {
           <dialog
             open
             contentEditable
+            id="education"
             className={
               params.id == 1
                 ? "education1"
@@ -272,6 +325,13 @@ const fontFamilies = {
             spellCheck="false"
           ></dialog>
           <img src={imagePath} width="80%" style={{ marginTop: "50px" }} />
+          <button
+            className="my-doc-btn"
+            style={{ marginBottom: "50px" }}
+            onClick={saveCVDoc}
+          >
+            Save Document
+          </button>
         </div>
       </div>
     </>

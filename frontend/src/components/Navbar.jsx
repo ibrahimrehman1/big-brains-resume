@@ -173,8 +173,7 @@ const Navbar = ({
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">My Profile</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2" onClick={logout}>
+                    <Dropdown.Item href="#/action-1" onClick={logout}>
                       Logout
                     </Dropdown.Item>
                   </Dropdown.Menu>

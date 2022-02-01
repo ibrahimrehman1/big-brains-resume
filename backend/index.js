@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const { signup, login, logout, resumeForm, cvForm, feedback } = require("./controllers/controller");
+const { signup, login, logout, resumeForm, cvForm, feedback, saveCV } = require("./controllers/controller");
 const JWT = require("jsonwebtoken");
 
 let app = express();
@@ -35,11 +35,16 @@ app.post("/signup", signup);
 app.post("/login", login);
 
 
-// Resume Form Route
+// Resume/CV Form Route
 app.post("/resumeform", resumeForm)
 app.post("/cvform", cvForm)
+
+// Feedback Route
 app.post("/feedback", feedback)
 
+
+// Resume/CV Template Route
+app.post("/savecv", saveCV)
 
 app.get("/logout", logout)
 
