@@ -43,22 +43,23 @@ h6 {
   height: 38px;
   width: 229px;
   border-radius: 50px;
-  margin-top: 20px;
+  margin-top: 50px;
   font-family: Rambla;
 }
 
 .my-doc-btn-link {
   position: absolute;
-  top: 200px;
+  top: 220px;
 }
 
 .toolbar {
   border-radius: 50px;
   font-family: Rambla;
   width: 80%;
-  height: 40px;
+  /* height: 45px; */
   background-color: #e5e5e5;
   display: flex;
+  padding: 10px;
   flex-direction: row;
   justify-content: space-evenly;
 }
@@ -77,8 +78,9 @@ h6 {
 }
 
 .small-toolbar {
-  top: 160px;
+  top: 200px;
   width: 40%;
+  padding: 10px;
   z-index: 1000;
   border-radius: 50px;
   position: absolute;
@@ -86,7 +88,6 @@ h6 {
   display: flex;
   flex-direction: row;
 
-  height: 40px;
   background-color: #e5e5e5;
 }
 
@@ -98,7 +99,7 @@ h6 {
 }
 
 .cv-templates {
-  width: 80%;
+  width: 100%;
   margin-top: 140px;
   display: flex;
   flex-direction: column;
@@ -112,7 +113,7 @@ h6 {
 
 .fullName1 {
   position: absolute;
-  top: 130px;
+  top: 150px;
   left: -280px;
   width: 300px;
   border-width: 0px !important;
@@ -120,9 +121,10 @@ h6 {
 
 .fullName2 {
   position: absolute;
-  top: 100px;
+  top: 150px;
   width: 300px;
   border-width: 0px !important;
+  background-color: transparent;
 
   height: 50px;
   /* border-width: 0px !important; */
@@ -130,7 +132,7 @@ h6 {
 
 .aboutMe1 {
   position: absolute;
-  top: 130px;
+  top: 150px;
   right: -330px;
   width: 250px;
   border-width: 0px !important;
@@ -139,8 +141,9 @@ h6 {
 
 .aboutMe2 {
   position: absolute;
-  top: 210px;
-  width: 300px;
+  top: 250px;
+  width: 300px;  background-color: transparent;
+
   height: 50px;
   border-width: 0px !important;
 
@@ -149,7 +152,7 @@ h6 {
 
 .workExperience1 {
   position: absolute;
-  top: 380px;
+  top: 460px;
   left: -280px;
   width: 300px;
   border-width: 0px !important;
@@ -158,7 +161,8 @@ h6 {
 
 .workExperience2 {
   position: absolute;
-  top: 380px;
+  top: 450px;  background-color: transparent;
+
   width: 300px;
   border-width: 0px !important;
 
@@ -167,8 +171,8 @@ h6 {
 
 .personalInfo1 {
   position: absolute;
-  top: 380px;
-  right: -330px;
+  top: 460px;
+  right: -400px;
   width: 250px;
   border-width: 0px !important;
   background-color: transparent;
@@ -176,15 +180,16 @@ h6 {
 
 .personalInfo2 {
   position: absolute;
-  top: 280px;
-  width: 300px;
+  top: 350px;
+  width: 300px;  background-color: transparent;
+
   height: 50px;
   border-width: 0px !important;
 }
 
 .certification-projects1 {
   position: absolute;
-  top: 570px;
+  top: 690px;
   left: -280px;
   width: 300px;
   border-width: 0px !important;
@@ -193,8 +198,8 @@ h6 {
 
 .skills1 {
   position: absolute;
-  top: 530px;
-  right: -330px;
+  top: 630px;
+  right: -400px;
   width: 250px;
   border-width: 0px !important;
   background-color: transparent;
@@ -202,7 +207,7 @@ h6 {
 
 .interests1 {
   position: absolute;
-  top: 700px;
+  top: 840px;
   left: -280px;
   width: 300px;
   border-width: 0px !important;
@@ -211,8 +216,8 @@ h6 {
 
 .education1 {
   position: absolute;
-  top: 690px;
-  right: -330px;
+  top: 830px;
+  right: -400px;
   width: 250px;
   border-width: 0px !important;
   background-color: transparent;
@@ -220,45 +225,50 @@ h6 {
 
 .education2 {
   position: absolute;
-  top: 480px;
+  top: 600px;
   width: 300px;
-  height: 50px;
+  height: 50px;  background-color: transparent;
+
   border-width: 0px !important;
 }
 
 .certification-projects2 {
   position: absolute;
-  top: 560px;
+  top: 680px;
   border-width: 0px !important;
 
-  width: 300px;
+  width: 300px;  background-color: transparent;
+
   height: 50px;
 }
 
 .extra-certification-projects2 {
   position: absolute;
-  top: 650px;
+  top: 800px;
   width: 300px;
   height: 50px;
-  border-width: 0px !important;
+  border-width: 0px !important;  background-color: transparent;
+
 }
 
 .interests2 {
   position: absolute;
-  top: 770px;
+  top: 960px;
   width: 300px;
   border-width: 0px !important;
+  background-color: transparent;
 
   height: 50px;
 }
 
 .skills2 {
   display: none;
+  
 }
 
 .personalInfo3 {
   position: absolute;
-  top: 160px;
+  top: 180px;
   width: 300px;
   background-color: transparent;
   border-width: 0px !important;
@@ -266,7 +276,7 @@ h6 {
 
 .workExperience3 {
   position: absolute;
-  top: 430px;
+  top: 530px;
   background-color: transparent;
 
   width: 150px;
@@ -276,17 +286,17 @@ h6 {
 
 .education3 {
   position: absolute;
-  top: 430px;
+  top: 530px;
   background-color: transparent;
 
   width: 120px;
-  left: -450px;
+  left: -550px;
   border-width: 0px !important;
 }
 
 .certification-projects3 {
   position: absolute;
-  top: 260px;
+  top: 320px;
   border-width: 0px !important;
   right: -200px;
   background-color: transparent;
@@ -296,27 +306,26 @@ h6 {
 
 .extra-certification-projects3 {
   position: absolute;
-  top: 580px;
+  top: 720px;
   width: 120px;
   background-color: transparent;
-
-  left: -200px;
+  left: -220px;
   border-width: 0px !important;
 }
 
 .interests3 {
   position: absolute;
-  top: 580px;
+  top: 720px;
   background-color: transparent;
 
   width: 120px;
-  left: -450px;
+  left: -530px;
   border-width: 0px !important;
 }
 
 .skills3 {
   position: absolute;
-  top: 430px;
+  top: 530px;
   width: 120px;
   left: -200px;
   border-width: 0px !important;
@@ -326,9 +335,9 @@ h6 {
 
 .aboutMe3 {
   position: absolute;
-  top: 260px;
+  top: 320px;
   width: 150px;
-  left: -400px;
+  left: -450px;
   background-color: transparent;
 
   border-width: 0px !important;
@@ -336,11 +345,34 @@ h6 {
 
 .fullName3 {
   position: absolute;
-  top: 60px;
+  top: 80px;
   background-color: transparent;
 
   width: 300px;
   border-width: 0px !important;
 
   height: 50px;
+}
+
+body {
+  -webkit-print-color-adjust: exact !important;
+}
+
+@media print{
+  .navbar, .my-doc-btn, .small-toolbar, .toolbar{
+    display: none !important;
+  }
+
+  .template-img{
+    margin: 0px;
+    width: 100%;
+  }
+
+  .cv-templates{
+    margin: 0px;
+    /* width: 100%; */
+  }
+
+
+
 }

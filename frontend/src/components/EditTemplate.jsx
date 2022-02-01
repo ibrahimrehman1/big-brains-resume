@@ -173,9 +173,7 @@ const EditTemplate = () => {
           <label>Undo</label>
           <img src={redo} alt="" />
           <label>Redo</label> */}
-          <Tooltip title="print">
             <img src={printer} alt="" onClick={()=>window.print()}/>
-          </Tooltip>
           <label>Print</label>
           {/* <Tooltip title="download">
             <img src={download} alt="" onClick={downloadDoc}/>
@@ -324,7 +322,7 @@ const EditTemplate = () => {
             }
             spellCheck="false"
           ></dialog>
-          <img src={imagePath} width="80%" style={{ marginTop: "50px" }} />
+          <img src={imagePath} width="80%" style={{ marginTop: "50px" }} className="template-img"/>
           <button
             className="my-doc-btn"
             style={{ marginBottom: "50px" }}

@@ -136,9 +136,9 @@ const SignupModal = ({
           >
             Create my Account
           </Button>
-          <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
+          {/* <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
             Reset
-          </Button>
+          </Button> */}
           <Button
             variant="contained"
             color="info"

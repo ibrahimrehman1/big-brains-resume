@@ -47,6 +47,7 @@ module.exports.login = async (req, res) => {
     let user = await User.findOne({ emailAddress }).exec();
     if (user) {
       let passwordStatus = await bcrypt.compare(password, user["password"]);
+      console.log(passwordStatus)
       if (passwordStatus) {
         const userID = user["_id"];
 
@@ -59,8 +60,10 @@ module.exports.login = async (req, res) => {
           token,
           userName: user["userName"],
         });
+      }else {
+        res.json({ error: "Email/Password does not exist!" });
       }
-    } else {
+    } else{
       res.json({ error: "Email/Password does not exist!" });
     }
   } catch (err) {

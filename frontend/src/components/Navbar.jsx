@@ -86,7 +86,7 @@ const Navbar = ({
   };
 
   return (
-    <AppBar position="static" style={{ background: "#000000" }}>
+    <AppBar position="static" style={{ background: "#000000" }} className="navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img

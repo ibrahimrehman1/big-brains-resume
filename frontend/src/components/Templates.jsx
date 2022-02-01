@@ -6,6 +6,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import cvTemplate1 from "../images/cvTemplate1.jpeg";
 import cvTemplate2 from "../images/cvTemplate2.jpeg";
 import cvTemplate3 from "../images/cvTemplate3.jpeg";
+import resumeTemplate1 from "../images/resumeTemplate1.jpeg";
+import resumeTemplate2 from "../images/resumeTemplate2.jpeg";
+import resumeTemplate3 from "../images/resumeTemplate3.jpeg";
 import { useNavigate } from "react-router-dom";
 
 export var items = [
@@ -20,6 +23,18 @@ export var items = [
   {
     path: cvTemplate3,
     id: 3
+  },
+  {
+    path: resumeTemplate1,
+    id: 4
+  },
+  {
+    path: resumeTemplate2,
+    id: 5
+  },
+  {
+    path: resumeTemplate3,
+    id: 6
   },
 ];
 
@@ -46,7 +61,7 @@ const CVResumeCarousels = ({handleLoginOpen}) => {
         stopAutoPlayOnHover={true}
         swipe={true}
       >
-        {items.map((item, i) => (
+        {items.slice(0, 3).map((item, i) => (
           <a href="#" key={i} onClick={()=>navigateToEditTemplate(item.id)}>
             <Item img={item.path} />
           </a>
@@ -60,8 +75,8 @@ const CVResumeCarousels = ({handleLoginOpen}) => {
         stopAutoPlayOnHover={true}
         swipe={true}
       >
-        {items.map((item, i) => (
-          <a href="#" key={i} onClick={navigateToEditTemplate} >
+        {items.slice(3, 6).map((item, i) => (
+          <a href="#" key={i} onClick={()=>navigateToEditTemplate(item.id)} >
             <Item img={item.path} />
           </a>
         ))}

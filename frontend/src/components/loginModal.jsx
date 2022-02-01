@@ -32,6 +32,7 @@ const LoginModal = ({
       }),
     });
     let data = await jsonData.json();
+    console.log(data);
     if (data.error) {
       alert(data.error);
     } else if (data.status == "Success!") {
@@ -96,9 +97,9 @@ const LoginModal = ({
       >
         Login
       </Button>
-      <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
+      {/* <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
         Reset
-      </Button>
+      </Button> */}
       <Button
         variant="contained"
         color="info"
