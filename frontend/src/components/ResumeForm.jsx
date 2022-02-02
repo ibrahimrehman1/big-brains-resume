@@ -15,6 +15,8 @@ const ResumeForm = () => {
   const [languages, setLanguages] = useState("");
   const [interests, setInterests] = useState("");
   const [certifications, setCertifications] = useState("");
+  const [saveStatus, setSaveStatus] = useState(false)
+
 
   const saveResume = async () => {
     let userID = localStorage.getItem("userID");
@@ -27,6 +29,12 @@ const ResumeForm = () => {
 
     let data = await jsonData.json();
     console.log(data);
+    if (data.error) {
+      alert(data.error)
+    } else {
+      alert("Resume Form Saved Successfully!")
+      setSaveStatus(true);
+    }
   }
   return (
     <>
@@ -169,10 +177,36 @@ const ResumeForm = () => {
             >
               Submit
             </Button>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+
+{saveStatus ? <div className="view-doc">
+  <label htmlFor="">Full Name
+  </label>
+  <input type="text" value={fullName} readOnly/>
+  <label htmlFor="">Designation</label>
+  <input type="text" value={designation} readOnly/>
+  <label htmlFor="">Summary</label>
+  <input type="text" value={summary} readOnly/>
+  <label htmlFor="">Education</label>
+  <input type="text" value={education} readOnly/>
+  <label htmlFor="">Certifications</label>
+  <input type="text" value={certifications} readOnly/>
+  <label htmlFor="">Interests</label>
+  <input type="text" value={interests} readOnly/>
+  <label htmlFor="">Projects</label>
+  <input type="text" value={projects} readOnly/>
+  <label htmlFor="">Contact Details</label>
+  <input type="text" value={contactDetails} readOnly />
+  <label htmlFor="">Skills</label>
+  <input type="text" value={skills} readOnly />
+  <label htmlFor="">Languages</label>
+  <input type="text" value={languages} readOnly/>
+</div> : <h2 className="heading">No CV/Resme generated</h2>}
+</div>
       </main>
     </>
     
     );
-            }
+}
 
 export default ResumeForm;

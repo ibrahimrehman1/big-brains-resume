@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -16,24 +16,26 @@ const CvForm = () => {
   const [interests, setInterests] = useState("");
   const [certifications, setCertifications] = useState("");
   const [workExperience, setWorkExperience] = useState("");
+  const [saveStatus, setSaveStatus] = useState(false)
 
   const saveCV = async () => {
     let userID = localStorage.getItem("userID");
     let jsonData = await fetch("http://localhost:5000/cvform", {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({userID, fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience})
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userID, fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience })
     })
 
     let data = await jsonData.json();
     console.log(data);
-    if (data.error){
+    if (data.error) {
       alert(data.error)
-    }else{
+    } else {
       alert("CV Form Saved Successfully!")
+      setSaveStatus(true);
     }
   }
-  
+
   return (
     <>
       <main style={{ padding: "2em", textAlign: "center" }}>
@@ -52,7 +54,7 @@ const CvForm = () => {
             id="outlined-basic"
             label="Full Name"
             variant="outlined"
-            onChange={(e)=>setFullName(e.target.value)}
+            onChange={(e) => setFullName(e.target.value)}
 
             value={fullName}
             required
@@ -65,7 +67,7 @@ const CvForm = () => {
             label="Designation"
             value={designation}
             variant="outlined"
-            onChange={(e)=>setDesignation(e.target.value)}
+            onChange={(e) => setDesignation(e.target.value)}
 
 
             required
@@ -75,7 +77,7 @@ const CvForm = () => {
             placeholder="I am a Undergrad Student..."
             id="outlined-multiline-flexible"
             label="About me"
-            onChange={(e)=>setAboutMe(e.target.value)}
+            onChange={(e) => setAboutMe(e.target.value)}
             value={aboutMe}
             multiline
             minRows={1}
@@ -88,7 +90,7 @@ const CvForm = () => {
             label="Skills"
             value={skills}
             variant="outlined"
-            onChange={(e)=>setSkills(e.target.value)}
+            onChange={(e) => setSkills(e.target.value)}
             required
             spellCheck={false}
           />
@@ -98,8 +100,8 @@ const CvForm = () => {
             label="Education"
             value={education}
             variant="outlined"
-            onChange={(e)=>setEducation(e.target.value)}
-           
+            onChange={(e) => setEducation(e.target.value)}
+
 
             required
             spellCheck={false}
@@ -108,7 +110,7 @@ const CvForm = () => {
             id="outlined-basic"
             label="Projects"
             placeholder="Big Brains Resume, Hangman, ..."
-            onChange={(e)=>setProjects(e.target.value)}
+            onChange={(e) => setProjects(e.target.value)}
 
             variant="outlined"
             value={projects}
@@ -121,7 +123,7 @@ const CvForm = () => {
             placeholder="abc@gmail.com, 123456"
             variant="outlined"
             value={contactDetails}
-            onChange={(e)=>setContactDetails(e.target.value)}
+            onChange={(e) => setContactDetails(e.target.value)}
 
             required
             spellCheck={false}
@@ -132,7 +134,7 @@ const CvForm = () => {
             label="Languages"
             value={languages}
             variant="outlined"
-            onChange={(e)=>setLanguages(e.target.value)}
+            onChange={(e) => setLanguages(e.target.value)}
 
             required
             spellCheck={false}
@@ -144,7 +146,7 @@ const CvForm = () => {
             variant="outlined"
             required
             value={interests}
-            onChange={(e)=>setInterests(e.target.value)}
+            onChange={(e) => setInterests(e.target.value)}
             spellCheck={false}
           />
 
@@ -152,7 +154,7 @@ const CvForm = () => {
             id="outlined-basic"
             label="Certifications"
             value={certifications}
-            onChange={(e)=>setCertifications(e.target.value)}
+            onChange={(e) => setCertifications(e.target.value)}
 
             placeholder="Python for Everybody, Cloud Computing 101, ..."
             variant="outlined"
@@ -163,7 +165,7 @@ const CvForm = () => {
             id="outlined-basic"
             label="Work Experience"
             value={workExperience}
-            onChange={(e)=>setWorkExperience(e.target.value)}
+            onChange={(e) => setWorkExperience(e.target.value)}
 
             placeholder="Python for Everybody, Cloud Computing 101, ..."
             variant="outlined"
@@ -172,19 +174,48 @@ const CvForm = () => {
           />
         </Box>
         <Button
-              variant="contained"
-              size="large"
-              style={{
-                backgroundColor: "#FCA311",
-                color: "black",
-                margin: ".3em",
-                fontWeight: "bold",
-                borderRadius: "20px",
-              }}
-              onClick={saveCV}
-            >
-              Submit
-            </Button>
+          variant="contained"
+          size="large"
+          style={{
+            backgroundColor: "#FCA311",
+            color: "black",
+            margin: ".3em",
+            fontWeight: "bold",
+            borderRadius: "20px",
+          }}
+          onClick={saveCV}
+        >
+          Submit
+        </Button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+
+          {saveStatus ? <div className="view-doc">
+            <label htmlFor="">Full Name
+            </label>
+            <input type="text" value={fullName} readOnly/>
+            <label htmlFor="">Designation</label>
+            <input type="text" value={designation} readOnly/>
+            <label htmlFor="">About Me</label>
+            <input type="text" value={aboutMe} readOnly/>
+            <label htmlFor="">Education</label>
+            <input type="text" value={education} readOnly/>
+            <label htmlFor="">Certifications</label>
+            <input type="text" value={certifications} readOnly/>
+            <label htmlFor="">Interests</label>
+            <input type="text" value={interests} readOnly/>
+            <label htmlFor="">Projects</label>
+            <input type="text" value={projects} readOnly/>
+            <label htmlFor="">Contact Details</label>
+            <input type="text" value={contactDetails} readOnly />
+            <label htmlFor="">Skills</label>
+            <input type="text" value={skills} readOnly />
+            <label htmlFor="">Work Experience</label>
+            <input type="text" value={workExperience} readOnly/>
+            <label htmlFor="">Languages</label>
+            <input type="text" value={languages} readOnly/>
+          </div> : <h2 className="heading">No CV/Resme generated</h2>}
+        </div>
+
       </main>
     </>
   );

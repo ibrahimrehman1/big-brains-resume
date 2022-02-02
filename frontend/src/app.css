@@ -360,6 +360,33 @@ body {
   -webkit-print-color-adjust: exact !important;
 }
 
+
+
+.view-doc{
+  margin-top: 100px;
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  font-family: Montserrat;
+  width: 600px;
+  display: flex;
+  padding: 2em;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.view-doc > input{
+  margin: 1em;
+  margin-left: 0em;
+}
+
+.view-doc > label{
+  align-self: flex-start;
+}
+
+.heading{
+  margin: 50px 0px;
+}
+
 @media print{
   .navbar, .my-doc-btn, .small-toolbar, .toolbar{
     display: none !important;
