@@ -15,7 +15,7 @@ import textFont from "../images/text-font.png";
 import underline from "../images/underline.png";
 import Tooltip from "@mui/material/Tooltip";
 import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg,  } from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg, } from 'html-to-image';
 
 
 const EditTemplate = () => {
@@ -144,22 +144,19 @@ const EditTemplate = () => {
   const generateImage = () => {
     var node = document.getElementById('templates');
     console.log(node)
-htmlToImage.toPng(node)
-  .then(function (dataUrl) {
-    // console.log(dataUrl)
-    // var img = new Image();
-    // img.src = dataUrl;
-    // document.body.appendChild(img);
-    var link = document.createElement('a');
-link.href = dataUrl;
-link.download = 'Download.png';
-document.body.appendChild(link);
-link.click();
-document.body.removeChild(link);
-  })
-  .catch(function (error) {
-    console.error('oops, something went wrong!', error);
-  });
+    htmlToImage.toPng(node)
+      .then(function (dataUrl) {
+
+        var link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'Download.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      })
+      .catch(function (error) {
+        console.error('oops, something went wrong!', error);
+      });
   }
 
   return (
@@ -200,10 +197,10 @@ document.body.removeChild(link);
           <label>Undo</label>
           <img src={redo} alt="" />
           <label>Redo</label> */}
-            <img src={printer} alt="" onClick={()=>window.print()}/>
+          <img src={printer} alt="" onClick={() => window.print()} />
           <label>Print</label>
           <Tooltip title="download">
-            <img src={download} alt=""onClick={generateImage}/>
+            <img src={download} alt="" onClick={generateImage} />
           </Tooltip>
           <label>Download</label>
         </div>
@@ -239,8 +236,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "fullName1"
                 : params.id == 2
-                ? "fullName2"
-                : "fullName3"
+                  ? "fullName2"
+                  : "fullName3"
             }
             spellCheck="false"
           ></dialog>
@@ -252,8 +249,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "aboutMe1"
                 : params.id == 2
-                ? "aboutMe2"
-                : "aboutMe3"
+                  ? "aboutMe2"
+                  : "aboutMe3"
             }
             spellCheck="false"
           ></dialog>
@@ -265,8 +262,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "workExperience1"
                 : params.id == 2
-                ? "workExperience2"
-                : "workExperience3"
+                  ? "workExperience2"
+                  : "workExperience3"
             }
             spellCheck="false"
           ></dialog>
@@ -278,8 +275,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "personalInfo1"
                 : params.id == 2
-                ? "personalInfo2"
-                : "personalInfo3"
+                  ? "personalInfo2"
+                  : "personalInfo3"
             }
             spellCheck="false"
           ></dialog>
@@ -291,8 +288,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "certification-projects1"
                 : params.id == 2
-                ? "certification-projects2"
-                : "certification-projects3"
+                  ? "certification-projects2"
+                  : "certification-projects3"
             }
             spellCheck="false"
           ></dialog>
@@ -318,8 +315,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "skills1"
                 : params.id == 2
-                ? "skills2"
-                : "skills3"
+                  ? "skills2"
+                  : "skills3"
             }
             spellCheck="false"
           ></dialog>
@@ -331,8 +328,8 @@ document.body.removeChild(link);
               params.id == 1
                 ? "interests1"
                 : params.id == 2
-                ? "interests2"
-                : "interests3"
+                  ? "interests2"
+                  : "interests3"
             }
             spellCheck="false"
           ></dialog>
@@ -344,12 +341,12 @@ document.body.removeChild(link);
               params.id == 1
                 ? "education1"
                 : params.id == 2
-                ? "education2"
-                : "education3"
+                  ? "education2"
+                  : "education3"
             }
             spellCheck="false"
           ></dialog>
-          <img src={imagePath} width="80%" style={{ marginTop: "50px" }} className="template-img"/>
+          <img src={imagePath} width="80%" style={{ marginTop: "50px" }} className="template-img" />
           <button
             className="my-doc-btn"
             style={{ marginBottom: "50px" }}
