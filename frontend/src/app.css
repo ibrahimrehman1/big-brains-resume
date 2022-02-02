@@ -103,7 +103,8 @@ h6 {
 }
 
 .cv-templates {
-  width: 100%;
+  width: 1100px;
+  height: 1400px;
   margin-top: 140px;
   display: flex;
   flex-direction: column;
@@ -117,10 +118,10 @@ h6 {
 
 .fullName1 {
   position: absolute;
-  top: 150px;
-  left: -280px;
+  top: 220px;
+  left: -380px;
   width: 300px;
-  border-width: 0px !important;
+  border-width: 1px !important;
 }
 
 .fullName2 {
@@ -131,15 +132,13 @@ h6 {
   background-color: transparent;
 
   height: 50px;
-  /* border-width: 0px !important; */
 }
 
 .aboutMe1 {
   position: absolute;
-  top: 150px;
-  right: -330px;
+  top: 220px;
+  right: -500px;
   width: 250px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
@@ -156,17 +155,15 @@ h6 {
 
 .workExperience1 {
   position: absolute;
-  top: 460px;
-  left: -280px;
+  top: 600px;
+  left: -380px;
   width: 300px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
 .workExperience2 {
   position: absolute;
   top: 450px;  background-color: transparent;
-
   width: 300px;
   border-width: 0px !important;
 
@@ -175,10 +172,9 @@ h6 {
 
 .personalInfo1 {
   position: absolute;
-  top: 460px;
-  right: -400px;
+  top: 600px;
+  right: -500px;
   width: 250px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
@@ -186,44 +182,39 @@ h6 {
   position: absolute;
   top: 350px;
   width: 300px;  background-color: transparent;
-
+right: -400px;
   height: 50px;
-  border-width: 0px !important;
 }
 
 .certification-projects1 {
   position: absolute;
-  top: 690px;
-  left: -280px;
+  top: 940px;
+  left: -380px;
   width: 300px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
 .skills1 {
   position: absolute;
-  top: 630px;
-  right: -400px;
+  top: 870px;
+  right: -500px;
   width: 250px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
 .interests1 {
   position: absolute;
-  top: 840px;
-  left: -280px;
+  top: 1140px;
+  left: -380px;
   width: 300px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
 .education1 {
   position: absolute;
-  top: 830px;
-  right: -400px;
+  top: 1140px;
+  right: -500px;
   width: 250px;
-  border-width: 0px !important;
   background-color: transparent;
 }
 
@@ -379,11 +370,10 @@ body {
     width: 100%;
   }
 
+  
+
   .cv-templates{
     margin: 0px;
     /* width: 100%; */
   }
-
-
-
 }

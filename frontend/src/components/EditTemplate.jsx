@@ -144,12 +144,12 @@ const EditTemplate = () => {
   const generateImage = () => {
     var node = document.getElementById('templates');
     console.log(node)
-    htmlToImage.toPng(node)
+    htmlToImage.toJpeg(node, {backgroundColor: "white", quality: 1})
       .then(function (dataUrl) {
 
         var link = document.createElement('a');
         link.href = dataUrl;
-        link.download = 'Download.png';
+        link.download = 'Download.jpeg';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
