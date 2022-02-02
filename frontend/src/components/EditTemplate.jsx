@@ -14,7 +14,9 @@ import rightAlign from "../images/right-align.png";
 import textFont from "../images/text-font.png";
 import underline from "../images/underline.png";
 import Tooltip from "@mui/material/Tooltip";
-import html2canvas from "html2canvas";
+import * as htmlToImage from 'html-to-image';
+import { toPng, toJpeg, toBlob, toPixelData, toSvg,  } from 'html-to-image';
+
 
 const EditTemplate = () => {
   const params = useParams();
@@ -139,6 +141,27 @@ const EditTemplate = () => {
     console.log(await jsonData.json());
   };
 
+  const generateImage = () => {
+    var node = document.getElementById('templates');
+    console.log(node)
+htmlToImage.toPng(node)
+  .then(function (dataUrl) {
+    // console.log(dataUrl)
+    // var img = new Image();
+    // img.src = dataUrl;
+    // document.body.appendChild(img);
+    var link = document.createElement('a');
+link.href = dataUrl;
+link.download = 'Download.png';
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+  })
+  .catch(function (error) {
+    console.error('oops, something went wrong!', error);
+  });
+  }
+
   return (
     <>
       <div className="edit-template">
@@ -179,10 +202,10 @@ const EditTemplate = () => {
           <label>Redo</label> */}
             <img src={printer} alt="" onClick={()=>window.print()}/>
           <label>Print</label>
-          {/* <Tooltip title="download">
-            <img src={download} alt="" onClick={downloadDoc}/>
+          <Tooltip title="download">
+            <img src={download} alt=""onClick={generateImage}/>
           </Tooltip>
-          <label>Download</label> */}
+          <label>Download</label>
         </div>
         <div className="small-toolbar">
           <Tooltip title="bold">
@@ -207,7 +230,7 @@ const EditTemplate = () => {
         <Link to="/mydocuments" className="my-doc-btn-link">
           <button className="my-doc-btn">My Documents</button>
         </Link>
-        <div className="cv-templates">
+        <div className="cv-templates" id="templates">
           <dialog
             open
             contentEditable
