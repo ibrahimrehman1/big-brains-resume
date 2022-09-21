@@ -1,11 +1,12 @@
 const Feedback = require("../models/Feedback");
+const {Logger} = require("../utils/logger")
 
 module.exports.feedback = async (req, res) => {
   const { emojis, comments, userID } = req.body;
-  console.log(emojis, comments);
+  Logger.logInfo(emojis, comments);
   try {
     let feedback = await Feedback.create({ emojis, comments });
-    console.log(feedback);
+    Logger.logInfo(feedback);
     User.findById(userID)
       .exec()
       .then((user) => {

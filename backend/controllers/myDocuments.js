@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const {Logger} = require("../utils/logger")
 
 module.exports.myDocuments = async (req, res) => {
   const { userID } = req.body;
@@ -8,7 +9,7 @@ module.exports.myDocuments = async (req, res) => {
     .populate("userTemplateResume")
     .populate("userTemplateCV")
     .exec();
-  console.log(user);
+  Logger.logInfo(user);
 
   res.json({ status: "User Data Fetched!", userData: user });
 };

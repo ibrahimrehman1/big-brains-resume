@@ -1,4 +1,5 @@
 const CVTemplate = require("../models/CVTemplate");
+const {Logger} = require("../utils/logger")
 
 module.exports.saveCV = async (req, res) => {
   const {
@@ -27,7 +28,7 @@ module.exports.saveCV = async (req, res) => {
     workExperience,
     imageID,
   });
-  console.log(Cvtemplate);
+  Logger.logInfo(Cvtemplate);
 
   User.findById(userID)
     .exec()

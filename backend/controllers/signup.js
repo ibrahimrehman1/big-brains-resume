@@ -1,5 +1,6 @@
 const JWT = require("jsonwebtoken");
 const User = require("../models/User");
+const {Logger} = require("../utils/logger")
 
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });
@@ -16,7 +17,7 @@ module.exports.signup = async (req, res) => {
       password,
     });
 
-    console.log(user);
+    Logger.logInfo(user);
 
     const userID = user["_id"];
 
@@ -26,7 +27,7 @@ module.exports.signup = async (req, res) => {
 
     // Cookie not saved in browser when sent from localhost
 
-    console.log("Cookie Set");
+    Logger.logInfo("Cookie Set");
     res.json({ status: "Success!", userID, token, userName });
   } catch (err) {
     res.json({ error: err.message.split(":")[2].trim() });

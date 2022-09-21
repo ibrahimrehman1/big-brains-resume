@@ -1,6 +1,7 @@
 const JWT = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const {Logger} = require("../utils/logger")
 
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });
@@ -8,13 +9,13 @@ const createToken = (id) => {
 
 module.exports.login = async (req, res) => {
   const { emailAddress, password } = req.body;
-  console.log(emailAddress, password);
+  Logger.logInfo(emailAddress, password);
   try {
     let user = await User.findOne({ emailAddress }).exec();
-    console.log(user);
+    Logger.logInfo(user);
     if (user) {
       let passwordStatus = await bcrypt.compare(password, user["password"]);
-      console.log(passwordStatus);
+      Logger.logInfo(passwordStatus);
       if (passwordStatus) {
         const userID = user["_id"];
 

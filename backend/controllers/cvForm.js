@@ -1,4 +1,5 @@
 const CVForm = require("../models/CVForm");
+const {Logger} = require("../utils/logger")
 
 module.exports.cvForm = async (req, res) => {
   console.log(req.body);
@@ -29,7 +30,7 @@ module.exports.cvForm = async (req, res) => {
     certifications,
     workExperience,
   });
-  console.log(Cvform);
+  Logger.logInfo(Cvform);
   User.findById(userID)
     .exec()
     .then((user) => {

@@ -1,7 +1,8 @@
 const ResumeForm = require("../models/ResumeForm");
+const {Logger} = require("../utils/logger")
 
 module.exports.resumeForm = async (req, res) => {
-  console.log(req.body);
+  Logger.logInfo(req.body);
   const {
     fullName,
     designation,
@@ -27,7 +28,7 @@ module.exports.resumeForm = async (req, res) => {
     interests,
     certifications,
   });
-  console.log(resumeform);
+  Logger.logInfo(resumeform);
   User.findById(userID)
     .exec()
     .then((user) => {
