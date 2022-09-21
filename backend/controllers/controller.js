@@ -4,15 +4,11 @@ const CVForm = require("../models/CVForm");
 const CVTemplate = require("../models/CVTemplate");
 const Feedback = require("../models/Feedback");
 const ResumeForm = require("../models/ResumeForm");
-const ResumeTemplate = require("../models/ResumeTemplate");
+// const ResumeTemplate = require("../models/ResumeTemplate");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
 
-mongoose
-  .connect(
-    ""
-  )
-  .then((_) => console.log("Connected..."));
+mongoose.connect("").then((_) => console.log("Connected..."));
 
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });
