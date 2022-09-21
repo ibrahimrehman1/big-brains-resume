@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const { signup, login, logout, resumeForm, cvForm, feedback, saveCV, myDocuments } = require("./controllers/controller");
 const JWT = require("jsonwebtoken");
 
+// Express App
 let app = express();
 
 // Auth Middleware
