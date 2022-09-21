@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar.jsx";
 import CVSample from "./images/CV Sample.png";
 import CVIcon from "./images/CV Icon.png";
 import Button from "@mui/material/Button";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import ResumeForm from "./components/ResumeForm.jsx";
-import MyDocuments from "./components/MyDocuments.jsx";
-import CvForm from "./components/CvForm.jsx";
-import CVResumeCarousels from "./components/Templates.jsx";
-import EditTemplate from "./components/EditTemplate.jsx";
+
+import Router from "./router";
 
 const style = {
   position: "absolute",
@@ -26,7 +23,7 @@ const style = {
   p: 4,
 };
 
-function Homepage({
+export function Homepage({
   handleTransition,
   handleLoginClose,
   handleLoginOpen,
@@ -59,13 +56,19 @@ function Homepage({
   return (
     <div>
       <main style={{ padding: "2em" }}>
-        <h4 style={{ fontSize: "1.3rem", fontFamily: "Montserrat", fontWeight: "bold"}}>
-          The online resume builder is getting folks hired by BBC, Google, Apple,
-          Tesla, and Airbnb.
+        <h4
+          style={{
+            fontSize: "1.3rem",
+            fontFamily: "Montserrat",
+            fontWeight: "bold",
+          }}
+        >
+          The online resume builder is getting folks hired by BBC, Google,
+          Apple, Tesla, and Airbnb.
           <br />
           <br />
-          Build your brand-new resume in as little as 5 minutes.
-          Try it for free!
+          Build your brand-new resume in as little as 5 minutes. Try it for
+          free!
         </h4>
         <div
           style={{
@@ -80,7 +83,6 @@ function Homepage({
               <Button
                 variant="contained"
                 size="medium"
-                
                 style={{
                   backgroundColor: "#FCA311",
                   color: "black",
@@ -90,7 +92,7 @@ function Homepage({
                   fontWeight: "bold",
                   borderRadius: "20px",
                   height: "40px",
-                  textTransform: "none"
+                  textTransform: "none",
                 }}
                 onClick={handleOpen}
               >
@@ -122,7 +124,7 @@ function Homepage({
                         borderRadius: "20px",
                         height: "40px",
                         margin: "10px",
-                        textTransform: "none"
+                        textTransform: "none",
                       }}
                       onClick={navigateToCVForm}
                     >
@@ -138,7 +140,7 @@ function Homepage({
                         borderRadius: "20px",
                         height: "40px",
                         margin: "10px",
-                        textTransform: "none"
+                        textTransform: "none",
                       }}
                       onClick={navigateToResumeForm}
                     >
@@ -154,7 +156,7 @@ function Homepage({
                         borderRadius: "20px",
                         height: "40px",
                         margin: "10px",
-                        textTransform: "none"
+                        textTransform: "none",
                       }}
                       onClick={() => navigate("/templates")}
                     >
@@ -173,14 +175,26 @@ function Homepage({
               }}
             >
               <h3
-                style={{ fontSize: "2rem", color: "white", marginTop: "50px" ,fontFamily: "Montserrat", fontWeight: "bold"}}
+                style={{
+                  fontSize: "2rem",
+                  color: "white",
+                  marginTop: "50px",
+                  fontFamily: "Montserrat",
+                  fontWeight: "bold",
+                }}
               >
                 Build your resume fast and easy.
               </h3>
-              <p style={{ fontSize: "1.3rem", color: "white",fontFamily: "Montserrat" }}>
+              <p
+                style={{
+                  fontSize: "1.3rem",
+                  color: "white",
+                  fontFamily: "Montserrat",
+                }}
+              >
                 BigBrainResume is lightning fast. There's no software to
-                download. No long-winded tutorials.
-                Just a straightforward process.
+                download. No long-winded tutorials. Just a straightforward
+                process.
               </p>
             </div>
           </div>
@@ -206,16 +220,18 @@ function Homepage({
 
 function App() {
   // Signup Modal
-  const [openSignup, setSignupOpen] = React.useState(false);
+  const [openSignup, setSignupOpen] = useState(false);
   const handleSignupOpen = () => setSignupOpen(true);
   const handleSignupClose = () => setSignupOpen(false);
 
   // Login Modal
-  const [openLogin, setLoginOpen] = React.useState(false);
+  const [openLogin, setLoginOpen] = useState(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
+
+  // Transition to Login or Signup
   const handleTransition = (transitionTo) => {
-    if (transitionTo == "Login") {
+    if (transitionTo === "Login") {
       handleSignupClose();
       handleLoginOpen();
     } else {
@@ -234,28 +250,15 @@ function App() {
         openSignup={openSignup}
         openLogin={openLogin}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Homepage
-              handleTransition={handleTransition}
-              handleSignupClose={handleSignupClose}
-              handleLoginClose={handleLoginClose}
-              handleSignupOpen={handleSignupOpen}
-              handleLoginOpen={handleLoginOpen}
-              openSignup={openSignup}
-              openLogin={openLogin}
-            />
-          }
-          index
-        />
-        <Route path="/resumeform" element={<ResumeForm />} index />
-        <Route path="/cvform" element={<CvForm />} index />
-        <Route path="/templates" element={<CVResumeCarousels handleLoginOpen={handleLoginOpen}/>} index />
-        <Route path="/mydocuments" element={<MyDocuments />} index />
-        <Route path="/edittemplate/:id" element={<EditTemplate />} index />
-      </Routes>
+      <Router
+        handleTransition={handleTransition}
+        handleSignupClose={handleSignupClose}
+        handleLoginClose={handleLoginClose}
+        handleSignupOpen={handleSignupOpen}
+        handleLoginOpen={handleLoginOpen}
+        openSignup={openSignup}
+        openLogin={openLogin}
+      />
     </>
   );
 }
