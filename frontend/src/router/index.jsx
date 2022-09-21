@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "../components/Home";
+import Home from "../pages/home";
 import ResumeForm from "../components/ResumeForm.jsx";
 import MyDocuments from "../components/MyDocuments.jsx";
 import CvForm from "../components/CvForm.jsx";
