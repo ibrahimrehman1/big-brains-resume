@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const User = require("../models/User");
 const CVForm = require("../models/CVForm");
 const CVTemplate = require("../models/CVTemplate");
@@ -7,8 +6,6 @@ const ResumeForm = require("../models/ResumeForm");
 // const ResumeTemplate = require("../models/ResumeTemplate");
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
-
-mongoose.connect("").then((_) => console.log("Connected..."));
 
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });

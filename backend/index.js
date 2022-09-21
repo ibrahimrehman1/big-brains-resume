@@ -3,9 +3,18 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { signup, login, logout, resumeForm, cvForm, feedback, saveCV, myDocuments } = require("./controllers/controller");
 const JWT = require("jsonwebtoken");
+const mongoose = require("mongoose");
+
+
+// Environment Variables
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Express App
 let app = express();
+
+// MongoDB Atlas
+mongoose.connect(MONGODB_URI).then((_) => console.log("Connected..."));
 
 // Auth Middleware
 const requireAuth = (req, res, next) => {
@@ -23,8 +32,7 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-// Constants
-const PORT = process.env.PORT || 5000;
+
 
 // Middlewares
 app.use(express.json());
