@@ -20,15 +20,7 @@ const style = {
   p: 4,
 };
 
-export default function Home({
-  handleTransition,
-  handleLoginClose,
-  handleLoginOpen,
-  handleSignupClose,
-  handleSignupOpen,
-  openLogin,
-  openSignup,
-}) {
+export default function Home({ handleLoginOpen }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

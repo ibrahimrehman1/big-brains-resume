@@ -34,15 +34,7 @@ function App() {
         openSignup={openSignup}
         openLogin={openLogin}
       />
-      <Router
-        handleTransition={handleTransition}
-        handleSignupClose={handleSignupClose}
-        handleLoginClose={handleLoginClose}
-        handleSignupOpen={handleSignupOpen}
-        handleLoginOpen={handleLoginOpen}
-        openSignup={openSignup}
-        openLogin={openLogin}
-      />
+      <Router handleLoginOpen={handleLoginOpen} />
     </>
   );
 }
