@@ -26,14 +26,20 @@
     "react-material-ui-carousel": "^3.1.1",
     "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.2"
   },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
+  },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +58,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.23.1",
+    "eslint-plugin-react": "^7.31.8",
+    "react-error-overlay": "6.0.9"
   }
 }

@@ -1,5 +1,6 @@
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default class User {
   static async signup(userName, firstName, lastName, emailAddress, password) {
