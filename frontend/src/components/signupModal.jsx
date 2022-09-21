@@ -9,12 +9,9 @@ import { style } from "./Navbar.jsx";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import User from "../services/user.js";
 
-const SignupModal = ({
-  handleSignupClose,
-  openSignup,
-  handleTransition,
-}) => {
+const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -24,26 +21,7 @@ const SignupModal = ({
 
   const createAccount = async () => {
     if (password === confirmPassword) {
-      let jsonData = await fetch("http://localhost:5000/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userName,
-          firstName,
-          lastName,
-          emailAddress,
-          password,
-        }),
-      });
-
-      let data = await jsonData.json();
-      if (data.error) {
-        alert(data.error);
-      } else if (data.status == "Success!") {
-        localStorage.setItem("username", data.userName);
-        localStorage.setItem("userID", data.userID);
-        window.location.assign("/");
-      }
+      await User.signup(userName, firstName, lastName, emailAddress, password);
     } else {
       alert("Password does not Match!");
     }
@@ -131,7 +109,11 @@ const SignupModal = ({
           <Button
             variant="contained"
             color="success"
-            style={{ marginTop: "20px", textTransform: "none" , fontWeight: "bold"}}
+            style={{
+              marginTop: "20px",
+              textTransform: "none",
+              fontWeight: "bold",
+            }}
             onClick={createAccount}
           >
             Create my Account
@@ -143,7 +125,7 @@ const SignupModal = ({
             variant="contained"
             color="info"
             type="button"
-            style={{ textTransform: "none", fontWeight: "bold"}}
+            style={{ textTransform: "none", fontWeight: "bold" }}
             onClick={() => handleTransition("Login")}
           >
             Already have an account? Login

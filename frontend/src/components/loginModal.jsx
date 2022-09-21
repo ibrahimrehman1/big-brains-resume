@@ -9,35 +9,19 @@ import { style } from "./Navbar.jsx";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import User from "../services/user.js";
 
 const LoginModal = ({
   openLogin,
   handleLoginClose,
-  
+
   handleTransition,
 }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const handleLogin = async () => {
-    console.log(loginEmail, loginPassword);
-    let jsonData = await fetch("http://localhost:5000/login", {
-      headers: { "Content-Type": "application/json" },
-      method: "POST",
-      body: JSON.stringify({
-        emailAddress: loginEmail,
-        password: loginPassword,
-      }),
-    });
-    let data = await jsonData.json();
-    console.log(data);
-    if (data.error) {
-      alert(data.error);
-    } else if (data.status === "Success!") {
-      localStorage.setItem("username", data.userName);
-      localStorage.setItem("userID", data.userID);
-      window.location.assign("/");
-    }
+    User.login(loginEmail, loginPassword);
   };
   return (
     <Modal
@@ -101,7 +85,7 @@ const LoginModal = ({
           >
             Login
           </Button>
-          
+
           <Button
             variant="contained"
             color="info"

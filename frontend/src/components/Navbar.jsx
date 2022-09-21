@@ -16,6 +16,7 @@ import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SignupModal from "./SignupModal.jsx";
 import LoginModal from "./LoginModal.jsx";
+import User from "../services/user.js";
 
 export const style = {
   position: "absolute",
@@ -69,9 +70,7 @@ const Navbar = ({
   const navigate = useNavigate();
 
   const logout = async () => {
-    await fetch("http://localhost:5000/logout");
-    localStorage.clear();
-    window.location.assign("/");
+    await User.logout();
   };
 
   const navbarLinksNavigation = (link) => {
