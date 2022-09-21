@@ -1,6 +1,9 @@
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 export default class User {
   static async signup(userName, firstName, lastName, emailAddress, password) {
-    let jsonData = await fetch("http://localhost:5000/signup", {
+    let jsonData = await fetch(`${BASE_URL}/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -23,7 +26,7 @@ export default class User {
   }
 
   static async login(loginEmail, loginPassword) {
-    let jsonData = await fetch("http://localhost:5000/login", {
+    let jsonData = await fetch(`${BASE_URL}/login`, {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({
@@ -43,7 +46,7 @@ export default class User {
   }
 
   static async logout() {
-    await fetch("http://localhost:5000/logout");
+    await fetch(`${BASE_URL}/logout`);
     localStorage.clear();
     window.location.assign("/");
   }
