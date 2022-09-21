@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 
 const SignupModal = ({
   handleSignupClose,
-  handleSignupOpen,
   openSignup,
   handleTransition,
 }) => {

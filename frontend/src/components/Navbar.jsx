@@ -14,10 +14,8 @@ import { useNavigate } from "react-router-dom";
 import "../app.css";
 import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SignupModal from "./signupModal.jsx";
-import LoginModal from "./loginModal.jsx";
-import FeedbackModal from "./feedbackModal.jsx";
-
+import SignupModal from "./SignupModal.jsx";
+import LoginModal from "./LoginModal.jsx";
 
 export const style = {
   position: "absolute",
@@ -50,8 +48,8 @@ const Navbar = ({
 }) => {
   const username = localStorage.getItem("username");
   console.log(username);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -76,9 +74,6 @@ const Navbar = ({
     window.location.assign("/");
   };
 
-
-  
-
   const navbarLinksNavigation = (link) => {
     if (link === "templates") {
       navigate("/templates");
@@ -86,7 +81,11 @@ const Navbar = ({
   };
 
   return (
-    <AppBar position="static" style={{ background: "#000000" }} className="navbar">
+    <AppBar
+      position="static"
+      style={{ background: "#000000" }}
+      className="navbar"
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img
@@ -191,7 +190,7 @@ const Navbar = ({
                     margin: ".3em",
                     fontWeight: "bold",
                     borderRadius: "20px",
-                    textTransform: "none"
+                    textTransform: "none",
                   }}
                 >
                   Sign Up
@@ -206,7 +205,7 @@ const Navbar = ({
                     margin: ".3em",
                     fontWeight: "bold",
                     borderRadius: "20px",
-                    textTransform: "none"
+                    textTransform: "none",
                   }}
                 >
                   Login
@@ -217,17 +216,14 @@ const Navbar = ({
         </Toolbar>
       </Container>
 
-      
       <SignupModal
         handleTransition={handleTransition}
         handleSignupClose={handleSignupClose}
-        handleSignupOpen={handleSignupOpen}
         openSignup={openSignup}
       />
       <LoginModal
         handleTransition={handleTransition}
         handleLoginClose={handleLoginClose}
-        handleLoginOpen={handleLoginOpen}
         openLogin={openLogin}
       />
     </AppBar>
