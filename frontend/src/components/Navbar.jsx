@@ -17,6 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import SignupModal from "./SignupModal.jsx";
 import LoginModal from "./LoginModal.jsx";
 import User from "../services/user.js";
+import PropTypes from "prop-types";
 
 export const style = {
   position: "absolute",
@@ -50,22 +51,22 @@ const Navbar = ({
   const username = localStorage.getItem("username");
   console.log(username);
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  // const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // const handleCloseUserMenu = () => {
+  //   setAnchorElUser(null);
+  // };
 
   const navigate = useNavigate();
 
@@ -228,5 +229,17 @@ const Navbar = ({
     </AppBar>
   );
 };
+
+
+
+Navbar.propTypes = {
+  handleTransition: PropTypes.func.isRequired,
+  handleLoginClose: PropTypes.func.isRequired,
+  handleLoginOpen: PropTypes.func.isRequired,
+  handleSignupClose: PropTypes.func.isRequired,
+  handleSignupOpen: PropTypes.func.isRequired,
+  openLogin: PropTypes.func.isRequired,
+  openSignup: PropTypes.func.isRequired,
+}
 
 export default Navbar;

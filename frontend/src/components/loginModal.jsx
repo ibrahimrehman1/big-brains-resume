@@ -10,6 +10,7 @@ import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import User from "../services/user.js";
+import PropTypes from "prop-types";
 
 const LoginModal = ({
   openLogin,
@@ -93,12 +94,19 @@ const LoginModal = ({
             style={{ textTransform: "none", fontWeight: "bold" }}
             onClick={() => handleTransition("Signup")}
           >
-            Don't have an account? Sign Up
+            Don&apos;t have an account? Sign Up
           </Button>
         </Box>
       </Box>
     </Modal>
   );
+};
+
+LoginModal.propTypes = {
+  openLogin: PropTypes.func.isRequired,
+  handleLoginClose: PropTypes.func.isRequired,
+
+  handleTransition: PropTypes.func.isRequired,
 };
 
 export default LoginModal;

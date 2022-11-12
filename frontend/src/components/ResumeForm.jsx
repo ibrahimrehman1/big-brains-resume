@@ -209,4 +209,8 @@ const ResumeForm = () => {
     );
 }
 
+ResumeForm.propTypes = {
+  
+}
+
 export default ResumeForm;

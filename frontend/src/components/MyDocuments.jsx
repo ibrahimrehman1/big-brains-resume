@@ -15,9 +15,9 @@ const MyDocuments = () => {
   const handleFeedbackOpen = () => setFeedbackOpen(true);
   const handleFeedbackClose = () => setFeedbackOpen(false);
   const [cvForms, setCVForms] = useState([]);
-  const [resumeForms, setResumeForms] = useState([]);
-  const [resumeTemplates, setResumeTemplates] = useState([]);
-  const [cvTemplates, setCVTemplates] = useState([]);
+  // const [resumeForms, setResumeForms] = useState([]);
+  // const [resumeTemplates, setResumeTemplates] = useState([]);
+  // const [cvTemplates, setCVTemplates] = useState([]);
 
   useEffect(async () => {
     let userID = localStorage.getItem("userID");
@@ -26,15 +26,15 @@ const MyDocuments = () => {
 
     console.log(userData);
     setCVForms(userData['userData']['userFormCV'])
-    setResumeForms(userData['userData']['userFormResume'])
-    setResumeTemplates(userData['userData']['userTemplateResume'])
-    setCVTemplates(userData['userData']['userTemplateCV'])
+    // setResumeForms(userData['userData']['userFormResume'])
+    // setResumeTemplates(userData['userData']['userTemplateResume'])
+    // setCVTemplates(userData['userData']['userTemplateCV'])
   }, [])
   return (
     <>
-    {cvForms.map((cvForm)=>{
+    {cvForms.map((cvForm, index)=>{
       return(
-      <Card sx={{ maxWidth: 275, margin: "2em", textAlign: "center", padding: "1em" }}>
+      <Card sx={{ maxWidth: 275, margin: "2em", textAlign: "center", padding: "1em" }} key={index}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             CV Form

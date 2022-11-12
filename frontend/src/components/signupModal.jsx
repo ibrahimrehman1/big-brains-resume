@@ -10,6 +10,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import User from "../services/user.js";
+import PropTypes from "prop-types";
 
 const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
   const [userName, setUserName] = useState("");
@@ -134,6 +135,12 @@ const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
       </Box>
     </Modal>
   );
+};
+
+SignupModal.propTypes = {
+  handleSignupClose: PropTypes.func.isRequired,
+  openSignup: PropTypes.func.isRequired,
+  handleTransition: PropTypes.func.isRequired,
 };
 
 export default SignupModal;

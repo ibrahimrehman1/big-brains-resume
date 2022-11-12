@@ -3,26 +3,26 @@ import { Link, useParams } from "react-router-dom";
 import { items } from "./Templates.jsx";
 import alignCenter from "../images/align-center.png";
 import bold from "../images/bold.png";
-import change from "../images/change.png";
+// import change from "../images/change.png";
 import download from "../images/download.png";
 import italics from "../images/italics.png";
-import justification from "../images/justification.png";
+// import justification from "../images/justification.png";
 import leftAlign from "../images/left-align.png";
 import printer from "../images/printer.png";
-import redo from "../images/redo.png";
+// import redo from "../images/redo.png";
 import rightAlign from "../images/right-align.png";
 import textFont from "../images/text-font.png";
 import underline from "../images/underline.png";
 import Tooltip from "@mui/material/Tooltip";
 import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg, } from 'html-to-image';
+// import { toPng, toJpeg, toBlob, toPixelData, toSvg, } from 'html-to-image';
 
 
 const EditTemplate = () => {
   const params = useParams();
   const [imagePath, setImagePath] = useState("");
   useEffect(() => {
-    items.forEach((val, index) => {
+    items.forEach((val) => {
       if (val["id"] == params.id) {
         setImagePath(val.path);
       }

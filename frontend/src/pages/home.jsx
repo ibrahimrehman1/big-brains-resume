@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import PropTypes from "prop-types";
 
 const style = {
   position: "absolute",
@@ -181,7 +182,7 @@ export default function Home({ handleLoginOpen }) {
                   fontFamily: "Montserrat",
                 }}
               >
-                BigBrainResume is lightning fast. There's no software to
+                BigBrainResume is lightning fast. There&apos;s no software to
                 download. No long-winded tutorials. Just a straightforward
                 process.
               </p>
@@ -205,4 +206,8 @@ export default function Home({ handleLoginOpen }) {
       ></div>
     </div>
   );
+}
+
+Home.propTypes = {
+  handleLoginOpen: PropTypes.func.isRequired,
 }

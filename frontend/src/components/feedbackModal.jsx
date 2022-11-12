@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
+// import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
@@ -12,6 +12,7 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import Tooltip from "@mui/material/Tooltip";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import PropTypes from "prop-types";
 
 const style = {
   position: "absolute",
@@ -124,5 +125,10 @@ const FeedbackModal = ({ openFeedback, handleFeedbackClose }) => {
     </Modal>
   );
 };
+
+FeedbackModal.propTypes = {
+  openFeedback: PropTypes.func.isRequired, 
+  handleFeedbackClose: PropTypes.func.isRequired
+}
 
 export default FeedbackModal;

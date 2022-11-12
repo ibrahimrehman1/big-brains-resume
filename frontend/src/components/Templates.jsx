@@ -10,37 +10,36 @@ import resumeTemplate1 from "../images/resumeTemplate1.jpeg";
 import resumeTemplate2 from "../images/resumeTemplate2.jpeg";
 import resumeTemplate3 from "../images/resumeTemplate3.jpeg";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export var items = [
   {
     path: cvTemplate1,
-    id: 1
+    id: 1,
   },
   {
     path: cvTemplate2,
-    id: 2
+    id: 2,
   },
   {
     path: cvTemplate3,
-    id: 3
+    id: 3,
   },
   {
     path: resumeTemplate1,
-    id: 4
+    id: 4,
   },
   {
     path: resumeTemplate2,
-    id: 5
+    id: 5,
   },
   {
     path: resumeTemplate3,
-    id: 6
+    id: 6,
   },
 ];
 
-
-const CVResumeCarousels = ({handleLoginOpen}) => {
-
+const CVResumeCarousels = ({ handleLoginOpen }) => {
   const navigate = useNavigate();
 
   const navigateToEditTemplate = (id) => {
@@ -62,7 +61,7 @@ const CVResumeCarousels = ({handleLoginOpen}) => {
         swipe={true}
       >
         {items.slice(0, 3).map((item, i) => (
-          <a href="#" key={i} onClick={()=>navigateToEditTemplate(item.id)}>
+          <a href="#" key={i} onClick={() => navigateToEditTemplate(item.id)}>
             <Item img={item.path} />
           </a>
         ))}
@@ -76,13 +75,17 @@ const CVResumeCarousels = ({handleLoginOpen}) => {
         swipe={true}
       >
         {items.slice(3, 6).map((item, i) => (
-          <a href="#" key={i} onClick={()=>navigateToEditTemplate(item.id)} >
+          <a href="#" key={i} onClick={() => navigateToEditTemplate(item.id)}>
             <Item img={item.path} />
           </a>
         ))}
       </Carousel>
     </main>
   );
+};
+
+CVResumeCarousels.propTypes = {
+  handleLoginOpen: PropTypes.func.isRequired,
 };
 
 function Item(props) {
@@ -92,5 +95,9 @@ function Item(props) {
     </Paper>
   );
 }
+
+Item.propTypes = {
+  img: PropTypes.string.isRequired,
+};
 
 export default CVResumeCarousels;
