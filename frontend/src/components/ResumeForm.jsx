@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import Button from "./Button";
 
 const ResumeForm = () => {
 
@@ -166,16 +166,17 @@ const ResumeForm = () => {
         <Button
               variant="contained"
               size="large"
-              style={{
+              styles={{
                 backgroundColor: "#FCA311",
                 color: "black",
                 margin: ".3em",
                 fontWeight: "bold",
                 borderRadius: "20px",
               }}
-              onClick={saveResume}
+              clickHandler={saveResume}
+              text="Submit"
             >
-              Submit
+              
             </Button>
             <div style={{ display: "flex", justifyContent: "center" }}>
 

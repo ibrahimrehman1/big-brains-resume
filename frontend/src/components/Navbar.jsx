@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
+import Button from "./Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../images/logo.PNG";
 import { useNavigate } from "react-router-dom";
@@ -151,16 +151,16 @@ const Navbar = ({
                 variant="contained"
                 size="medium"
                 key={page.key}
-                onClick={() => navbarLinksNavigation(page.name)}
-                style={{
+                clickHandler={() => navbarLinksNavigation(page.name)}
+                styles={{
                   backgroundColor: "transparent",
                   color: "white",
                   margin: ".3em",
                   fontWeight: "bold",
                   borderRadius: "20px",
                 }}
+                text={page.key}
               >
-                {page.key}
               </Button>
             ))}
             {username ? (
@@ -183,8 +183,8 @@ const Navbar = ({
                 <Button
                   variant="contained"
                   size="medium"
-                  onClick={handleSignupOpen}
-                  style={{
+                  clickHandler={handleSignupOpen}
+                  styles={{
                     backgroundColor: "#FCA311",
                     color: "black",
                     margin: ".3em",
@@ -192,14 +192,14 @@ const Navbar = ({
                     borderRadius: "20px",
                     textTransform: "none",
                   }}
+                  text="Sign Up"
                 >
-                  Sign Up
                 </Button>
                 <Button
                   variant="contained"
                   size="medium"
-                  onClick={handleLoginOpen}
-                  style={{
+                  clickHandler={handleLoginOpen}
+                  styles={{
                     backgroundColor: "#FCA311",
                     color: "black",
                     margin: ".3em",
@@ -207,8 +207,8 @@ const Navbar = ({
                     borderRadius: "20px",
                     textTransform: "none",
                   }}
+                  text="Login"
                 >
-                  Login
                 </Button>
               </>
             )}

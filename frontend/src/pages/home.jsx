@@ -1,12 +1,12 @@
 import React from "react";
 import CVSample from "../images/CV Sample.png";
 import CVIcon from "../images/CV Icon.png";
-import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
+import Button from "../components/Button";
 
 const style = {
   position: "absolute",
@@ -73,7 +73,7 @@ export default function Home({ handleLoginOpen }) {
               <Button
                 variant="contained"
                 size="medium"
-                style={{
+                styles={{
                   backgroundColor: "#FCA311",
                   color: "black",
                   position: "relative",
@@ -84,10 +84,9 @@ export default function Home({ handleLoginOpen }) {
                   height: "40px",
                   textTransform: "none",
                 }}
-                onClick={handleOpen}
-              >
-                Build my resume/CV
-              </Button>
+                clickHandler={handleOpen}
+                text="Build my resume/CV"
+              ></Button>
 
               <Modal
                 open={open}
@@ -107,7 +106,7 @@ export default function Home({ handleLoginOpen }) {
                     <Button
                       variant="contained"
                       size="medium"
-                      style={{
+                      styles={{
                         backgroundColor: "#FCA311",
                         color: "black",
                         fontWeight: "bold",
@@ -116,14 +115,13 @@ export default function Home({ handleLoginOpen }) {
                         margin: "10px",
                         textTransform: "none",
                       }}
-                      onClick={navigateToCVForm}
-                    >
-                      CV Form
-                    </Button>
+                      clickHandler={navigateToCVForm}
+                      text="Resume Form"
+                    ></Button>
                     <Button
                       variant="contained"
                       size="medium"
-                      style={{
+                      styles={{
                         backgroundColor: "#FCA311",
                         color: "black",
                         fontWeight: "bold",
@@ -132,14 +130,13 @@ export default function Home({ handleLoginOpen }) {
                         margin: "10px",
                         textTransform: "none",
                       }}
-                      onClick={navigateToResumeForm}
-                    >
-                      Resume Form
-                    </Button>
+                      clickHandler={navigateToResumeForm}
+                      text="Resume Form"
+                    ></Button>
                     <Button
                       variant="contained"
                       size="medium"
-                      style={{
+                      styles={{
                         backgroundColor: "#FCA311",
                         color: "black",
                         fontWeight: "bold",
@@ -148,10 +145,9 @@ export default function Home({ handleLoginOpen }) {
                         margin: "10px",
                         textTransform: "none",
                       }}
-                      onClick={() => navigate("/templates")}
-                    >
-                      Templates
-                    </Button>
+                      clickHandler={() => navigate("/templates")}
+                      text="Templates"
+                    ></Button>
                   </div>
                 </Box>
               </Modal>
@@ -210,4 +206,4 @@ export default function Home({ handleLoginOpen }) {
 
 Home.propTypes = {
   handleLoginOpen: PropTypes.func.isRequired,
-}
+};

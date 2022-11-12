@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { style } from "./Navbar.jsx";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Button from "./Button";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 
@@ -77,25 +77,22 @@ const LoginModal = ({
           <Button
             variant="contained"
             color="success"
-            style={{
+            styles={{
               marginTop: "20px",
               textTransform: "none",
               fontWeight: "bold",
             }}
-            onClick={handleLogin}
-          >
-            Login
-          </Button>
+            clickHandler={handleLogin}
+            text="Login"
+          ></Button>
 
           <Button
             variant="contained"
             color="info"
-            type="button"
-            style={{ textTransform: "none", fontWeight: "bold" }}
-            onClick={() => handleTransition("Signup")}
-          >
-            Don&apos;t have an account? Sign Up
-          </Button>
+            styles={{ textTransform: "none", fontWeight: "bold" }}
+            clickHandler={() => handleTransition("Signup")}
+            text="Don't have an account? Sign Up"
+          ></Button>
         </Box>
       </Box>
     </Modal>

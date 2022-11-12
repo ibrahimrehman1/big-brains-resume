@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { style } from "./Navbar.jsx";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Button from "./Button";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 
@@ -110,14 +110,15 @@ const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
           <Button
             variant="contained"
             color="success"
-            style={{
+            styles={{
               marginTop: "20px",
               textTransform: "none",
               fontWeight: "bold",
             }}
-            onClick={createAccount}
+            clickHandler={createAccount}
+            text="Create my Account"
           >
-            Create my Account
+            
           </Button>
           {/* <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
             Reset
@@ -125,11 +126,11 @@ const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
           <Button
             variant="contained"
             color="info"
-            type="button"
-            style={{ textTransform: "none", fontWeight: "bold" }}
-            onClick={() => handleTransition("Login")}
+            styles={{ textTransform: "none", fontWeight: "bold" }}
+            clickHandler={() => handleTransition("Login")}
+            text="Already have an account? Login"
           >
-            Already have an account? Login
+            
           </Button>
         </Box>
       </Box>

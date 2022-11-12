@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
+import Button from "./Button";
 import FeedbackModal from "./feedbackModal.jsx";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -58,7 +58,7 @@ const MyDocuments = () => {
       <Button
         variant="contained"
         size="large"
-        style={{
+        styles={{
           backgroundColor: "#FCA311", color: "black",
           margin: ".3em",
           fontWeight: "bold",
@@ -67,9 +67,9 @@ const MyDocuments = () => {
           right: 20,
           bottom: 30
         }}
-        onClick={handleFeedbackOpen}
+        clickHandler={handleFeedbackOpen}
+        text="Feedback"
       >
-        Feedback
       </Button>
       <FeedbackModal
         openFeedback={openFeedback}

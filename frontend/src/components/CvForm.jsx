@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
+import Button from "./Button";
 
 const CvForm = () => {
 
@@ -176,16 +176,16 @@ const CvForm = () => {
         <Button
           variant="contained"
           size="large"
-          style={{
+          styles={{
             backgroundColor: "#FCA311",
             color: "black",
             margin: ".3em",
             fontWeight: "bold",
             borderRadius: "20px",
           }}
-          onClick={saveCV}
+          clickHandler={saveCV}
+          text="Submit"
         >
-          Submit
         </Button>
         <div style={{ display: "flex", justifyContent: "center" }}>
 
