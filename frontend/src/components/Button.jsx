@@ -18,7 +18,7 @@ export default function Button({text, clickHandler, styles, variant, size}) {
 Button.propTypes = {
     text: PropTypes.string.isRequired,
     clickHandler: PropTypes.func.isRequired,
-    styles: PropTypes.string,
+    styles: PropTypes.object,
     variant: PropTypes.string,
     size: PropTypes.string,
 }
