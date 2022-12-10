@@ -41,7 +41,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -82,8 +83,10 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/cypress": "^8.0.7",
     "@testing-library/react": "^12.1.2",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "cypress": "^12.0.2",
     "eslint": "^8.23.1",
     "eslint-plugin-react": "^7.31.8",
     "react-error-overlay": "6.0.9",
