@@ -14,12 +14,11 @@ import rightAlign from "../images/right-align.png";
 import textFont from "../images/text-font.png";
 import underline from "../images/underline.png";
 import Tooltip from "@mui/material/Tooltip";
-import * as htmlToImage from 'html-to-image';
+import * as htmlToImage from "html-to-image";
 // import { toPng, toJpeg, toBlob, toPixelData, toSvg, } from 'html-to-image';
 
-
 const EditTemplate = () => {
-  const params: {id?: number} = useParams();
+  const params: { id?: number } = useParams();
   const [imagePath, setImagePath] = useState<string>("");
   useEffect(() => {
     items.forEach((val) => {
@@ -30,7 +29,8 @@ const EditTemplate = () => {
   }, []);
 
   const boldText = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     const boldStatus = selectedDialog.style.fontWeight;
     if (boldStatus == "bold") {
       selectedDialog.style.fontWeight = "100";
@@ -40,7 +40,8 @@ const EditTemplate = () => {
   };
 
   const underlineText = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     const underlineStatus = selectedDialog.style.textDecoration;
     if (underlineStatus.length && underlineStatus == "underline") {
       selectedDialog.style.textDecoration = "none";
@@ -50,21 +51,25 @@ const EditTemplate = () => {
   };
 
   const leftAlignText = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     selectedDialog.style.textAlign = "left";
   };
 
   const centerAlignText = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     selectedDialog.style.textAlign = "center";
   };
   const rightAlignText = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     selectedDialog.style.textAlign = "right";
   };
 
   const italicizeText = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     const italicizeStatus = selectedDialog.style.fontStyle;
 
     if (italicizeStatus.length && italicizeStatus == "italic") {
@@ -75,7 +80,8 @@ const EditTemplate = () => {
   };
 
   const handleUpperLower = () => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     const textTranformStatus = selectedDialog.style.textTransform;
     console.log(textTranformStatus);
     if (textTranformStatus.length && textTranformStatus == "uppercase") {
@@ -86,7 +92,8 @@ const EditTemplate = () => {
   };
 
   const setFontSize = (fontSize) => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
     const textSize = fontSize.selectedIndex + 9;
     selectedDialog.style.fontSize = `${textSize}px`;
   };
@@ -97,7 +104,8 @@ const EditTemplate = () => {
     2: "Calibri",
   };
   const setFontFamily = (fontFamily) => {
-    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const selectedDialog = window?.getSelection()?.focusNode
+      ?.parentNode as HTMLElement;
 
     selectedDialog.style.fontFamily = fontFamilies[fontFamily.selectedIndex];
   };
@@ -107,10 +115,13 @@ const EditTemplate = () => {
     const aboutMe = document.querySelector("#aboutMe")?.textContent;
     const skills = document.querySelector("#skills")?.textContent;
     const education = document.querySelector("#education")?.textContent;
-    const contactDetails = document.querySelector("#contactDetails")?.textContent;
+    const contactDetails =
+      document.querySelector("#contactDetails")?.textContent;
     const interests = document.querySelector("#interests")?.textContent;
-    const certifications = document.querySelector("#certifications")?.textContent;
-    const workExperience = document.querySelector("#workExperience")?.textContent;
+    const certifications =
+      document.querySelector("#certifications")?.textContent;
+    const workExperience =
+      document.querySelector("#workExperience")?.textContent;
     let projects;
     if (params.id == 1) {
       projects = certifications;
@@ -119,7 +130,6 @@ const EditTemplate = () => {
     }
 
     const userID = localStorage.getItem("userID");
-
 
     const jsonData = await fetch("http://localhost:5000/savecv", {
       method: "POST",
@@ -142,27 +152,27 @@ const EditTemplate = () => {
   };
 
   const generateImage = () => {
-    const node = document.getElementById('templates') as HTMLElement;
+    const node = document.getElementById("templates") as HTMLElement;
     // console.log(node)
-    htmlToImage.toJpeg(node, {backgroundColor: "white", quality: 1})
+    htmlToImage
+      .toJpeg(node, { backgroundColor: "white", quality: 1 })
       .then(function (dataUrl) {
-
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = dataUrl;
-        link.download = 'Download.jpeg';
+        link.download = "Download.jpeg";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       })
       .catch(function (error) {
-        console.error('oops, something went wrong!', error);
+        console.error("oops, something went wrong!", error);
       });
-  }
+  };
 
   return (
     <>
-      <div className="edit-template">
-        <div className="toolbar">
+      <div className="my-12 mx-5 flex-col items-center">
+        <div className="rounded-3xl font-rambla w-4/5 bg-[#e5e5e5] flex p-2.5 justify-evenly">
           <Tooltip title="uppercase/lowercase">
             <img src={textFont} alt="" onClick={handleUpperLower} />
           </Tooltip>
@@ -170,7 +180,7 @@ const EditTemplate = () => {
             name="fontFamily"
             id="fontFamily"
             onChange={(e) => setFontFamily(e.target)}
-            style={{ width: "100px" }}
+            className="w-24"
           >
             <option value="Roboto">Roboto</option>
             <option value="Times New Roman">Times New Roman</option>
@@ -197,47 +207,47 @@ const EditTemplate = () => {
           <label>Undo</label>
           <img src={redo} alt="" />
           <label>Redo</label> */}
-          <img src={printer} alt="" onClick={() => window.print()} />
-          <label>Print</label>
+          <img src={printer} alt="" onClick={() => window.print()} className="mt-1.5 w-8 h-8 cursor-pointer" />
+          <label className="relative right-5 self-center">Print</label>
           <Tooltip title="download">
             <img src={download} alt="" onClick={generateImage} />
           </Tooltip>
           <label>Download</label>
         </div>
-        <div className="small-toolbar">
+        <div className="top-48 p-2.5 w-4/5 z-50 rounded-3xl absolute justify-evenly flex bg-[#e5e5e5]">
           <Tooltip title="bold">
-            <img src={bold} alt="" onClick={boldText} />
+            <img src={bold} alt="" onClick={boldText} className="mt-1.5 cursor-pointer w-8 h-8" />
           </Tooltip>
           <Tooltip title="italic">
-            <img src={italics} alt="" onClick={italicizeText} />
+            <img src={italics} alt="" onClick={italicizeText} className="mt-1.5 cursor-pointer w-8 h-8"/>
           </Tooltip>
           <Tooltip title="underline">
-            <img src={underline} alt="" onClick={underlineText} />
+            <img src={underline} alt="" onClick={underlineText} className="mt-1.5 cursor-pointer w-8 h-8"/>
           </Tooltip>
           <Tooltip title="left align">
-            <img src={leftAlign} alt="" onClick={leftAlignText} />
+            <img src={leftAlign} alt="" onClick={leftAlignText} className="mt-1.5 cursor-pointer w-8 h-8"/>
           </Tooltip>
           <Tooltip title="center align">
-            <img src={alignCenter} alt="" onClick={centerAlignText} />
+            <img src={alignCenter} alt="" onClick={centerAlignText} className="mt-1.5 cursor-pointer w-8 h-8"/>
           </Tooltip>
           <Tooltip title="right align">
-            <img src={rightAlign} alt="" onClick={rightAlignText} />
+            <img src={rightAlign} alt="" onClick={rightAlignText} className="mt-1.5 cursor-pointer w-8 h-8"/>
           </Tooltip>
         </div>
-        <Link to="/mydocuments" className="my-doc-btn-link">
+        <Link to="/mydocuments" className="absolute top-56 z-50">
           <button className="my-doc-btn">My Documents</button>
         </Link>
-        <div className="cv-templates" id="templates">
+        <div className="w-4/5 h-auto mt-36 flex-col absolute items-center" id="templates">
           <dialog
             open
             contentEditable
             id="fullName"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "fullName1"
                 : params.id == 2
-                  ? "fullName2"
-                  : "fullName3"
+                ? "fullName2"
+                : "fullName3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -246,11 +256,11 @@ const EditTemplate = () => {
             contentEditable
             id="aboutMe"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "aboutMe1"
                 : params.id == 2
-                  ? "aboutMe2"
-                  : "aboutMe3"
+                ? "aboutMe2"
+                : "aboutMe3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -259,11 +269,11 @@ const EditTemplate = () => {
             contentEditable
             id="workExperience"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "workExperience1"
                 : params.id == 2
-                  ? "workExperience2"
-                  : "workExperience3"
+                ? "workExperience2"
+                : "workExperience3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -272,11 +282,11 @@ const EditTemplate = () => {
             contentEditable
             id="contactDetails"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "personalInfo1"
                 : params.id == 2
-                  ? "personalInfo2"
-                  : "personalInfo3"
+                ? "personalInfo2"
+                : "personalInfo3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -285,11 +295,11 @@ const EditTemplate = () => {
             id="certifications"
             contentEditable
             className={
-              params.id == 1
+              (params.id == 1
                 ? "certification-projects1"
                 : params.id == 2
-                  ? "certification-projects2"
-                  : "certification-projects3"
+                ? "certification-projects2"
+                : "certification-projects3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -299,9 +309,9 @@ const EditTemplate = () => {
               id="projects"
               contentEditable
               className={
-                params.id == 2
+                (params.id == 2
                   ? "extra-certification-projects2"
-                  : "extra-certification-projects3"
+                  : "extra-certification-projects3") + " border-solid border-2 border-black"
               }
             ></dialog>
           ) : (
@@ -312,11 +322,11 @@ const EditTemplate = () => {
             contentEditable
             id="skills"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "skills1"
                 : params.id == 2
-                  ? "skills2"
-                  : "skills3"
+                ? "skills2"
+                : "skills3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -325,11 +335,11 @@ const EditTemplate = () => {
             contentEditable
             id="interests"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "interests1"
                 : params.id == 2
-                  ? "interests2"
-                  : "interests3"
+                ? "interests2"
+                : "interests3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
@@ -338,18 +348,17 @@ const EditTemplate = () => {
             contentEditable
             id="education"
             className={
-              params.id == 1
+              (params.id == 1
                 ? "education1"
                 : params.id == 2
-                  ? "education2"
-                  : "education3"
+                ? "education2"
+                : "education3") + " border-solid border-2 border-black"
             }
             spellCheck="false"
           ></dialog>
-          <img src={imagePath} width="80%" style={{ marginTop: "50px" }} className="template-img" />
+          <img src={imagePath} width="80%" className="mt-12 h-auto" />
           <button
-            className="my-doc-btn"
-            style={{ marginBottom: "50px" }}
+            className="my-12 h-10 w-60 rounded-3xl font-rambla z-50"
             onClick={saveCVDoc}
           >
             Save Document

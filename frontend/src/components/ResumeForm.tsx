@@ -50,7 +50,7 @@ const ResumeForm: React.FC = () => {
   return (
     <>
       <main className="p-8 text-center">
-        <h1 className="text-5xl">Resume Form</h1>
+        <h1 className="text-5xl font-montserrat">Resume Form</h1>
 
         <Box
           component="form"
@@ -180,30 +180,30 @@ const ResumeForm: React.FC = () => {
         ></Button>
         <div className="flex justify-center">
           {saveStatus ? (
-            <div className="view-doc">
-              <label htmlFor="">Full Name</label>
-              <input type="text" value={fullName} readOnly />
-              <label htmlFor="">Designation</label>
-              <input type="text" value={designation} readOnly />
-              <label htmlFor="">Summary</label>
-              <input type="text" value={summary} readOnly />
-              <label htmlFor="">Education</label>
-              <input type="text" value={education} readOnly />
-              <label htmlFor="">Certifications</label>
-              <input type="text" value={certifications} readOnly />
-              <label htmlFor="">Interests</label>
-              <input type="text" value={interests} readOnly />
-              <label htmlFor="">Projects</label>
-              <input type="text" value={projects} readOnly />
-              <label htmlFor="">Contact Details</label>
-              <input type="text" value={contactDetails} readOnly />
-              <label htmlFor="">Skills</label>
-              <input type="text" value={skills} readOnly />
-              <label htmlFor="">Languages</label>
-              <input type="text" value={languages} readOnly />
+            <div className="mt-24 bg-[#e5e5e5] rounded-2xl w-1/2 flex-col p-9 font-montserrat">
+              <label htmlFor="" className="self-start">Full Name</label>
+              <input type="text" value={fullName} readOnly className="m-4 ml-0" />
+              <label htmlFor="" className="self-start">Designation</label>
+              <input type="text" value={designation} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Summary</label>
+              <input type="text" value={summary} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Education</label>
+              <input type="text" value={education} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Certifications</label>
+              <input type="text" value={certifications} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Interests</label>
+              <input type="text" value={interests} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Projects</label>
+              <input type="text" value={projects} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Contact Details</label>
+              <input type="text" value={contactDetails} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Skills</label>
+              <input type="text" value={skills} readOnly className="m-4 ml-0"/>
+              <label htmlFor="" className="self-start">Languages</label>
+              <input type="text" value={languages} readOnly className="m-4 ml-0" />
             </div>
           ) : (
-            <h2 className="heading">No CV/Resume generated</h2>
+            <h2 className="my-12 mx-0 font-montserrat">No CV/Resume generated</h2>
           )}
         </div>
       </main>

@@ -39,7 +39,7 @@ const CvForm: React.FC = () => {
   return (
     <>
       <main className="p-8 text-center">
-        <h1 className="text-5xl">CV Form</h1>
+        <h1 className="text-5xl font-montserrat">CV Form</h1>
         <Box
           component="form"
           sx={{
@@ -213,7 +213,7 @@ const CvForm: React.FC = () => {
             <input type="text" value={workExperience} readOnly/>
             <label htmlFor="">Languages</label>
             <input type="text" value={languages} readOnly/>
-          </div> : <h2 className="heading">No CV/Resume generated</h2>}
+          </div> : <h2 className="my-12 mx-0 font-montserrat">No CV/Resume generated</h2>}
         </div>
 
       </main>

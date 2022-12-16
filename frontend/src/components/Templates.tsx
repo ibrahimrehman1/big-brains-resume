@@ -62,7 +62,7 @@ const CVResumeCarousels: React.FC<Props> = ({ handleLoginOpen }) => {
 
   return (
     <main className="p-8">
-      <h2>CV Templates</h2>
+      <h2 className="font-montserrat">CV Templates</h2>
       <Carousel
         NextIcon={<ChevronRightIcon />}
         PrevIcon={<ChevronLeftIcon />}
@@ -76,7 +76,7 @@ const CVResumeCarousels: React.FC<Props> = ({ handleLoginOpen }) => {
         ))}
       </Carousel>
 
-      <h2>Resume Templates</h2>
+      <h2 className="font-montserrat">Resume Templates</h2>
       <Carousel
         NextIcon={<ChevronRightIcon />}
         PrevIcon={<ChevronLeftIcon />}

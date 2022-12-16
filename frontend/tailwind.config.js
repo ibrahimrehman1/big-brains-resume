@@ -5,6 +5,14 @@ module.exports = {
     ],
     theme: {
       extend: {},
+      colors: {
+        transparent: 'transparent',
+      },
+      fontFamily: {
+        'rambla': 'Rambla',
+        'montserrat': 'Montserrat',
+        'cursive': 'cursive'
+      }
     },
     plugins: [],
   }

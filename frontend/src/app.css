@@ -2,104 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 * {
-  font-family: Roboto, 'Times New Roman';
-}
-
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Montserrat;
-}
-
-.edit-template {
-  margin: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.my-doc-btn {
-  height: 38px;
-  width: 229px;
-  border-radius: 50px;
-  margin-top: 50px;
-  font-family: Rambla;
-  z-index: 1000;
-}
-
-.my-doc-btn-link {
-  position: absolute;
-  top: 220px;
-  z-index: 1000;
-}
-
-.toolbar {
-  border-radius: 50px;
-  font-family: Rambla;
-  width: 80%;
-  /* height: 45px; */
-  background-color: #e5e5e5;
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-
-
-.toolbar > img {
-  width: 30px;
-  height: 30px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-.toolbar > label {
-  align-self: center;
-  position: relative;
-  right: 20px;
-}
-
-.small-toolbar {
-  top: 200px;
-  width: 40%;
-  padding: 10px;
-  z-index: 1000;
-  border-radius: 50px;
-  position: absolute;
-  justify-content: space-evenly;
-  display: flex;
-  flex-direction: row;
-
-  background-color: #e5e5e5;
-}
-
-.small-toolbar img {
-  width: 30px;
-  height: 30px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-.cv-templates {
-  width: 1100px;
-  height: 1400px;
-  margin-top: 140px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-}
-
-.cv-templates > dialog {
-  border: 1px solid black;
+  font-family: Roboto, "Times New Roman";
 }
 
 .fullName1 {
@@ -131,7 +37,8 @@ h6 {
 .aboutMe2 {
   position: absolute;
   top: 250px;
-  width: 300px;  background-color: transparent;
+  width: 300px;
+  background-color: transparent;
 
   height: 50px;
   border-width: 0px !important;
@@ -149,7 +56,8 @@ h6 {
 
 .workExperience2 {
   position: absolute;
-  top: 450px;  background-color: transparent;
+  top: 450px;
+  background-color: transparent;
   width: 300px;
   border-width: 0px !important;
 
@@ -167,8 +75,9 @@ h6 {
 .personalInfo2 {
   position: absolute;
   top: 350px;
-  width: 300px;  background-color: transparent;
-right: -400px;
+  width: 300px;
+  background-color: transparent;
+  right: -400px;
   height: 50px;
 }
 
@@ -208,7 +117,8 @@ right: -400px;
   position: absolute;
   top: 600px;
   width: 300px;
-  height: 50px;  background-color: transparent;
+  height: 50px;
+  background-color: transparent;
 
   border-width: 0px !important;
 }
@@ -218,7 +128,8 @@ right: -400px;
   top: 680px;
   border-width: 0px !important;
 
-  width: 300px;  background-color: transparent;
+  width: 300px;
+  background-color: transparent;
 
   height: 50px;
 }
@@ -228,8 +139,8 @@ right: -400px;
   top: 800px;
   width: 300px;
   height: 50px;
-  border-width: 0px !important;  background-color: transparent;
-
+  border-width: 0px !important;
+  background-color: transparent;
 }
 
 .interests2 {
@@ -244,7 +155,6 @@ right: -400px;
 
 .skills2 {
   display: none;
-  
 }
 
 .personalInfo3 {
@@ -335,57 +245,24 @@ right: -400px;
   height: 50px;
 }
 
-.template-img{
-  width: 1100px;
-  height: 1400px;
-}
-
-
-
 body {
   -webkit-print-color-adjust: exact !important;
 }
 
-
-
-.view-doc{
-  margin-top: 100px;
-  background-color: #e5e5e5;
-  border-radius: 20px;
-  font-family: Montserrat;
-  width: 600px;
-  display: flex;
-  padding: 2em;
-  flex-direction: column;
-  /* align-items: center; */
-}
-
-.view-doc > input{
-  margin: 1em;
-  margin-left: 0em;
-}
-
-.view-doc > label{
-  align-self: flex-start;
-}
-
-.heading{
-  margin: 50px 0px;
-}
-
-@media print{
-  .navbar, .my-doc-btn, .small-toolbar, .toolbar{
+@media print {
+  .navbar,
+  .my-doc-btn,
+  .small-toolbar,
+  .toolbar {
     display: none !important;
   }
 
-  .template-img{
+  .template-img {
     margin: 0px;
     width: 100%;
   }
 
-  
-
-  .cv-templates{
+  .cv-templates {
     margin: 0px;
     /* width: 100%; */
   }

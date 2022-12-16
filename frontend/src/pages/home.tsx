@@ -22,10 +22,21 @@ const style = {
 };
 
 interface Props {
-  handleLoginOpen: () => void,
+  handleLoginOpen: () => void;
 }
 
-export const Home:React.FC<Props> = ({ handleLoginOpen }) => {
+const buttonStyles = {
+  backgroundColor: "#FCA311",
+  color: "black",
+  position: "relative",
+  top: "130px",
+  right: "50px",
+  fontWeight: "bold",
+  borderRadius: "20px",
+  height: "40px",
+  textTransform: "none",
+}
+export const Home: React.FC<Props> = ({ handleLoginOpen }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -49,14 +60,8 @@ export const Home:React.FC<Props> = ({ handleLoginOpen }) => {
   };
   return (
     <div>
-      <main style={{ padding: "2em" }}>
-        <h4
-          style={{
-            fontSize: "1.3rem",
-            fontFamily: "Montserrat",
-            fontWeight: "bold",
-          }}
-        >
+      <main className="p-8">
+        <h4 className="font-montserrat text-xl font-bold">
           The online resume builder is getting folks hired by BBC, Google,
           Apple, Tesla, and Airbnb.
           <br />
@@ -71,23 +76,13 @@ export const Home:React.FC<Props> = ({ handleLoginOpen }) => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ display: "flex", flexDirection: "row" }}>
+          <div className="flex-col">
+            <div className="flex">
               <img src={CVIcon} height="300px" />
               <Button
                 variant="contained"
                 size="medium"
-                styles={{
-                  backgroundColor: "#FCA311",
-                  color: "black",
-                  position: "relative",
-                  top: "130px",
-                  right: "50px",
-                  fontWeight: "bold",
-                  borderRadius: "20px",
-                  height: "40px",
-                  textTransform: "none",
-                }}
+                styles={buttonStyles}
                 clickHandler={handleOpen}
                 text="Build my resume/CV"
               ></Button>
@@ -103,52 +98,29 @@ export const Home:React.FC<Props> = ({ handleLoginOpen }) => {
                     id="modal-modal-title"
                     variant="h6"
                     component="h2"
+                    className="font-montserrat"
                   >
                     Select any one of the following options:
                   </Typography>
-                  <div style={{ marginTop: "20px" }}>
+                  <div className="mt-5">
                     <Button
                       variant="contained"
                       size="medium"
-                      styles={{
-                        backgroundColor: "#FCA311",
-                        color: "black",
-                        fontWeight: "bold",
-                        borderRadius: "20px",
-                        height: "40px",
-                        margin: "10px",
-                        textTransform: "none",
-                      }}
+                      styles={buttonStyles}
                       clickHandler={navigateToCVForm}
                       text="Resume Form"
                     ></Button>
                     <Button
                       variant="contained"
                       size="medium"
-                      styles={{
-                        backgroundColor: "#FCA311",
-                        color: "black",
-                        fontWeight: "bold",
-                        borderRadius: "20px",
-                        height: "40px",
-                        margin: "10px",
-                        textTransform: "none",
-                      }}
+                      styles={buttonStyles}
                       clickHandler={navigateToResumeForm}
                       text="Resume Form"
                     ></Button>
                     <Button
                       variant="contained"
                       size="medium"
-                      styles={{
-                        backgroundColor: "#FCA311",
-                        color: "black",
-                        fontWeight: "bold",
-                        borderRadius: "20px",
-                        height: "40px",
-                        margin: "10px",
-                        textTransform: "none",
-                      }}
+                      styles={buttonStyles}
                       clickHandler={() => navigate("/templates")}
                       text="Templates"
                     ></Button>
@@ -156,61 +128,27 @@ export const Home:React.FC<Props> = ({ handleLoginOpen }) => {
                 </Box>
               </Modal>
             </div>
-            <div
-              style={{
-                textAlign: "center",
-                alignItems: "center",
-                fontFamily: "cursive",
-                padding: "2em",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "2rem",
-                  color: "white",
-                  marginTop: "50px",
-                  fontFamily: "Montserrat",
-                  fontWeight: "bold",
-                }}
-              >
+            <div className="p-8 font-cursive items-center text-center">
+              <h3 className="font-montserrat font-bold mt-12 text-white text-3xl">
                 Build your resume fast and easy.
               </h3>
-              <p
-                style={{
-                  fontSize: "1.3rem",
-                  color: "white",
-                  fontFamily: "Montserrat",
-                }}
-              >
+              <p className="text-2xl text-white font-montserrat">
                 BigBrainResume is lightning fast. There&apos;s no software to
                 download. No long-winded tutorials. Just a straightforward
                 process.
               </p>
             </div>
           </div>
-          <img src={CVSample} width="400px" style={{ borderRadius: "20px" }} />
+          <img src={CVSample} width="400px" className="rounded-2xl" />
         </div>
       </main>
-      <div
-        style={{
-          width: "98.3vw",
-          height: "60vh",
-          backgroundColor: "#14213D",
-          position: "absolute",
-          zIndex: "-1000",
-          bottom: "-240px",
-          left: "0px",
-          right: "0px",
-          borderTopLeftRadius: "200px",
-        }}
-      ></div>
+      <div className="w-11/12 left-0 right-0 absolute bg-[#14213D] -z-50 -bottom-60 rounded-t-full h-2/3"></div>
     </div>
   );
-}
+};
 
 Home.propTypes = {
   handleLoginOpen: PropTypes.func.isRequired,
 };
-
 
 export default Home;
