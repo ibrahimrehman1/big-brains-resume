@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { style } from "./Navbar.jsx";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
-import Button from "./Button";
+import Button from "./Button.tsx";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 

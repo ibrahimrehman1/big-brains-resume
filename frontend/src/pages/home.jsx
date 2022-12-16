@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import Button from "../components/Button";
+import Button from "../components/Button.tsx";
 
 const style = {
   position: "absolute",

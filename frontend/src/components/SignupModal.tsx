@@ -12,7 +12,14 @@ import Button from "./Button";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 
-const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
+interface Props {
+  handleSignupClose: () => void,
+  openSignup: boolean,
+  handleTransition: (a: string) => void
+}
+
+
+const SignupModal: React.FC<Props> = ({ handleSignupClose, openSignup, handleTransition }) => {
   const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -117,21 +124,20 @@ const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
             }}
             clickHandler={createAccount}
             text="Create my Account"
-          >
+          />
             
-          </Button>
           {/* <Button variant="contained" color="warning" type="reset" style={{textTransform: "none", fontWeight: "bold"}}>
             Reset
           </Button> */}
           <Button
+        
             variant="contained"
             color="info"
             styles={{ textTransform: "none", fontWeight: "bold" }}
             clickHandler={() => handleTransition("Login")}
             text="Already have an account? Login"
-          >
+          />
             
-          </Button>
         </Box>
       </Box>
     </Modal>
@@ -140,7 +146,7 @@ const SignupModal = ({ handleSignupClose, openSignup, handleTransition }) => {
 
 SignupModal.propTypes = {
   handleSignupClose: PropTypes.func.isRequired,
-  openSignup: PropTypes.func.isRequired,
+  openSignup: PropTypes.bool.isRequired,
   handleTransition: PropTypes.func.isRequired,
 };
 

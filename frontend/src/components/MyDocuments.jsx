@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "./Button.tsx";
 import FeedbackModal from "./feedbackModal.jsx";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';

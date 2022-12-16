@@ -2,8 +2,8 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
-import Button from "./Button.jsx";
-import SignupModal from "./SignupModal";
+import Button from "./Button.tsx";
+import SignupModal from "./SignupModal.tsx";
 
 // Unit Tests
 
