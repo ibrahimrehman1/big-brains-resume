@@ -38,14 +38,14 @@ const CvForm: React.FC = () => {
 
   return (
     <>
-      <main style={{ padding: "2em", textAlign: "center" }}>
-        <h1 style={{ fontSize: "3rem" }}>CV Form</h1>
+      <main className="p-8 text-center">
+        <h1 className="text-5xl">CV Form</h1>
         <Box
           component="form"
           sx={{
             "& > :not(style)": { m: 2, width: "60ch" },
           }}
-          className="cv-form"
+          className="flex-col items-center"
           noValidate
           autoComplete="off"
         >

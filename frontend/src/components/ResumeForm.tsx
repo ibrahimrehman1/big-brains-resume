@@ -49,8 +49,8 @@ const ResumeForm: React.FC = () => {
   };
   return (
     <>
-      <main style={{ padding: "2em", textAlign: "center" }}>
-        <h1 style={{ fontSize: "3rem" }}>Resume Form</h1>
+      <main className="p-8 text-center">
+        <h1 className="text-5xl">Resume Form</h1>
 
         <Box
           component="form"
@@ -58,7 +58,7 @@ const ResumeForm: React.FC = () => {
             "& > :not(style)": { m: 2, width: "60ch" },
           }}
           noValidate
-          className="resume-form"
+          className="flex-col items-center"
           autoComplete="off"
         >
           <TextField
@@ -178,7 +178,7 @@ const ResumeForm: React.FC = () => {
           clickHandler={saveResume}
           text="Submit"
         ></Button>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="flex justify-center">
           {saveStatus ? (
             <div className="view-doc">
               <label htmlFor="">Full Name</label>

@@ -50,7 +50,7 @@ const SignupModal: React.FC<Props> = ({ handleSignupClose, openSignup, handleTra
             margin: "auto",
           }}
         >
-          <FontAwesomeIcon icon={faUser} style={{ fontSize: "1.5rem" }} />
+          <FontAwesomeIcon icon={faUser} className="text-2xl" />
         </Avatar>
         <Typography variant="h4" component="div" gutterBottom>
           Sign Up

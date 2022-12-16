@@ -61,7 +61,7 @@ const CVResumeCarousels: React.FC<Props> = ({ handleLoginOpen }) => {
   };
 
   return (
-    <main className="templates">
+    <main className="p-8">
       <h2>CV Templates</h2>
       <Carousel
         NextIcon={<ChevronRightIcon />}
@@ -103,7 +103,7 @@ interface ItemProps {
 
 const Item: React.FC<ItemProps> = ({img}) => {
   return (
-    <Paper style={{ textAlign: "center", boxShadow: "none" }}>
+    <Paper className="text-center shadow-none">
       <img src={img} width="300" height="350" />
     </Paper>
   );

@@ -110,7 +110,7 @@ const Navbar: React.FC<Props> = ({
             width="200px"
             height="auto"
             onClick={() => navigate("/")}
-            className="navbar-logo"
+            className="hover:cursor-pointer"
           />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

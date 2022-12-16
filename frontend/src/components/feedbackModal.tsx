@@ -87,7 +87,7 @@ const FeedbackModal: React.FC<Props> = ({ openFeedback, handleFeedbackClose }) =
             <EmojiEmotionsIcon
               fontSize="large"
               color="warning"
-              className="emojis"
+              className="hover:cursor-pointer"
               onClick={() => selectOneEmoji(0)}
             />
           </Tooltip>
@@ -95,7 +95,7 @@ const FeedbackModal: React.FC<Props> = ({ openFeedback, handleFeedbackClose }) =
             <SentimentDissatisfiedIcon
               fontSize="large"
               color="warning"
-              className="emojis"
+              className="hover:cursor-pointer"
               onClick={() => selectOneEmoji(1)}
             />
           </Tooltip>
