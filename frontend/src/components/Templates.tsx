@@ -12,7 +12,12 @@ import resumeTemplate3 from "../images/resumeTemplate3.jpeg";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export var items = [
+interface Items {
+  path: string,
+  id: number
+}
+
+export const items: Array<Items> = [
   {
     path: cvTemplate1,
     id: 1,
@@ -39,11 +44,15 @@ export var items = [
   },
 ];
 
-const CVResumeCarousels = ({ handleLoginOpen }) => {
+interface Props {
+  handleLoginOpen: () => void,
+}
+
+const CVResumeCarousels: React.FC<Props> = ({ handleLoginOpen }) => {
   const navigate = useNavigate();
 
   const navigateToEditTemplate = (id) => {
-    let username = localStorage.getItem("username");
+    const username = localStorage.getItem("username");
     if (username) {
       navigate(`/edittemplate/${id}`);
     } else {
@@ -88,10 +97,14 @@ CVResumeCarousels.propTypes = {
   handleLoginOpen: PropTypes.func.isRequired,
 };
 
-function Item(props) {
+interface ItemProps {
+  img: string
+}
+
+const Item: React.FC<ItemProps> = ({img}) => {
   return (
     <Paper style={{ textAlign: "center", boxShadow: "none" }}>
-      <img src={props.img} width="300" height="350" />
+      <img src={img} width="300" height="350" />
     </Paper>
   );
 }

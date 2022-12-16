@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Button from "./Button.tsx";
+import Button from "./Button";
 
-const CvForm = () => {
+const CvForm: React.FC = () => {
 
   const [fullName, setFullName] = useState("");
   const [designation, setDesignation] = useState("");
@@ -19,15 +19,15 @@ const CvForm = () => {
   const [saveStatus, setSaveStatus] = useState(false)
 
   const saveCV = async () => {
-    let userID = localStorage.getItem("userID");
-    let jsonData = await fetch("http://localhost:5000/cvform", {
+    const userID = localStorage.getItem("userID");
+    const jsonData = await fetch("http://localhost:5000/cvform", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userID, fullName, designation, aboutMe, skills, education, projects, contactDetails, languages, interests, certifications, workExperience })
     })
 
-    let data = await jsonData.json();
-    console.log(data);
+    const data = await jsonData.json();
+    // console.log(data);
     if (data.error) {
       alert(data.error)
     } else {
@@ -185,8 +185,8 @@ const CvForm = () => {
           }}
           clickHandler={saveCV}
           text="Submit"
-        >
-        </Button>
+        />
+        
         <div style={{ display: "flex", justifyContent: "center" }}>
 
           {saveStatus ? <div className="view-doc">
@@ -213,7 +213,7 @@ const CvForm = () => {
             <input type="text" value={workExperience} readOnly/>
             <label htmlFor="">Languages</label>
             <input type="text" value={languages} readOnly/>
-          </div> : <h2 className="heading">No CV/Resme generated</h2>}
+          </div> : <h2 className="heading">No CV/Resume generated</h2>}
         </div>
 
       </main>

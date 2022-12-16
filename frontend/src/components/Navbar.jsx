@@ -15,7 +15,7 @@ import "../app.css";
 import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SignupModal from "./SignupModal.tsx";
-import LoginModal from "./LoginModal.jsx";
+import LoginModal from "./LoginModal.js";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 
@@ -238,8 +238,8 @@ Navbar.propTypes = {
   handleLoginOpen: PropTypes.func.isRequired,
   handleSignupClose: PropTypes.func.isRequired,
   handleSignupOpen: PropTypes.func.isRequired,
-  openLogin: PropTypes.func.isRequired,
-  openSignup: PropTypes.func.isRequired,
+  openLogin: PropTypes.bool.isRequired,
+  openSignup: PropTypes.bool.isRequired,
 }
 
 export default Navbar;

@@ -8,11 +8,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { style } from "./Navbar.jsx";
 import { faUserAstronaut } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
-import Button from "./Button.tsx";
+import Button from "./Button";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 
-const LoginModal = ({
+interface Props {
+  openLogin: boolean,
+  handleLoginClose: () => void,
+  handleTransition: (a: string) => void,
+}
+
+const LoginModal: React.FC<Props> = ({
   openLogin,
   handleLoginClose,
 
@@ -100,7 +106,7 @@ const LoginModal = ({
 };
 
 LoginModal.propTypes = {
-  openLogin: PropTypes.func.isRequired,
+  openLogin: PropTypes.bool.isRequired,
   handleLoginClose: PropTypes.func.isRequired,
 
   handleTransition: PropTypes.func.isRequired,
