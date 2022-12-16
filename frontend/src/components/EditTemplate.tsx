@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { items } from "./Templates.js";
+import { items } from "./Templates";
 import alignCenter from "../images/align-center.png";
 import bold from "../images/bold.png";
 // import change from "../images/change.png";
