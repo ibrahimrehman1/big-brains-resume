@@ -19,8 +19,8 @@ import * as htmlToImage from 'html-to-image';
 
 
 const EditTemplate = () => {
-  const params = useParams();
-  const [imagePath, setImagePath] = useState("");
+  const params: {id?: number} = useParams();
+  const [imagePath, setImagePath] = useState<string>("");
   useEffect(() => {
     items.forEach((val) => {
       if (val["id"] == params.id) {
@@ -30,8 +30,8 @@ const EditTemplate = () => {
   }, []);
 
   const boldText = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
-    let boldStatus = selectedDialog.style.fontWeight;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const boldStatus = selectedDialog.style.fontWeight;
     if (boldStatus == "bold") {
       selectedDialog.style.fontWeight = "100";
     } else {
@@ -40,8 +40,8 @@ const EditTemplate = () => {
   };
 
   const underlineText = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
-    let underlineStatus = selectedDialog.style.textDecoration;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const underlineStatus = selectedDialog.style.textDecoration;
     if (underlineStatus.length && underlineStatus == "underline") {
       selectedDialog.style.textDecoration = "none";
     } else {
@@ -50,22 +50,22 @@ const EditTemplate = () => {
   };
 
   const leftAlignText = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
     selectedDialog.style.textAlign = "left";
   };
 
   const centerAlignText = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
     selectedDialog.style.textAlign = "center";
   };
   const rightAlignText = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
     selectedDialog.style.textAlign = "right";
   };
 
   const italicizeText = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
-    let italicizeStatus = selectedDialog.style.fontStyle;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const italicizeStatus = selectedDialog.style.fontStyle;
 
     if (italicizeStatus.length && italicizeStatus == "italic") {
       selectedDialog.style.fontStyle = "normal";
@@ -75,8 +75,8 @@ const EditTemplate = () => {
   };
 
   const handleUpperLower = () => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
-    let textTranformStatus = selectedDialog.style.textTransform;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const textTranformStatus = selectedDialog.style.textTransform;
     console.log(textTranformStatus);
     if (textTranformStatus.length && textTranformStatus == "uppercase") {
       selectedDialog.style.textTransform = "lowercase";
@@ -86,8 +86,8 @@ const EditTemplate = () => {
   };
 
   const setFontSize = (fontSize) => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
-    let textSize = fontSize.selectedIndex + 9;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
+    const textSize = fontSize.selectedIndex + 9;
     selectedDialog.style.fontSize = `${textSize}px`;
   };
 
@@ -97,31 +97,31 @@ const EditTemplate = () => {
     2: "Calibri",
   };
   const setFontFamily = (fontFamily) => {
-    let selectedDialog = window.getSelection().focusNode.parentNode;
+    const selectedDialog = window?.getSelection()?.focusNode?.parentNode as HTMLElement;
 
     selectedDialog.style.fontFamily = fontFamilies[fontFamily.selectedIndex];
   };
 
   const saveCVDoc = async () => {
-    let fullName = document.querySelector("#fullName").textContent;
-    let aboutMe = document.querySelector("#aboutMe").textContent;
-    let skills = document.querySelector("#skills").textContent;
-    let education = document.querySelector("#education").textContent;
-    let contactDetails = document.querySelector("#contactDetails").textContent;
-    let interests = document.querySelector("#interests").textContent;
-    let certifications = document.querySelector("#certifications").textContent;
-    let workExperience = document.querySelector("#workExperience").textContent;
+    const fullName = document.querySelector("#fullName")?.textContent;
+    const aboutMe = document.querySelector("#aboutMe")?.textContent;
+    const skills = document.querySelector("#skills")?.textContent;
+    const education = document.querySelector("#education")?.textContent;
+    const contactDetails = document.querySelector("#contactDetails")?.textContent;
+    const interests = document.querySelector("#interests")?.textContent;
+    const certifications = document.querySelector("#certifications")?.textContent;
+    const workExperience = document.querySelector("#workExperience")?.textContent;
     let projects;
     if (params.id == 1) {
       projects = certifications;
     } else {
-      projects = document.querySelector("#projects").textContent;
+      projects = document.querySelector("#projects")?.textContent;
     }
 
-    let userID = localStorage.getItem("userID");
+    const userID = localStorage.getItem("userID");
 
 
-    let jsonData = await fetch("http://localhost:5000/savecv", {
+    const jsonData = await fetch("http://localhost:5000/savecv", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -142,12 +142,12 @@ const EditTemplate = () => {
   };
 
   const generateImage = () => {
-    var node = document.getElementById('templates');
-    console.log(node)
+    const node = document.getElementById('templates') as HTMLElement;
+    // console.log(node)
     htmlToImage.toJpeg(node, {backgroundColor: "white", quality: 1})
       .then(function (dataUrl) {
 
-        var link = document.createElement('a');
+        const link = document.createElement('a');
         link.href = dataUrl;
         link.download = 'Download.jpeg';
         document.body.appendChild(link);

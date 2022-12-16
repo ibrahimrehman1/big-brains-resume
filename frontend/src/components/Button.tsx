@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 interface Props {
   text: string,
-  clickHandler: MouseEventHandler<HTMLButtonElement>,
+  clickHandler?: MouseEventHandler<HTMLButtonElement>,
   styles?: object,
   variant?: any,
   size?: any,
@@ -30,7 +30,7 @@ const Button: React.FC<Props> = ({text, clickHandler, styles, variant, size, col
 
 Button.propTypes = {
     text: PropTypes.string.isRequired,
-    clickHandler: PropTypes.func.isRequired,
+    clickHandler: PropTypes.func,
     styles: PropTypes.object,
     variant: PropTypes.string,
     size: PropTypes.string,

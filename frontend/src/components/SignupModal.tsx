@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import { deepOrange } from "@mui/material/colors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { style } from "./Navbar.jsx";
+import { style } from "./Navbar";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Typography from "@mui/material/Typography";
 import Button from "./Button";

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import Navbar from "./components/Navbar.jsx";
+import Navbar from "./components/Navbar.js";
 import Router from "./router";
 
 function App() {
   // Signup Modal
-  const [openSignup, setSignupOpen] = useState(false);
+  const [openSignup, setSignupOpen] = useState<boolean>(false);
   const handleSignupOpen = () => setSignupOpen(true);
   const handleSignupClose = () => setSignupOpen(false);
 
   // Login Modal
-  const [openLogin, setLoginOpen] = useState(false);
+  const [openLogin, setLoginOpen] = useState<boolean>(false);
   const handleLoginOpen = () => setLoginOpen(true);
   const handleLoginClose = () => setLoginOpen(false);
 
   // Transition to Login or Signup
-  const handleTransition = (transitionTo) => {
+  const handleTransition = (transitionTo: string) => {
     if (transitionTo === "Login") {
       handleSignupClose();
       handleLoginOpen();

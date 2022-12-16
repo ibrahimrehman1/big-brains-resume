@@ -7,15 +7,15 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "./Button.tsx";
+import Button from "./Button";
 import MenuItem from "@mui/material/MenuItem";
-import Logo from "../images/logo.PNG";
+import Logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
 import "../app.css";
 import { Dropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SignupModal from "./SignupModal.tsx";
-import LoginModal from "./LoginModal.js";
+import SignupModal from "./SignupModal";
+import LoginModal from "./LoginModal";
 import User from "../services/user.js";
 import PropTypes from "prop-types";
 
@@ -34,12 +34,28 @@ export const style = {
   p: 4,
 };
 
-const pages = [
+interface Page {
+  key: string,
+  name: string
+}
+
+const pages: Array<Page> = [
   { key: "CV Templates", name: "templates" },
   { key: "Resume Templates", name: "templates" },
 ];
 
-const Navbar = ({
+interface Props {
+  handleTransition: (a: string) => void,
+  handleLoginClose: () => void,
+  handleLoginOpen: () => void,
+  handleSignupClose: () => void,
+  handleSignupOpen: () => void,
+  openLogin: boolean,
+  openSignup: boolean,
+}
+
+
+const Navbar: React.FC<Props> = ({
   handleTransition,
   handleLoginClose,
   handleLoginOpen,
@@ -160,8 +176,8 @@ const Navbar = ({
                   borderRadius: "20px",
                 }}
                 text={page.key}
-              >
-              </Button>
+              />
+              
             ))}
             {username ? (
               <>
@@ -193,8 +209,8 @@ const Navbar = ({
                     textTransform: "none",
                   }}
                   text="Sign Up"
-                >
-                </Button>
+                />
+                
                 <Button
                   variant="contained"
                   size="medium"
@@ -208,8 +224,8 @@ const Navbar = ({
                     textTransform: "none",
                   }}
                   text="Login"
-                >
-                </Button>
+                />
+                
               </>
             )}
           </Box>

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-import Button from "../components/Button.tsx";
+import Button from "../components/Button";
 
 const style = {
   position: "absolute",
@@ -21,13 +21,17 @@ const style = {
   p: 4,
 };
 
-export default function Home({ handleLoginOpen }) {
+interface Props {
+  handleLoginOpen: () => void,
+}
+
+export const Home:React.FC<Props> = ({ handleLoginOpen }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
   const navigateToCVForm = () => {
-    let username = localStorage.getItem("username");
+    const username = localStorage.getItem("username");
     if (username) {
       navigate("/cvform");
     } else {
@@ -36,7 +40,7 @@ export default function Home({ handleLoginOpen }) {
   };
 
   const navigateToResumeForm = () => {
-    let username = localStorage.getItem("username");
+    const username = localStorage.getItem("username");
     if (username) {
       navigate("/resumeform");
     } else {
@@ -207,3 +211,6 @@ export default function Home({ handleLoginOpen }) {
 Home.propTypes = {
   handleLoginOpen: PropTypes.func.isRequired,
 };
+
+
+export default Home;

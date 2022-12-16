@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Button from "./Button.tsx";
-import FeedbackModal from "./feedbackModal.jsx";
+import Button from "./Button";
+import FeedbackModal from "./feedbackModal.js";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,9 +9,9 @@ import cvTemplate3 from "../images/cvTemplate3.jpeg";
 import CardMedia from '@mui/material/CardMedia';
 
 
-const MyDocuments = () => {
+const MyDocuments: React.FC = () => {
   // Feedback Form
-  const [openFeedback, setFeedbackOpen] = useState(false);
+  const [openFeedback, setFeedbackOpen] = useState<boolean>(false);
   const handleFeedbackOpen = () => setFeedbackOpen(true);
   const handleFeedbackClose = () => setFeedbackOpen(false);
   const [cvForms, setCVForms] = useState([]);
@@ -19,16 +19,18 @@ const MyDocuments = () => {
   // const [resumeTemplates, setResumeTemplates] = useState([]);
   // const [cvTemplates, setCVTemplates] = useState([]);
 
-  useEffect(async () => {
-    let userID = localStorage.getItem("userID");
-    let jsonData = await fetch("http://localhost:5000/mydocuments", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userID }) })
-    let userData = await jsonData.json();
-
-    console.log(userData);
-    setCVForms(userData['userData']['userFormCV'])
-    // setResumeForms(userData['userData']['userFormResume'])
-    // setResumeTemplates(userData['userData']['userTemplateResume'])
-    // setCVTemplates(userData['userData']['userTemplateCV'])
+  useEffect(() => {
+    (async () => {
+      const userID = localStorage.getItem("userID");
+      const jsonData = await fetch("http://localhost:5000/mydocuments", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userID }) })
+      const userData = await jsonData.json();
+  
+      // console.log(userData);
+      setCVForms(userData['userData']['userFormCV'])
+      // setResumeForms(userData['userData']['userFormResume'])
+      // setResumeTemplates(userData['userData']['userTemplateResume'])
+      // setCVTemplates(userData['userData']['userTemplateCV'])
+    })()
   }, [])
   return (
     <>
@@ -50,7 +52,7 @@ const MyDocuments = () => {
         style={{border: "1px solid black"}}
       />
         <CardActions style={{justifyContent: "center"}}>
-          <Button size="small">Download PDF</Button>
+          <Button size="small" text="Download PDF" />
         </CardActions>
       </Card>)
 
@@ -69,8 +71,8 @@ const MyDocuments = () => {
         }}
         clickHandler={handleFeedbackOpen}
         text="Feedback"
-      >
-      </Button>
+      />
+      
       <FeedbackModal
         openFeedback={openFeedback}
         handleFeedbackClose={handleFeedbackClose}

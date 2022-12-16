@@ -1,13 +1,17 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
-import ResumeForm from "../components/ResumeForm.tsx";
-import MyDocuments from "../components/MyDocuments.tsx";
-import CvForm from "../components/CvForm.tsx";
-import CVResumeCarousels from "../components/Templates.tsx";
-import EditTemplate from "../components/EditTemplate.jsx";
+import ResumeForm from "../components/ResumeForm";
+import MyDocuments from "../components/MyDocuments";
+import CvForm from "../components/CvForm";
+import CVResumeCarousels from "../components/Templates";
+import EditTemplate from "../components/EditTemplate";
 
-export default function index({ handleLoginOpen }) {
+interface Props {
+  handleLoginOpen: () => void,
+}
+
+const Router: React.FC<Props> = ({ handleLoginOpen }) => {
   return (
     <Routes>
       <Route
@@ -27,3 +31,5 @@ export default function index({ handleLoginOpen }) {
     </Routes>
   );
 }
+
+export default Router;

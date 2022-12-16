@@ -28,18 +28,23 @@ const style = {
   p: 4,
 };
 
-const FeedbackModal = ({ openFeedback, handleFeedbackClose }) => {
+interface Props {
+  openFeedback: boolean,
+  handleFeedbackClose: () => void,
+}
+
+const FeedbackModal: React.FC<Props> = ({ openFeedback, handleFeedbackClose }) => {
   const [selectedEmoji, selectOneEmoji] = useState(0);
   const EmojisNames = ["Happy", "Angry"];
   const [comments, setComments] = useState("");
   const saveFeedback = async () => {
-    let userID = localStorage.getItem("userID");
-    let jsonRes = await fetch("http://localhost:5000/feedback", {
+    const userID = localStorage.getItem("userID");
+    const jsonRes = await fetch("http://localhost:5000/feedback", {
       headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({ emojis: EmojisNames[selectedEmoji], comments, userID }),
     });
-    let data = await jsonRes.json();
+    const data = await jsonRes.json();
     console.log(data);
     if (data.error){
       alert(data.error)
@@ -127,7 +132,7 @@ const FeedbackModal = ({ openFeedback, handleFeedbackClose }) => {
 };
 
 FeedbackModal.propTypes = {
-  openFeedback: PropTypes.func.isRequired, 
+  openFeedback: PropTypes.bool.isRequired, 
   handleFeedbackClose: PropTypes.func.isRequired
 }
 
