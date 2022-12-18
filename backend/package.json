@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/supertest": "^2.0.12",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -20,6 +21,7 @@
     "lodash.merge": "^4.6.2",
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15",
+    "supertest": "^6.3.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {

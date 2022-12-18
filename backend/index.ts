@@ -48,3 +48,5 @@ app.get("/logout", logout);
 app.post("/mydocuments", myDocuments);
 
 app.listen(config.PORT, () => Logger.logInfo(`Server running on PORT: ${PORT}`));
+
+export {app};
