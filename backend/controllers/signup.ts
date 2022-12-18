@@ -1,6 +1,7 @@
-const JWT = require("jsonwebtoken");
-const User = require("../models/User");
-const {Logger} = require("../utils/logger")
+import { User } from "../models/User";
+import { Logger } from "../utils/logger";
+import JWT from "jsonwebtoken";
+
 
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });

@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import {Schema, model} from "mongoose";
 
-const resumeTemplateSchema = Schema({
+const resumeTemplateSchema = new Schema({
   fullName: {
     type: String,
     trim: true,
@@ -46,4 +46,4 @@ const resumeTemplateSchema = Schema({
   templateStyle: String,
 });
 
-module.exports.ResumeTemplate = model("resumetemplates", resumeTemplateSchema);
+export const ResumeTemplate = model("resumetemplates", resumeTemplateSchema);

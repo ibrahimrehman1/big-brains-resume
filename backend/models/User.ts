@@ -1,8 +1,9 @@
-const bcrypt = require("bcrypt");
-const validator = require("validator");
-const { Schema, model, Types } = require("mongoose");
+import {Schema, model, Types} from "mongoose";
+import bcrypt from "bcrypt";
+import validator from "validator";
 
-const userSchema = Schema({
+
+const userSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -57,4 +58,4 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-module.exports.User = model("user", userSchema);
+export const User = model("user", userSchema);

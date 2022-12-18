@@ -1,7 +1,8 @@
-const ResumeForm = require("../models/ResumeForm");
-const {Logger} = require("../utils/logger")
+import { Logger } from "../utils/logger";
+import { ResumeForm } from "../models/ResumeForm";
+import { User } from "../models/User";
 
-module.exports.resumeForm = async (req, res) => {
+export const resumeForm = async (req, res) => {
   Logger.logInfo(req.body);
   const {
     fullName,
@@ -32,7 +33,7 @@ module.exports.resumeForm = async (req, res) => {
   User.findById(userID)
     .exec()
     .then((user) => {
-      let userResumeFormIDs = user.userFormResume.concat([resumeform._id]);
+      let userResumeFormIDs = user.userFormResume.concat([{type: {prototype: {_id: resumeform._id.toString()}}}]);
       user.userFormResume = userResumeFormIDs;
       user.save();
     });

@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import {Schema, model} from "mongoose";
 
-const cvTemplateSchema = Schema({
+const cvTemplateSchema = new Schema({
   fullName: {
     type: String,
     trim: true,
@@ -31,4 +31,6 @@ const cvTemplateSchema = Schema({
   imageID: String,
 });
 
-module.exports.CVTemplate = model("cvtemplates", cvTemplateSchema);
+const CVTemplate = model("cvtemplates", cvTemplateSchema);
+
+export {CVTemplate};

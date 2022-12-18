@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import {Schema, model} from "mongoose";
 
-const feedbackSchema = Schema({
+const feedbackSchema = new Schema({
   emojis: {
     type: String,
     required: true,
@@ -11,5 +11,4 @@ const feedbackSchema = Schema({
     minLength: [50, "Feedback is too Short!"],
   },
 });
-
-module.exports.Feedback = model("feedbacks", feedbackSchema);
+export const Feedback = model("feedbacks", feedbackSchema);

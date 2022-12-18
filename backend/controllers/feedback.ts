@@ -1,7 +1,8 @@
-const Feedback = require("../models/Feedback");
-const {Logger} = require("../utils/logger")
+import { Feedback } from "../models/Feedback";
+import { Logger } from "../utils/logger";
+import { User } from "../models/User";
 
-module.exports.feedback = async (req, res) => {
+export const feedback = async (req, res) => {
   const { emojis, comments, userID } = req.body;
   Logger.logInfo(emojis, comments);
   try {
@@ -10,7 +11,7 @@ module.exports.feedback = async (req, res) => {
     User.findById(userID)
       .exec()
       .then((user) => {
-        let userFeedbackIDs = user.userFeedback.concat([feedback._id]);
+        let userFeedbackIDs = user.userFeedback.concat([{type: {prototype: {_id: feedback._id.toString()}}}]);
         user.userFeedback = userFeedbackIDs;
         user.save();
       });

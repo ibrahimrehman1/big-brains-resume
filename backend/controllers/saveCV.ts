@@ -1,41 +1,41 @@
-const CVForm = require("../models/CVForm");
-const {Logger} = require("../utils/logger")
+import { Logger } from "../utils/logger";
+import { CVTemplate } from "../models/CVTemplate";
+import { User } from "../models/User";
 
-module.exports.cvForm = async (req, res) => {
-  console.log(req.body);
+export const saveCV = async (req, res) => {
   const {
     fullName,
-    designation,
     aboutMe,
     skills,
     education,
     projects,
     contactDetails,
-    languages,
     interests,
     certifications,
     workExperience,
+    imageID,
     userID,
   } = req.body;
-  let Cvform = await CVForm.create({
+
+  let Cvtemplate = await CVTemplate.create({
     fullName,
-    designation,
     aboutMe,
     skills,
     education,
     projects,
     contactDetails,
-    languages,
     interests,
     certifications,
     workExperience,
+    imageID,
   });
-  Logger.logInfo(Cvform);
+  Logger.logInfo(Cvtemplate);
+
   User.findById(userID)
     .exec()
     .then((user) => {
-      let userCVFormIDs = user.userFormCV.concat([Cvform._id]);
-      user.userFormCV = userCVFormIDs;
+      let userTemplateCVIDs = user.userTemplateCV.concat([{type: {prototype: {_id: Cvtemplate._id.toString()}}}]);
+      user.userTemplateCV = userTemplateCVIDs;
       user.save();
     });
 

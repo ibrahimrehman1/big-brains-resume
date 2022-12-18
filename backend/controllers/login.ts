@@ -1,13 +1,13 @@
-const JWT = require("jsonwebtoken");
-const User = require("../models/User");
-const bcrypt = require("bcrypt");
-const {Logger} = require("../utils/logger")
+import JWT from "jsonwebtoken";
+import { User } from "../models/User";
+import bcrypt from "bcrypt";
+import { Logger } from "../utils/logger";
 
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });
 };
 
-module.exports.login = async (req, res) => {
+export const login = async (req, res) => {
   const { emailAddress, password } = req.body;
   Logger.logInfo(emailAddress, password);
   try {

@@ -1,17 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const mongoose = require("mongoose");
-const { cvForm } = require("./controllers/cvForm");
-const { feedback } = require("./controllers/feedback");
-const { login } = require("./controllers/login");
-const { logout } = require("./controllers/logout");
-const { myDocuments } = require("./controllers/myDocuments");
-const { resumeForm } = require("./controllers/resumeForm");
-const { saveCV } = require("./controllers/saveCV");
-const { signup } = require("./controllers/signup");
-const { PORT, MONGODB_URI } = require("./utils/config");
-const {Logger} = require("./utils/logger");
+import { feedback } from "./controllers/feedback";
+import { login } from "./controllers/login";
+import { logout } from "./controllers/logout";
+import { myDocuments } from "./controllers/myDocuments";
+import { resumeForm } from "./controllers/resumeForm";
+import { saveCV } from "./controllers/saveCV";
+import { signup } from "./controllers/signup";
+import { PORT, MONGODB_URI } from "./utils/config";
+import { Logger } from "./utils/logger";
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import { cvForm } from "./controllers/cvForm";
 
 // Express App
 let app = express();

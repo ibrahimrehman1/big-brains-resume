@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import {Schema, model} from "mongoose";
 
-const resumeFormSchema = Schema({
+const resumeFormSchema = new Schema({
   fullName: {
     type: String,
     trim: true,
@@ -24,4 +24,4 @@ const resumeFormSchema = Schema({
   certifications: String,
 });
 
-module.exports.ResumeForm = model("resumeforms", resumeFormSchema);
+export const ResumeForm = model("resumeforms", resumeFormSchema);

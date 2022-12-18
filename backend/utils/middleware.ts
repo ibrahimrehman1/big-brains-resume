@@ -1,4 +1,4 @@
-const JWT = require("jsonwebtoken");
+import JWT from "jsonwebtoken";
 
 // Auth Middleware
 const requireAuth = (req, res, next) => {
@@ -16,4 +16,4 @@ const requireAuth = (req, res, next) => {
 };
 
 
-module.exports = {requireAuth}
+export {requireAuth}

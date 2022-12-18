@@ -1,7 +1,7 @@
-const User = require("../models/User");
-const {Logger} = require("../utils/logger")
+import { Logger } from "../utils/logger";
+import { User } from "../models/User";
 
-module.exports.myDocuments = async (req, res) => {
+export const myDocuments = async (req, res) => {
   const { userID } = req.body;
   let user = await User.findById(userID)
     .populate("userFormCV")

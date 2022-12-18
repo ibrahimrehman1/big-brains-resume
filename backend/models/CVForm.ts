@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
+import {Schema, model} from "mongoose";
 
-const cvFormSchema = Schema({
+const cvFormSchema = new Schema({
   fullName: {
     type: String,
     trim: true,
@@ -28,4 +28,5 @@ const cvFormSchema = Schema({
   workExperience: String,
 });
 
-module.exports.CvForm = model("cvforms", cvFormSchema);
+export const CVForm = model("cvforms", cvFormSchema);
+
