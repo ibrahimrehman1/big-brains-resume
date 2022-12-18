@@ -6,8 +6,7 @@ import JWT from "jsonwebtoken";
 const createToken = (id) => {
   return JWT.sign({ id }, "big brains", { expiresIn: 3600 });
 };
-
-module.exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   const { firstName, lastName, userName, emailAddress, password } = req.body;
   try {
     let user = await User.create({
