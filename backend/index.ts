@@ -12,6 +12,11 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import { cvForm } from "./controllers/cvForm";
+import * as dotenv from "dotenv";
+import config from "./config";
+
+dotenv.config();
+
 
 // Express App
 let app = express();
@@ -42,4 +47,4 @@ app.get("/logout", logout);
 // My Documents Route
 app.post("/mydocuments", myDocuments);
 
-app.listen(PORT, () => Logger.logInfo(`Server running on PORT: ${PORT}`));
+app.listen(config.PORT, () => Logger.logInfo(`Server running on PORT: ${PORT}`));

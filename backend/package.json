@@ -17,6 +17,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
+    "lodash.merge": "^4.6.2",
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15",
     "validator": "^13.7.0"
