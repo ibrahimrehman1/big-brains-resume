@@ -20,5 +20,8 @@
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
   }
 }
